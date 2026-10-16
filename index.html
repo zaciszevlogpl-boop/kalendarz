@@ -441,7 +441,7 @@ function runAnim(stage, body, n, v){
     at(150 + 12 * 90 + 120, () => stage.classList.add("go")); reveal(1500); clear(2600);
   } else {
     const sb = el("img", "s-bag"), so = el("img", "s-open");
-    sb.src = bagImg(n); so.src = "img/worek_otwarty.jpg"; sb.alt = so.alt = ""; ov.append(sb, so);
+    sb.src = "img/worek_a.jpg"; so.src = "img/worek_otwarty.jpg"; sb.alt = so.alt = ""; ov.append(sb, so);
     snd.rustle(.05); snd.chime([783.99, 987.77, 1174.7, 1568], .1, .75);
     at(60, () => stage.classList.add("wiggle"));
     at(720, () => { stage.classList.add("opened");
