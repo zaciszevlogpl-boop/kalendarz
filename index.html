@@ -183,7 +183,7 @@ footer a{color:inherit}
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte.</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 16:57</div>
 
   <div class="cover">
     <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
@@ -354,11 +354,16 @@ function ac(){
   if (!SOUND) return null;
   try{
     if (!AC){
+      /* iPhone: bez tego przełącznik wyciszenia zabiera dźwięk strony */
+      try{ if (navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
       AC = new (window.AudioContext || window.webkitAudioContext)();
-      MASTER = AC.createGain(); MASTER.gain.value = .9; MASTER.connect(AC.destination);
+      const comp = AC.createDynamicsCompressor();
+      comp.threshold.value = -14; comp.knee.value = 10; comp.ratio.value = 4; comp.attack.value = .003; comp.release.value = .25;
+      comp.connect(AC.destination);
+      MASTER = AC.createGain(); MASTER.gain.value = 3.2; MASTER.connect(comp);
       const d = AC.createDelay(), fb = AC.createGain(), wet = AC.createGain();
       d.delayTime.value = .21; fb.gain.value = .28; wet.gain.value = .22;
-      MASTER.connect(d); d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(AC.destination);
+      MASTER.connect(d); d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(comp);
     }
     if (AC.state === "suspended") AC.resume();
     return AC;
