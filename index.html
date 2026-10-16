@@ -147,6 +147,18 @@ h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
 @keyframes burst{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r)) scale(1);opacity:0}}
 .stage.fin .s-art{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important;animation:none!important;transition:none!important}
 .card .body{transition:opacity .5s ease .15s,transform .5s ease .15s}
+/* zrobione: pieczęć na obrazku, gwiazdki z przycisku */
+.stempel{position:absolute;right:14px;top:14px;z-index:6;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9b74f,#a8701a);color:#fff8ea;display:grid;place-content:center;text-align:center;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.3),inset 0 0 0 4px rgba(255,248,234,.35);transform:rotate(-12deg);pointer-events:none;transition:opacity .4s ease}
+.stempel b{display:block;font-size:34px;font-weight:500}
+.stempel span{display:block;font-family:var(--script);font-size:19px;margin-top:-2px}
+.stempel.anim{animation:stamp .55s cubic-bezier(.2,.8,.2,1.25) both}
+@keyframes stamp{0%{transform:scale(2.6) rotate(-30deg);opacity:0}60%{transform:scale(.92) rotate(-10deg);opacity:1}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+.stage[class*=" v-"]:not(.fin) .stempel{opacity:0}
+.spark{position:fixed;z-index:20;width:13px;height:13px;margin:-6px 0 0 -6px;pointer-events:none;clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%);animation:spark .95s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes spark{0%{transform:translate(0,0) scale(.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(1);opacity:0}}
+.btn.pop{animation:btnpop .5s cubic-bezier(.2,.8,.2,1.3)}
+@keyframes btnpop{0%{transform:scale(1)}40%{transform:scale(1.16)}100%{transform:scale(1)}}
+.btn.isdone{background:var(--gold);color:#1a1408}
 .card .body.hide{opacity:0;transform:translateY(12px)}
 .snd{justify-self:start;appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
 .snd:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
@@ -156,7 +168,7 @@ h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
 .sharerow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
 .btn.ghost{background:transparent;color:var(--pine);border:1px solid var(--pine)}
 .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){.env{transition:none}.env.shake{animation:none}.stage *,.card .body{animation:none!important;transition:none!important}.flake,.conf,.star,.ring{display:none}}
+@media (prefers-reduced-motion:reduce){.env{transition:none}.env.shake{animation:none}.stage *,.card .body{animation:none!important;transition:none!important}.flake,.conf,.star,.ring,.spark{display:none}.stempel.anim,.btn.pop{animation:none}}
 .note{font-size:14px;color:var(--muted);min-height:1.5em;margin:10px 0 0}
 dialog{border:0;padding:0;border-radius:10px;max-width:min(560px,calc(100vw - 32px));width:100%;background:var(--glass);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 dialog::backdrop{background:rgba(20,26,23,.55)}
@@ -188,7 +200,7 @@ footer a{color:inherit}
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 18:52</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 19:10</div>
 
   <div class="cover">
     <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
@@ -268,7 +280,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "10161852";
+const IMGV = "10161910";
 function img(n){ return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -459,6 +471,10 @@ const snd = {
   rustle(t0 = 0){ noise(t0, .35, "bandpass", 2200, 4200, .09); },
   whoosh(t0 = 0){ noise(t0, 1.3, "lowpass", 300, 2600, .05); },
   pop(t0 = 0){ noise(t0, .08, "highpass", 1200, 3000, .12); },
+  stamp(t0 = 0){ const a = ac(); if (!a) return; const t = a.currentTime + t0, o = a.createOscillator(), v = a.createGain();
+    o.type = "sine"; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(60, t + .14);
+    v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(.25, t + .008); v.gain.exponentialRampToValueAtTime(.0001, t + .2);
+    o.connect(v); v.connect(out()); o.start(t); o.stop(t + .22); noise(t0, .06, "lowpass", 900, 300, .08); },
   thud(){ const a = ac(); if (!a) return; const t = a.currentTime, o = a.createOscillator(), v = a.createGain();
     o.type = "sine"; o.frequency.setValueAtTime(190, t); o.frequency.exponentialRampToValueAtTime(90, t + .15);
     v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(.18, t + .01); v.gain.exponentialRampToValueAtTime(.0001, t + .18);
@@ -540,6 +556,24 @@ function runAnim(stage, body, n, v, ready){
     }
   }
 }
+function stempel(anim){ const s = el("div", "stempel" + (anim ? " anim" : "")); s.append(el("b", null, "✓"), el("span", null, "zrobione")); return s; }
+/* zaznaczone „zrobione”: pieczęć, gwiazdki, dzwonki i pozytywka w górę */
+function hurra(stage, btn){
+  newBus();
+  snd.stamp(.28); sleigh(.3, 8, .07, .05); tune("C6 E6 G6 C7:4", .38, .075, .1); bell(2093, .7, 1.8, .045);
+  stage.appendChild(stempel(true));
+  if (RM) return;
+  btn.classList.remove("pop"); void btn.offsetWidth; btn.classList.add("pop");
+  const r = btn.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const cols = ["#c9902a", "#e6b85c", "#f3d27a", "#2f5b46", "#8fc1a6"];
+  for (let i = 0; i < 22; i++){
+    const s = el("span", "spark"), a = (Math.PI * 2 * i) / 22 + Math.random() * .3, d = 60 + Math.random() * 110;
+    s.style.left = cx + "px"; s.style.top = cy + "px"; s.style.background = cols[i % cols.length];
+    s.style.setProperty("--dx", `${Math.cos(a) * d}px`); s.style.setProperty("--dy", `${Math.sin(a) * d - 40}px`); s.style.setProperty("--r", `${Math.round(Math.random() * 360)}deg`);
+    s.style.animationDelay = `${Math.random() * .12}s`;
+    dlg.appendChild(s); setTimeout(() => s.remove(), 1300);
+  }
+}
 let previewVar = null;
 function openCard(n, forceVar){
   const o = byN[n]; card.replaceChildren();
@@ -567,8 +601,15 @@ function openCard(n, forceVar){
   const ep = el("div", "ep"), link = el("a", null, o.yt ? "Obejrzyj ten odcinek" : "Odcinek z tym okienkiem: o 18:00 na Zaciszu");
   link.href = o.yt || D.kanal; link.target = "_blank"; link.rel = "noopener";
   const t = el("button", "btn", done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"); t.type = "button";
-  t.addEventListener("click", () => { done[n] = !done[n]; store.set("zrobione", done); t.textContent = done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"; render(); });
+  if (done[n]) t.classList.add("isdone");
+  t.addEventListener("click", () => {
+    done[n] = !done[n]; store.set("zrobione", done);
+    t.textContent = done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"; t.classList.toggle("isdone", !!done[n]); render();
+    const old = stage.querySelector(".stempel"); if (old) old.remove();
+    if (done[n]) hurra(stage, t); else box(hz("E5"), 0, .05);
+  });
   ep.append(link, t); body.appendChild(ep); card.appendChild(body);
+  if (done[n]) stage.appendChild(stempel(false));
   if (!dlg.open){ if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", ""); }
   card.scrollTop = 0; note.textContent = "";
   const v = forceVar || variantFor(n);
