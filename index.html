@@ -188,7 +188,7 @@ footer a{color:inherit}
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 17:03</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 17:16</div>
 
   <div class="cover">
     <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
@@ -266,7 +266,8 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-function img(n){ return `img/${String(n).padStart(2,"0")}.jpg`; }
+const IMGV = "10161716";
+function img(n){ return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
 document.getElementById("preview").hidden = !PREVIEW;
