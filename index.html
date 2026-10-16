@@ -151,6 +151,11 @@ h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
 .snd{justify-self:start;appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
 .snd:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .herorow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.paper.share{display:block}
+.paper.share h2{margin:0 0 8px}
+.sharerow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn.ghost{background:transparent;color:var(--pine);border:1px solid var(--pine)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.env{transition:none}.env.shake{animation:none}.stage *,.card .body{animation:none!important;transition:none!important}.flake,.conf,.star,.ring{display:none}}
 .note{font-size:14px;color:var(--muted);min-height:1.5em;margin:10px 0 0}
 dialog{border:0;padding:0;border-radius:10px;max-width:min(560px,calc(100vw - 32px));width:100%;background:var(--glass);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
@@ -183,7 +188,7 @@ footer a{color:inherit}
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 17:01</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 16.10 17:03</div>
 
   <div class="cover">
     <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
@@ -217,6 +222,17 @@ footer a{color:inherit}
     <h2 id="h-ok">Okienka</h2>
     <div class="wall"><div class="grid" id="grid"></div></div>
     <p class="note" id="note" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="paper share" aria-labelledby="h-share">
+    <h2 id="h-share">Podziel się kalendarzem</h2>
+    <p>Wyślij go mamie, siostrze, przyjaciółce, cioci. Każdej kobiecie, z którą możesz się nim podzielić. I udostępnij u siebie w mediach społecznościowych.</p>
+    <div class="sharerow">
+      <button class="btn" id="sh-native" type="button" hidden>Udostępnij</button>
+      <a class="btn ghost" id="sh-fb" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn ghost" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="btn ghost" id="sh-copy" type="button">Skopiuj link</button>
+    </div>
   </section>
 
   <footer>
@@ -564,6 +580,21 @@ function openCard(n, forceVar){
 }
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 dlg.addEventListener("close", hush);
+/* udostępnianie: zawsze czysty adres strony, bez podglądu */
+{
+  const url = location.origin + location.pathname;
+  const txt = "Kalendarz adwentowy Zacisza. 24 okienka, jedna mała przyjemność na każdy dzień grudnia, z rzeczy, które masz w domu.";
+  document.getElementById("sh-fb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+  document.getElementById("sh-wa").href = "https://wa.me/?text=" + encodeURIComponent(txt + " " + url);
+  const nat = document.getElementById("sh-native");
+  if (navigator.share){ nat.hidden = false; nat.addEventListener("click", () => navigator.share({title: document.title, text: txt, url}).catch(() => {})); }
+  const cp = document.getElementById("sh-copy");
+  cp.addEventListener("click", () => {
+    const ok = () => { cp.textContent = "Skopiowane ✓"; setTimeout(() => { cp.textContent = "Skopiuj link"; }, 2500); };
+    const old = () => { const t = document.createElement("textarea"); t.value = url; document.body.appendChild(t); t.select(); try{ document.execCommand("copy"); ok(); }catch(e){} t.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(ok, old); else old();
+  });
+}
 render();
 </script>
 </body>
