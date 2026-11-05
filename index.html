@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kalendarz adwentowy Zacisza</title>
+<meta name="description" content="24 okienka, jedno na każdy dzień grudnia. Małe przyjemności do zrobienia w domu, razem z Gabrysią z kanału Zacisze.">
+<meta property="og:title" content="Kalendarz adwentowy Zacisza">
+<meta property="og:description" content="24 okienka, jedno na każdy dzień grudnia. Małe przyjemności do zrobienia w domu.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zaciszevlogpl-boop.github.io/kalendarz/img/00_salon_zima.jpg">
+<meta property="og:url" content="https://zaciszevlogpl-boop.github.io/kalendarz/">
+<meta name="theme-color" content="#2f5b46">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5b46'/%3E%3Cpath d='M32 10l5.6 14.4L52 26l-11 9.6L44.6 50 32 42.4 19.4 50 23 35.6 12 26l14.4-1.6z' fill='%23e6b85c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{
+  --bg:#eef0ec; --glass:#f7f8f5; --ink:#23281f; --muted:#69705f; --line:#d9ddd3;
+  --kraft:#d8c09a; --kraft-dk:#c4a87c; --kraft-ink:#3d2f1e;
+  --pine:#2f5b46; --pine-ink:#f3f6f1; --gold:#c9902a; --done:#2f5b46;
+  --script:"Snell Roundhand","Pinyon Script",cursive;
+  --sans:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:"Cormorant Garamond","Iowan Old Style",Palatino,Georgia,serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#141a17; --glass:#1c2420; --ink:#ece7dc; --muted:#a3ab9c; --line:#2d3832;
+  --kraft:#8a7354; --kraft-dk:#75613f; --kraft-ink:#fbf3e4;
+  --pine:#8fc1a6; --pine-ink:#10201a; --gold:#e6b85c; --done:#8fc1a6; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.55;font-size:16px;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%;display:block}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:grid;gap:40px}
+.cover{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:3/2;max-width:100%;background:var(--kraft)}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover .shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,26,23,.42),rgba(20,26,23,0) 48%)}
+.cover h1{position:absolute;left:0;right:0;top:0;margin:0;padding:22px 24px;font-family:var(--script);font-weight:400;font-size:clamp(36px,8vw,72px);line-height:1;color:#fbf6ea;text-shadow:0 2px 14px rgba(0,0,0,.35);text-wrap:balance}
+.hero{display:grid;gap:12px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lead{max-width:62ch;display:grid;gap:8px;margin:0}
+.lead p{margin:0}
+.support{margin:0;max-width:62ch;font-size:15px;color:var(--muted)}
+.support a{color:var(--pine);font-weight:400}
+.today{justify-self:start;display:inline-flex;align-items:center;gap:10px;background:var(--pine);color:var(--pine-ink);border-radius:999px;padding:8px 16px;font-weight:400;font-size:15px}
+.today b{font-family:var(--script);font-weight:400;font-size:26px;line-height:1}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin:0 0 14px;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;counter-reset:s}
+.steps li{background:var(--glass);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:4px;counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);font-family:var(--script);font-size:30px;line-height:1;color:var(--gold)}
+.steps b{font-weight:500}
+.paper{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;background:var(--glass);border:1px dashed var(--line);border-radius:6px;padding:14px 16px}
+.paper p{margin:0;flex:1 1 280px;min-width:0}
+.btn{appearance:none;border:0;border-radius:999px;background:var(--pine);color:var(--pine-ink);font:inherit;font-weight:400;padding:10px 18px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:focus-visible,.env:focus-visible,.tab:focus-visible,.x:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tab{appearance:none;font:inherit;font-size:14px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:6px;padding:16px;display:grid;gap:14px}
+.panel .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.panel h3{margin:0 0 6px;font-size:15px;font-weight:500}
+.panel .sub{color:var(--muted);font-size:14px;margin:0}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.checks label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.checks input{width:18px;height:18px;margin-top:3px;accent-color:var(--pine);flex:none}
+.checks input:checked + span{color:var(--muted);text-decoration:line-through}
+.prep ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.wall{position:relative;padding-top:18px}
+.wall::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:repeating-linear-gradient(90deg,var(--kraft-dk) 0 10px,transparent 10px 14px);opacity:.7}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.grid{grid-template-columns:repeat(2,1fr)}}
+.env{position:relative;appearance:none;border:0;font:inherit;text-align:left;cursor:pointer;background:var(--kraft);color:var(--kraft-ink);border-radius:6px;aspect-ratio:4/5;max-width:100%;padding:0;display:block;overflow:hidden;transition:transform .2s ease}
+.env .flap{position:absolute;inset:0;padding:12px;display:flex;flex-direction:column;justify-content:flex-end}
+.env .flap::before{content:"";position:absolute;inset:0 0 auto 0;height:38%;background:linear-gradient(to bottom right,transparent 49.5%,var(--kraft-dk) 50%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 49.5%,var(--kraft-dk) 50%) right/50% 100% no-repeat;opacity:.55}
+.env .num{position:relative;font-family:var(--script);font-size:clamp(38px,9vw,56px);line-height:1}
+.env .seal{position:absolute;top:10px;right:10px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.env .pic{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.env .tag{position:absolute;left:8px;bottom:8px;right:8px;display:flex;align-items:flex-end;justify-content:space-between;gap:6px}
+.env .tag .num{font-size:clamp(30px,7vw,42px);color:#fbf6ea;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.env .tag .ok{font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--pine);color:var(--pine-ink);border-radius:999px;padding:3px 8px}
+.env.locked{cursor:not-allowed;filter:saturate(.75)}
+.env.today{box-shadow:0 0 0 3px var(--gold),0 0 22px rgba(201,144,42,.45)}
+.env:hover:not(.locked){transform:translateY(-3px)}
+.env.shake{animation:shake .35s ease}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.env .bag{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.env.hasbag .flap::before{display:none}
+.env.hasbag .flap .num{color:#3d2f1e;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+.stage{position:relative;aspect-ratio:16/10;overflow:hidden;background:#efe6d6;perspective:900px;isolation:isolate}
+.stage .s-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.ov{position:absolute;inset:0;pointer-events:none;transition:opacity .6s ease}
+.ov.fade{opacity:0}
+.replay{position:absolute;right:10px;bottom:10px;z-index:9;appearance:none;border:0;border-radius:999px;background:rgba(20,26,23,.6);color:#fff;font:inherit;font-size:13px;padding:6px 12px;cursor:pointer}
+.vname{position:absolute;left:10px;bottom:10px;z-index:9;font-size:12px;color:#fff;background:rgba(20,26,23,.45);border-radius:999px;padding:4px 10px}
+/* drzwiczki */
+.door{position:absolute;top:0;bottom:0;width:50%;z-index:3;background:repeating-linear-gradient(90deg,rgba(0,0,0,.04) 0 3px,transparent 3px 10px),var(--kraft);border:2px solid var(--kraft-dk);transition:transform 1.05s cubic-bezier(.6,.05,.25,1);backface-visibility:hidden}
+.door.l{left:0;transform-origin:left center}
+.door.r{right:0;transform-origin:right center}
+.door::after{content:"";position:absolute;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--gold)}
+.door.l::after{right:16px}.door.r::after{left:16px}
+.pieczec{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;z-index:4;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9b74f,#a8701a);color:#fff8ea;display:grid;place-items:center;font-family:var(--script);font-size:44px;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:transform .35s ease,opacity .35s ease}
+.v-drzwi.go .pieczec{transform:scale(1.4);opacity:0}
+.v-drzwi.go .door.l{transform:rotateY(-108deg)}
+.v-drzwi.go .door.r{transform:rotateY(108deg)}
+/* koperta */
+.v-koperta .s-art{opacity:0;transform:translateY(42%) scale(.6);transition:transform .95s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.v-koperta.k2 .s-art{opacity:1;transform:none}
+.koperta{position:absolute;left:12%;right:12%;bottom:5%;height:56%;z-index:2;background:var(--kraft);border-radius:6px;box-shadow:0 6px 16px rgba(0,0,0,.18);transition:transform .8s ease .15s,opacity .5s ease .3s}
+.koperta::before{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.5%,rgba(0,0,0,.07) 50%) left/50% 100% no-repeat,linear-gradient(to top left,transparent 49.5%,rgba(0,0,0,.07) 50%) right/50% 100% no-repeat}
+.klapka{position:absolute;left:12%;right:12%;top:39%;height:28%;z-index:3;background:var(--kraft-dk);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .55s ease}
+.v-koperta.k1 .klapka{transform:rotateX(180deg);z-index:0}
+.v-koperta.k2 .koperta{transform:translateY(130%);opacity:0}
+/* śnieg */
+.v-snieg .s-art{filter:blur(14px) brightness(.6);transform:scale(1.06);transition:filter 1.7s ease .2s,transform 1.9s ease .2s}
+.v-snieg.go .s-art{filter:none;transform:none}
+.flake{position:absolute;top:-6%;z-index:3;border-radius:50%;background:#fff;opacity:.9;animation:fall linear forwards}
+@keyframes fall{from{top:-6%;transform:translateX(0)}to{top:106%;transform:translateX(var(--dx))}}
+/* złote koło */
+.v-iris .s-art{clip-path:circle(0% at 50% 50%);transition:clip-path 1.25s cubic-bezier(.6,.05,.25,1)}
+.v-iris.go .s-art{clip-path:circle(75% at 50% 50%)}
+.ring{position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;z-index:3;border:3px solid var(--gold);border-radius:50%;animation:ring 1.3s ease-out forwards}
+@keyframes ring{to{transform:scale(40);opacity:0}}
+/* konfetti */
+.v-konfetti .s-art{opacity:0;transform:scale(.82)}
+.v-konfetti.go .s-art{animation:pop .75s cubic-bezier(.2,.8,.2,1.2) forwards}
+@keyframes pop{0%{transform:scale(.82);opacity:0}60%{transform:scale(1.04);opacity:1}100%{transform:scale(1);opacity:1}}
+.conf{position:absolute;left:50%;bottom:-4%;z-index:3;width:8px;height:12px;border-radius:2px;animation:conf 1.7s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes conf{0%{transform:translate(-50%,0) rotate(0);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),var(--dy)) rotate(var(--r));opacity:0}}
+/* lampki */
+.v-lampki .s-art{filter:brightness(.12);transition:filter 1s ease}
+.v-lampki.go .s-art{filter:none}
+.kabel{position:absolute;left:4%;right:4%;top:5%;height:46px;z-index:3;border-bottom:2px solid rgba(60,45,30,.55);border-radius:0 0 50% 50%}
+.bulb{position:absolute;z-index:4;width:12px;height:16px;margin-left:-6px;border-radius:50% 50% 45% 45%;background:#5a5040;transition:background .2s,box-shadow .2s}
+.bulb.on{background:#ffd27a;box-shadow:0 0 14px 6px rgba(255,200,100,.65)}
+/* woreczek */
+.v-worek .s-art{opacity:0;transform:scale(.9);transition:opacity .5s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.v-worek.reveal .s-art{opacity:1;transform:none}
+.ov .s-bag,.ov .s-open{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:contain;transition:opacity .45s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.ov .s-open{opacity:0}
+.v-worek.wiggle .s-bag{animation:wiggle .6s ease;transform-origin:50% 85%}
+@keyframes wiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-5deg)}40%{transform:rotate(4deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(2deg)}}
+.v-worek.opened .s-bag{opacity:0}
+.v-worek.opened .s-open{opacity:1}
+.v-worek.reveal .s-open{opacity:0;transform:scale(1.2)}
+.star{position:absolute;left:50%;top:42%;z-index:4;width:12px;height:12px;background:var(--gold);clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%);opacity:0;animation:burst 1.2s ease-out forwards}
+@keyframes burst{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r)) scale(1);opacity:0}}
+.stage.fin .s-art{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important;animation:none!important;transition:none!important}
+.card .body{transition:opacity .5s ease .15s,transform .5s ease .15s}
+/* zrobione: pieczęć na obrazku, gwiazdki z przycisku */
+.stempel{position:absolute;right:14px;top:14px;z-index:6;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9b74f,#a8701a);color:#fff8ea;display:grid;place-content:center;text-align:center;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.3),inset 0 0 0 4px rgba(255,248,234,.35);transform:rotate(-12deg);pointer-events:none;transition:opacity .4s ease}
+.stempel b{display:block;font-size:34px;font-weight:500}
+.stempel span{display:block;font-family:var(--script);font-size:19px;margin-top:-2px}
+.stempel.anim{animation:stamp .55s cubic-bezier(.2,.8,.2,1.25) both}
+@keyframes stamp{0%{transform:scale(2.6) rotate(-30deg);opacity:0}60%{transform:scale(.92) rotate(-10deg);opacity:1}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+.stage[class*=" v-"]:not(.fin) .stempel{opacity:0}
+.spark{position:fixed;z-index:20;width:13px;height:13px;margin:-6px 0 0 -6px;pointer-events:none;clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%);animation:spark .95s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes spark{0%{transform:translate(0,0) scale(.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(1);opacity:0}}
+.btn.pop{animation:btnpop .5s cubic-bezier(.2,.8,.2,1.3)}
+@keyframes btnpop{0%{transform:scale(1)}40%{transform:scale(1.16)}100%{transform:scale(1)}}
+.btn.isdone{background:var(--gold);color:#1a1408}
+.card .body.hide{opacity:0;transform:translateY(12px)}
+.snd{justify-self:start;appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
+.snd:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.herorow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.paper.share{display:block}
+.wsparcie{display:block;border-style:solid;border-color:var(--gold)}
+.wsparcie[hidden]{display:none}
+.paper.wsparcie h2{margin:0 0 8px}
+.wsparcie p{margin:0 0 10px;max-width:62ch}
+.wsparcie p.drobne{font-size:14px;color:var(--muted);margin:12px 0 0}
+.paper.share h2{margin:0 0 8px}
+.sharerow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn.ghost{background:transparent;color:var(--pine);border:1px solid var(--pine)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.env{transition:none}.env.shake{animation:none}.stage *,.card .body{animation:none!important;transition:none!important}.flake,.conf,.star,.ring,.spark{display:none}.stempel.anim,.btn.pop{animation:none}}
+.note{font-size:14px;color:var(--muted);min-height:1.5em;margin:10px 0 0}
+dialog{border:0;padding:0;border-radius:10px;max-width:min(560px,calc(100vw - 32px));width:100%;background:var(--glass);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(20,26,23,.55)}
+.card{display:block;max-height:88vh;overflow:auto}
+.card .art{width:100%;aspect-ratio:16/10;object-fit:cover}
+.card .body{padding:18px 20px 20px;display:grid;gap:14px}
+.card .top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card .n{font-family:var(--script);font-size:56px;line-height:.9;color:var(--gold)}
+.card h3{margin:0;font-size:22px;font-weight:400;text-wrap:balance}
+.card .cyt{margin:0;text-align:center;font-family:var(--serif);font-style:italic;font-weight:500;font-size:20px;line-height:1.4;text-wrap:balance}
+.card .cyt::before{content:"";display:block;width:44px;height:1px;background:var(--gold);margin:0 auto 12px}
+.card .cyt cite{display:block;margin-top:8px;font-family:var(--sans);font-style:normal;font-weight:400;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card .od{margin:0;font-style:italic;border-left:2px solid var(--gold);padding-left:12px}
+.card .od span{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+.card h4{margin:0 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.card ul,.card ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.card .tip{background:var(--bg);border-radius:6px;padding:10px 12px;font-size:14.5px;margin:0}
+.card .swap{border:1px dashed var(--gold);border-radius:6px;padding:10px 12px;font-size:14.5px}
+.card .swap h4{color:var(--gold)}
+.card .swap ul{list-style:none;padding-left:0}
+.card .swap li::before{content:"✦ ";color:var(--gold)}
+.card .ep{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.card .ep a{color:var(--pine);font-weight:400}
+.x{appearance:none;border:1px solid var(--line);background:var(--glass);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:20px;line-height:1;cursor:pointer;flex:none}
+.preview{background:var(--gold);color:#1a1408;border-radius:6px;padding:8px 12px;font-size:14px}
+footer{font-size:13px;color:var(--muted);display:grid;gap:4px}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 03.11 22:46</div>
+
+  <div class="cover">
+    <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
+    <div class="shade"></div>
+    <h1>Kalendarz adwentowy Zacisza</h1>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Zacisze · spokojny vlog · grudzień</div>
+    <div class="lead" id="lead"></div>
+    <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy.</p>
+    <div class="herorow"><div class="today" id="today"></div><button class="snd" id="snd" type="button" aria-pressed="true">🔔 Dźwięk włączony</button></div>
+  </header>
+
+  <section aria-labelledby="h-jak">
+    <h2 id="h-jak">Jak to działa</h2>
+    <ol class="steps" id="steps"></ol>
+  </section>
+
+  <section class="paper">
+    <p><b>Wolisz na papierze?</b> Wersja do druku ma listy na każdy tydzień i 24 karteczki do wycięcia. Jeśli nie chcesz znać okienek wcześniej, poproś kogoś bliskiego, żeby wydrukował, wyciął i schował je do kopert.</p>
+    <a class="btn" href="kalendarz-adwentowy-zacisza-do-druku.pdf" download>Pobierz wersję do druku</a>
+  </section>
+
+  <section aria-labelledby="h-lista">
+    <h2 id="h-lista">Co przygotować</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="panels"></div>
+  </section>
+
+  <section aria-labelledby="h-ok">
+    <h2 id="h-ok">Okienka</h2>
+    <div class="wall"><div class="grid" id="grid"></div></div>
+    <p class="note" id="note" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="paper wsparcie" id="wsparcie" aria-labelledby="h-wsparcie" hidden>
+    <h2 id="h-wsparcie">Fajnie się bawisz?</h2>
+    <p>Mam nadzieję, że pierwsze okienka dały Ci kilka chwil tylko dla siebie.</p>
+    <p>Kalendarz jest prezentem i takim zostanie, do ostatniego okienka.</p>
+    <p>Przygotowanie go zajęło mi sporo czasu i serca. Jeśli sprawia Ci radość i możesz sobie na to pozwolić, możesz wesprzeć Zacisze. Dzięki temu mogę robić takie rzeczy dalej.</p>
+    <div class="sharerow">
+      <a class="btn" id="join-mid" target="_blank" rel="noopener">Wesprzyj Zacisze</a>
+      <button class="btn ghost" id="mid-share" type="button">Wyślij kalendarz komuś</button>
+    </div>
+    <p class="drobne">A jeśli nie teraz, to naprawdę w porządku. Komentarz pod odcinkiem albo kalendarz wysłany przyjaciółce też bardzo mi pomaga. Dziękuję, że jesteś.</p>
+  </section>
+
+  <section class="paper share" aria-labelledby="h-share">
+    <h2 id="h-share">Podziel się kalendarzem</h2>
+    <p>Wyślij go mamie, siostrze, przyjaciółce, cioci. Każdej kobiecie, z którą możesz się nim podzielić. I udostępnij u siebie w mediach społecznościowych.</p>
+    <div class="sharerow">
+      <button class="btn" id="sh-native" type="button" hidden>Udostępnij</button>
+      <a class="btn ghost" id="sh-fb" target="_blank" rel="noopener">Facebook</a>
+      <a class="btn ghost" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="btn ghost" id="sh-copy" type="button">Skopiuj link</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>Z miłością, Gabrysia. Odcinki codziennie o 18:00 na kanale <a href="https://www.youtube.com/@zdrowezmiany" target="_blank" rel="noopener">Zacisze</a>.</span>
+    <span>To, co zaznaczasz, zostaje tylko w Twojej przeglądarce.</span>
+  </footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="d-title"><div class="card" id="card"></div></dialog>
+
+<script>
+/* stare iPhone’y (iOS 12 i 13) nie znają replaceChildren: bez tego kalendarz byłby pusty */
+if (!Element.prototype.replaceChildren) Element.prototype.replaceChildren = function(){ while (this.firstChild) this.removeChild(this.firstChild); this.append.apply(this, arguments); };
+const D = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ0eXR1bCI6ICJLYWxlbmRhcnogYWR3ZW50b3d5IFphY2lzemEiLCAia2FuYWwiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vQHpkcm93ZXptaWFueSIsICJyb2siOiAyMDI2LCAid3N0ZXAiOiBbIk3Ds2ogcHJlemVudCBkbGEgQ2llYmllIG5hIGdydWR6aWXFhC4iLCAiRHdhZHppZcWbY2lhIGN6dGVyeSBva2llbmthLiBXIGthxbxkeW0gamVzdCBqZWRuYSBtYcWCYSBwcnp5amVtbm/Fm8SHLCBrdMOzcsSFIHpyb2Jpc3ogdyBkb211LCB6IHRlZ28sIGNvIHp3eWtsZSBqZXN0IHcga3VjaG5pIGkgdyBzenVmbGFkemllLiDFu2FkbnljaCBvYm93acSFemvDs3csIMW8YWRuZWdvIHNwcnrEhXRhbmlhLiIsICJOaWUgYmllZ25paiBkbyBza2xlcHUuIEplxZtsaSBjemVnb8WbIG5pZSBtYXN6LCBwcnp5IGthxbxkeW0gb2tpZW5rdSB6bmFqZHppZXN6IHphbWllbm5pay4gVHUgdGFrIG5hcHJhd2TEmSBjaG9kemkgbyBwb215c8WCIGkgY3phcy4iLCAiQ29kemllbm5pZSBvIDE4OjAwIG90d2llcmFtIHRvIHNhbW8gb2tpZW5rbyB3IG9kY2lua3UgbmEgWmFjaXN6dS4gTW/FvGVzeiByb2JpxIcgamUgcmF6ZW0gemUgbW7EhSBhbGJvIHd0ZWR5LCBraWVkeSBtYXN6IGNod2lsxJkuIl0sICJqYWsiOiBbWyJTcHJhd2TFuiBsaXN0xJkgbmEgdHlkemllxYQiLCAiTmEgcG9jesSFdGt1IHR5Z29kbmlhIHphanJ6eWosIGNvIENpIHNpxJkgcHJ6eWRhLiBXacSZa3N6b8WbxIcgcnplY3p5IGp1xbwgbWFzeiwgYSBwcnp5IHJlc3pjaWUgamVzdCB6YW1pZW5uaWsuIl0sIFsiT3R3w7NyeiBva2llbmtvIiwgIkthxbxkZSBva2llbmtvIG90d2llcmEgc2nEmSBzYW1vIHcgc3dvaW0gZG5pdS4gxZpyb2RlayB0byBwcnplcGlzIGFsYm8ga3LDs3RrYSBpbnN0cnVrY2phLiJdLCBbIlpyw7NiIHRvIHplIG1uxIUiLCAiTyAxODowMCB3eWNob2R6aSBvZGNpbmVrIHogdHltIG9raWVua2llbS4gWmF6bmFjeiwga2llZHkgenJvYmlzeiBzd29qZS4iXV0sICJwcnp5Z290dWoiOiB7InR5dHVsIjogIlByenlnb3R1aiB3IGxpc3RvcGFkemllIChqZcWbbGkgY2hjZXN6KSIsICJvcGlzIjogIkplxZtsaSBtYXN6IGphYsWCa2EsIG1vxbxlc3ogamUgd2N6ZcWbbmllaiB1c3VzennEhy4gUHJ6eWRhZHrEhSBzacSZIHcgZ3J1ZG5pdS4gU3Vzem9uZSBqYWLFgmthIG1vxbxlc3ogdGXFvCBrdXBpxIcgdyBza2xlcGllLCBhIGJleiBuaWNoIHRlxbwgZGFzeiByYWTEmS4iLCAia3Jva2kiOiBbIkphYsWCa2EgdW15aiBwb2QgYmllxbzEhWPEhSB3b2TEhSwgcG9jaWVyYWrEhWMgc2vDs3JrxJkuIERvcGllcm8gcG90ZW0gb2JpZXJ6LiBTa8OzcmtpIG9kxYLDs8W8IG9zb2Juby4iLCAiTWnEhcW8c3ogcG9rcsOzaiB3IHBsYXN0cnkgb2suIDMgbW0gaSB3eWTFgnViIHBlc3RraS4gUGxhc3RyeSBpIHNrw7Nya2kgcG/FgsOzxbwgamVkbsSFIHdhcnN0d8SFIG5hIGJsYWNoYWNoIHogcGFwaWVyZW0uIiwgIlBpZWthcm5payBvay4gOTDCsEMgeiB0ZXJtb29iaWVnaWVtIChiZXogdGVybW9vYmllZ3UgOTMgZG8gMTAwwrBDKSwgZHJ6d2ljemtpIHphbWtuacSZdGUuIFBvIGdvZHppbmllIHByemV3csOzxIcgcGxhc3RyeS4iLCAiT2QgZHJ1Z2llaiBnb2R6aW55IHd5am1paiBqZWRlbiBwbGFzdGVyIG5hIGJsYXQuIEplxZtsaSBwbyAyIGRvIDMgbWludXRhY2ggc2nEmSDFgmFtaWUsIHd5xYLEhWN6IHBpZWthcm5paywgdWNoeWwgZHJ6d2ljemtpIGkgem9zdGF3IG5hIGdvZHppbsSZLiIsICJaaW1uZSBwcnplxYLDs8W8IGRvIHN1Y2hlZ28gc8WCb2lrYSwgd3lwZcWCbmlvbmVnbyB3IGR3w7NjaCB0cnplY2ljaC4gUHJ6ZXogcGllcndzenkgdHlkemllxYQgcG90cnrEhXNhaiBuaW0gcmF6IGR6aWVubmllLiBQYXJhIG5hIHN6a2xlIHpuYWN6eTogd3lzeXAgaSBkb3N1c3ouIl0sICJ1d2FnYSI6ICJTa8OzcmtpIHNjaG7EhSBzenliY2llaiBuacW8IHBsYXN0cnksIHNwcmF3ZHphaiBqZSBvZCBwaWVyd3N6ZWogZ29kemlueS4gQ3rEmcWbxIcgcGxhc3Ryw7N3IHBva3LDs2ogZ3J1Ymllaiwgb2suIDYgbW0uIFPFgm9payB0cnp5bWFqIHcgY2jFgm9kbmVqLCBjaWVtbmVqIHN6YWZjZSwgbmllIG5hZCBrdWNoZW5rxIUuIn0sICJ0eWdvZG5pZSI6IFt7Im5hendhIjogIlR5ZHppZcWEIDEiLCAiZG5pIjogIjEgZG8gNyBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbIm3EhWthIHBzemVubmEsIDI1MCBnIiwgIm1hc8WCbywgNTAgZyIsICJtacOzZCIsICIyIGphamthIiwgInNvZGEgb2N6eXN6Y3pvbmEiLCAiY3luYW1vbiAoaW1iaXIsIGdvxbpkemlraSBpIGdhxYJrYSwgamXFm2xpIHPEhSkiLCAicGFwaWVyIGRvIHBpZWN6ZW5pYSAoYWxibyBtYXPFgm8gaSBtxIVrYSBuYSBibGFjaMSZKSIsICIxIGphYsWCa28iLCAiaGVyYmF0YSwga3TDs3LEhSBsdWJpc3oiXV0sIFsiWiBzenVmbGFkeSBpIHN6YWZ5IiwgWyJrYXJ0a2EsIGTFgnVnb3Bpcywga29wZXJ0YSAoYWxibyBzcGluYWN6KSIsICJtYWduZXMgKGFsYm8gdGHFm21hKSIsICJjaWVua2kgcGFwaWVyIChhbGJvIHBhcGllciDFm25pYWRhbmlvd3ksIGthcnRraSB6IHplc3p5dHUpLCBub8W8eWN6a2ksIGtsZWogYWxibyB0YcWbbWEiLCAiYmxhc3phbmEgcHVzemthIChhbGJvIHPFgm9payB6IHpha3LEmXRrxIUsIGFsYm8gdW15dGEgcHVzemthIHBvIHBvbWlkb3JhY2gpIiwgInBhcGllciBpIHN6bnVyZWsgKGFsYm8gcGFwaWVyIHogcGFjemtpIGkgd3N0xIXFvGthKSIsICJjaWVwxYJlIGJ1dHksIGN6YXBrYSwgdGVybW9zIChuaWUgbWFzej8gaGVyYmF0YSBwcnplZCB3eWrFm2NpZW0pIl1dXX0sIHsibmF6d2EiOiAiVHlkemllxYQgMiIsICJkbmkiOiAiOCBkbyAxNCBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbImhlcmJhdGEgb3dvY293YSAoYWxibyBzdXN6b25lIHNrw7Nya2kgamFixYJlaykiLCAibGFza2EgY3luYW1vbnUiLCAiam9ndXJ0IG5hdHVyYWxueSBpIG1pw7NkIChhbGJvIHDFgmF0a2kgb3dzaWFuZSkiLCAic8OzbCwgb2suIDEgc3prbGFua2kiLCAiMyBqYWprYSwgY3VraWVyLCBtYXPFgm8sIG3EhWthLCBtbGVrbywgcHJvc3playBkbyBwaWVjemVuaWEiLCAiNTAwIGRvIDcwMCBnIGphYsWCZWsgKGFsYm8gaW5ueWNoIG93b2PDs3cpIiwgInRvLCBjbyBsdWJpc3ogbmEgxZtuaWFkYW5pZSJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbImtzacSFxbxrYSBpIGtvYyIsICJyxJljem5payBpIG1pc2thIiwgInN1c3pvbnkgcm96bWFyeW4sIGplxZtsaSBqZXN0IChiZXogbmllZ28gdGXFvCBkb2JyemUpIiwgImtyZW0iLCAia2FydGthIGFsYm8gZ3J1YnN6eSBwYXBpZXIgaSBrc2nEhcW8a2EsIHcga3TDs3JlaiBqxIUgc2Nob3dhc3oiXV1dfSwgeyJuYXp3YSI6ICJUeWR6aWXFhCAzIiwgImRuaSI6ICIxNSBkbyAyMSBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbImtha2FvIChrYcW8ZGUsIGpha2llIG1hc3osIGFsYm8gbWnDs2QgaSBjeW5hbW9uIGRvIGNpZXDFgmVnbyBtbGVrYSkiLCAiY3VraWVyLCBjeW5hbW9uLCBtbGVrbyIsICJmdXN5IHogcG9yYW5uZWoga2F3eSB6IHRlZ28gc2FtZWdvIGRuaWEgKGFsYm8gY3VraWVyKSIsICJvbGl3YSAoYWxibyB6d3lrxYJ5IG9sZWopIiwgIjIgZG8gMyBqYWLFgmthIChhbGJvIGt1cGlvbmUgbWnEmWtraWUga3LEhcW8a2ksIGFsYm8gc2vDs3JraSBwb21hcmHFhGN6eSkiXV0sIFsiWiBzenVmbGFkeSBpIHN6YWZ5IiwgWyJzxYJ1Y2hhd2tpIGFsYm8gZ8WCb8WbbmlrIHcgdGVsZWZvbmllIiwgImdydWJhIGlnxYJhIGkgbml0a2EgKGFsYm8gd3lrYcWCYWN6a2EgZG8gZHppdXJlaykiLCAia29jLCBwb2R1c3prYSwgYnVkemlrIiwgIjMgZG8gNCBtYcWCZSBzxYJvaWtpICh0ZSBwbyBkxbxlbWllIHPEhSBpZGVhbG5lKSwgcGFwaWVyLCBzem51cmVrIiwgImtyZW0gZG8gcsSFayJdXV19LCB7Im5hendhIjogIlR5ZHppZcWEIDQiLCAiZG5pIjogIjIyIGRvIDI0IGdydWRuaWEiLCAibGlzdHkiOiBbWyJaIGt1Y2huaSIsIFsiMSDFm3JlZG5pZSBqYWLFgmtvIiwgInDFgmF0a2kgb3dzaWFuZSBhbGJvIG9yemVjaHksIG1pw7NkIGFsYm8gY3VraWVyLCBjeW5hbW9uLCBtYXPFgm8iLCAiam9ndXJ0IG5hdHVyYWxueSwgamXFm2xpIGx1YmlzeiJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbImtvYyIsICJrYXJ0a2kgcGFwaWVydSwgZMWCdWdvcGlzLCBrb3BlcnR5IChqZcWbbGkgbWFzeikiLCAibGlzdCB6IHBpZXJ3c3plZ28gb2tpZW5rYSJdXV19XSwgIm9raWVua2EiOiBbeyJuIjogMX0sIHsibiI6IDJ9LCB7Im4iOiAzfSwgeyJuIjogNH0sIHsibiI6IDV9LCB7Im4iOiA2fSwgeyJuIjogN30sIHsibiI6IDh9LCB7Im4iOiA5fSwgeyJuIjogMTB9LCB7Im4iOiAxMX0sIHsibiI6IDEyfSwgeyJuIjogMTN9LCB7Im4iOiAxNH0sIHsibiI6IDE1fSwgeyJuIjogMTZ9LCB7Im4iOiAxN30sIHsibiI6IDE4fSwgeyJuIjogMTl9LCB7Im4iOiAyMH0sIHsibiI6IDIxfSwgeyJuIjogMjJ9LCB7Im4iOiAyM30sIHsibiI6IDI0fV0sICJ3c3BpZXJhaiI6ICJodHRwczovL3d3dy55b3V0dWJlLmNvbS9AemRyb3dlem1pYW55L21lbWJlcnNoaXAiLCAic2VqZiI6IHRydWV9"), c => c.charCodeAt(0))));
+/* wersja publiczna (D.sejf): okienka bez treści, otwiera je dopiero klucz z serwera */
+const SEJF = !!D.sejf;
+let KLUCZE = {};
+const OBRAZ = {}, gotowe = {};
+const ORDER = [7,15,2,22,11,19,4,13,24,9,17,1,20,6,12,18,3,23,10,14,21,5,16,8];
+/* #jak-widzki = tryb próbny: wszystko odblokowane, stan tylko w pamięci, więc po odświeżeniu znowu wszystko zasłonięte */
+const TEST = !SEJF && location.hash === "#jak-widzki", MEM = {};
+const store = {
+  get(k, d){ if (TEST && k !== "dzwiek") return k in MEM ? MEM[k] : d; try{ const v = localStorage.getItem("zacisze-adwent-"+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ if (TEST && k !== "dzwiek"){ MEM[k] = v; return; } try{ localStorage.setItem("zacisze-adwent-"+k, JSON.stringify(v)); }catch(e){} }
+};
+function warsawToday(){
+  try{
+    const p = new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Warsaw",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+    const [y,m,d] = p.split("-").map(Number); return {y,m,d};
+  }catch(e){ const t = new Date(); return {y:t.getFullYear(), m:t.getMonth()+1, d:t.getDate()}; }
+}
+const PREVIEW = !SEJF && location.hash === "#podglad-gabrysi";
+const T = warsawToday();
+function isOpen(n){
+  if (SEJF) return !!KLUCZE[n];
+  if (PREVIEW || TEST) return true;
+  if (T.y > D.rok) return true;
+  if (T.y < D.rok || T.m < 12) return false;
+  return T.d >= n;
+}
+function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
+function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+const IMGV = "11051305";
+function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
+function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
+
+{
+  const pv = document.getElementById("preview"); pv.hidden = !(PREVIEW || TEST);
+  if (TEST) pv.textContent = pv.textContent.replace("Podgląd: wszystkie okienka otwarte.", "Tryb próbny: tak zobaczą to widzki, każde okienko odblokowane. Odśwież stronę, żeby zasłonić wszystkie od nowa.");
+}
+const lead = document.getElementById("lead");
+D.wstep.forEach(t => lead.appendChild(el("p", null, t)));
+const todayBox = document.getElementById("today");
+(function(){
+  const n = todayN();
+  if (PREVIEW){ todayBox.append("Podgląd całego kalendarza"); return; }
+  if (TEST){ todayBox.append("Kliknij woreczek, żeby otworzyć okienko"); return; }
+  if (n){ todayBox.append("Dziś otwierasz okienko "); todayBox.appendChild(el("b", null, String(n))); return; }
+  if (T.y > D.rok || (T.y === D.rok && T.m === 12 && T.d > 24)){ todayBox.append("Wszystkie okienka są otwarte. Wesołych świąt"); return; }
+  const days = Math.round((Date.UTC(D.rok, 11, 1) - Date.UTC(T.y, T.m-1, T.d)) / 86400000);
+  todayBox.append(days === 1 ? "Pierwsze okienko otworzy się jutro" : `Pierwsze okienko otworzy się za ${days} dni, 1 grudnia`);
+})();
+
+const steps = document.getElementById("steps");
+D.jak.forEach(([b, t]) => { const li = el("li"); li.appendChild(el("b", null, b)); li.appendChild(el("span", null, t)); steps.appendChild(li); });
+
+const checks = store.get("lista", {});
+function checklist(items, key){
+  const ul = el("ul", "checks");
+  items.forEach((it, i) => {
+    const id = `${key}-${i}`, li = el("li"), lab = el("label"), cb = el("input");
+    cb.type = "checkbox"; cb.id = "c-" + id; cb.checked = !!checks[id];
+    cb.addEventListener("change", () => { checks[id] = cb.checked; store.set("lista", checks); });
+    lab.append(cb, el("span", null, it)); li.appendChild(lab); ul.appendChild(li);
+  });
+  return ul;
+}
+const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
+const sections = [{name: "Listopad", build(){
+  const p = el("div", "panel prep"), P = D.przygotuj;
+  p.appendChild(el("h3", null, P.tytul)); p.appendChild(el("p", "sub", P.opis));
+  const ol = el("ol"); P.kroki.forEach(k => ol.appendChild(el("li", null, k))); p.appendChild(ol);
+  p.appendChild(el("p", "sub", P.uwaga)); return p;
+}}].concat(D.tygodnie.map((w, wi) => ({name: w.nazwa, build(){
+  const p = el("div", "panel"); p.appendChild(el("p", "sub", w.dni + ". Zaznacz to, co już masz."));
+  const cols = el("div", "cols");
+  w.listy.forEach(([h, items], li) => { const c = el("div"); c.appendChild(el("h3", null, h)); c.appendChild(checklist(items, `t${wi}-${li}`)); cols.appendChild(c); });
+  p.appendChild(cols); return p;
+}})));
+let curTab = store.get("tab", null);
+if (curTab === null){ const n = todayN(); curTab = n ? 1 + Math.min(3, Math.floor((n - 1) / 7)) : (T.m === 12 || T.y > D.rok ? 4 : 0); }
+function showTab(i){
+  curTab = i; store.set("tab", i);
+  [...tabs.children].forEach((b, j) => { b.setAttribute("aria-selected", j === i ? "true" : "false"); });
+  panels.replaceChildren(sections[i].build());
+}
+sections.forEach((s, i) => { const b = el("button", "tab", s.name); b.type = "button"; b.setAttribute("role", "tab"); b.addEventListener("click", () => showTab(i)); tabs.appendChild(b); });
+showTab(Math.min(curTab, sections.length - 1));
+
+const done = store.get("zrobione", {});
+const grid = document.getElementById("grid"), note = document.getElementById("note");
+const byN = Object.fromEntries(D.okienka.map(o => [o.n, o]));
+function render(){
+  grid.replaceChildren();
+  const tn = todayN();
+  ORDER.forEach(n => {
+    const o = byN[n], open = isOpen(n), shown = open && (PREVIEW || seen[n]) && (!SEJF || gotowe[n]);
+    const b = el("button", "env"); b.type = "button";
+    if (!open) b.classList.add("locked");
+    if (tn === n) b.classList.add("today");
+    if (shown){
+      const pic = el("img", "pic"); pic.src = img(n); pic.alt = ""; pic.loading = "lazy";
+      pic.onerror = () => pic.remove();
+      b.appendChild(pic);
+      const tag = el("span", "tag"); tag.appendChild(el("span", "num", String(n)));
+      if (done[n]) tag.appendChild(el("span", "ok", "zrobione"));
+      b.appendChild(tag);
+      b.setAttribute("aria-label", `Okienko ${n}: ${o.tytul}`);
+    } else {
+      const bag = el("img", "bag"); bag.src = bagImg(n); bag.alt = ""; bag.loading = "lazy";
+      bag.onload = () => b.classList.add("hasbag"); bag.onerror = () => bag.remove();
+      b.appendChild(bag);
+      const f = el("span", "flap"); f.appendChild(el("span", "seal", open ? "otwórz" : `${n} gru`)); f.appendChild(el("span", "num", String(n)));
+      b.appendChild(f);
+      b.setAttribute("aria-label", open ? `Okienko ${n}, do otwarcia` : `Okienko ${n}, otworzy się ${n} grudnia`);
+    }
+    b.addEventListener("click", () => {
+      if (!isOpen(n)){
+        if (nowyDzien()){ location.reload(); return; }
+        const zaChwile = SEJF && (T.y > D.rok || (T.y === D.rok && T.m === 12 && T.d >= n));
+        note.textContent = zaChwile ? `Okienko ${n} właśnie się otwiera. Spróbuj za kilka minut.` : `Okienko ${n} otworzy się ${n} grudnia. Cierpliwości.`;
+        if (zaChwile) pobierzKlucze();
+        snd.thud();
+        b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); return;
+      }
+      otworz(n);
+    });
+    grid.appendChild(b);
+  });
+}
+const dlg = document.getElementById("dlg"), card = document.getElementById("card");
+function list(tag, items){ const l = el(tag); items.forEach(t => l.appendChild(el("li", null, t))); return l; }
+const seen = store.get("otwarte", {});
+const RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* dźwięk: generowany w przeglądarce, bez plików; melodie = stare kolędy z domeny publicznej */
+let SOUND = store.get("dzwiek", true), AC = null, MASTER = null, BUS = null, NB = null;
+const sndBtn = document.getElementById("snd");
+function sndLabel(){ sndBtn.textContent = SOUND ? "🔔 Dźwięk włączony" : "🔕 Dźwięk wyłączony"; sndBtn.setAttribute("aria-pressed", SOUND ? "true" : "false"); }
+sndLabel();
+sndBtn.addEventListener("click", () => { SOUND = !SOUND; store.set("dzwiek", SOUND); sndLabel(); if (SOUND){ newBus(); sleigh(0, 6, .1); } else hush(); });
+function ac(){
+  if (!SOUND) return null;
+  try{
+    if (!AC){
+      /* iPhone: bez tego przełącznik wyciszenia zabiera dźwięk strony */
+      try{ if (navigator.audioSession) navigator.audioSession.type = "playback"; }catch(e){}
+      AC = new (window.AudioContext || window.webkitAudioContext)();
+      const comp = AC.createDynamicsCompressor();
+      comp.threshold.value = -14; comp.knee.value = 10; comp.ratio.value = 4; comp.attack.value = .003; comp.release.value = .25;
+      comp.connect(AC.destination);
+      MASTER = AC.createGain(); MASTER.gain.value = 3.2; MASTER.connect(comp);
+      const d = AC.createDelay(), fb = AC.createGain(), wet = AC.createGain();
+      d.delayTime.value = .21; fb.gain.value = .28; wet.gain.value = .22;
+      MASTER.connect(d); d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(comp);
+    }
+    if (AC.state === "suspended") AC.resume();
+    return AC;
+  }catch(e){ return null; }
+}
+/* każde okienko gra na własnej szynie: następne albo zamknięcie wycisza poprzednią melodię */
+function out(){ return BUS || MASTER; }
+function hush(){ if (!BUS || !AC) return; const b = BUS; BUS = null; b.gain.setTargetAtTime(.0001, AC.currentTime, .08); setTimeout(() => b.disconnect(), 700); }
+function newBus(){ const a = ac(); if (!a) return; hush(); BUS = a.createGain(); BUS.connect(MASTER); }
+function bell(f, t0, dur = 1.6, vol = .12){
+  const a = ac(); if (!a) return; const t = a.currentTime + t0, dst = out();
+  [[1, 1], [2.76, .32], [5.4, .1]].forEach(([m, g]) => {
+    const o = a.createOscillator(), v = a.createGain();
+    o.type = "sine"; o.frequency.value = f * m;
+    v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(vol * g, t + .008);
+    v.gain.exponentialRampToValueAtTime(.0001, t + dur * (m > 1 ? .45 : 1));
+    o.connect(v); v.connect(dst); o.start(t); o.stop(t + dur + .05);
+  });
+}
+/* pozytywka */
+function box(f, t0, vol = .09){
+  const a = ac(); if (!a) return; const t = a.currentTime + t0, dst = out();
+  [[1, 1, 1.5], [2, .16, .7], [3.98, .07, .3], [6.1, .05, .1]].forEach(([m, g, d]) => {
+    const o = a.createOscillator(), v = a.createGain();
+    o.type = "sine"; o.frequency.value = f * m;
+    v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(vol * g, t + .004);
+    v.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(v); v.connect(dst); o.start(t); o.stop(t + d + .05);
+  });
+}
+/* dzwoneczki sań */
+function jingle(t0, vol = .05){
+  const a = ac(); if (!a) return; const t = a.currentTime + t0, dst = out();
+  if (!NB){ NB = a.createBuffer(1, a.sampleRate, a.sampleRate); const c = NB.getChannelData(0); for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1; }
+  const s = a.createBufferSource(), f = a.createBiquadFilter(), v = a.createGain();
+  s.buffer = NB; f.type = "bandpass"; f.frequency.value = rnd(6000, 8000); f.Q.value = 1.4;
+  v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(vol, t + .003); v.gain.exponentialRampToValueAtTime(.0001, t + .12);
+  s.connect(f); f.connect(v); v.connect(dst); s.start(t, rnd(0, .8), .15);
+  [3150, 4410, 5620].forEach((fr, i) => {
+    const o = a.createOscillator(), g = a.createGain(); o.frequency.value = fr * rnd(.97, 1.03);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol * .3, t + .003); g.gain.exponentialRampToValueAtTime(.0001, t + .24 - i * .05);
+    o.connect(g); g.connect(dst); o.start(t); o.stop(t + .26);
+  });
+}
+function sleigh(t0 = 0, n = 8, step = .12, vol = .05){
+  for (let i = 0; i < n; i++){ const k = i % 2 ? .55 : 1; jingle(t0 + i * step + rnd(0, .012), vol * k); jingle(t0 + i * step + .04 + rnd(0, .01), vol * k * .5); }
+}
+function noise(t0, dur, type, f1, f2, vol){
+  const a = ac(); if (!a) return; const t = a.currentTime + t0;
+  const buf = a.createBuffer(1, Math.ceil(a.sampleRate * dur), a.sampleRate), ch = buf.getChannelData(0);
+  for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
+  const src = a.createBufferSource(), flt = a.createBiquadFilter(), v = a.createGain();
+  src.buffer = buf; flt.type = type; flt.frequency.setValueAtTime(f1, t); flt.frequency.exponentialRampToValueAtTime(f2, t + dur); flt.Q.value = 1.2;
+  v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(vol, t + dur * .2); v.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  src.connect(flt); flt.connect(v); v.connect(out()); src.start(t); src.stop(t + dur);
+}
+const NT = {C: -9, "C#": -8, D: -7, "D#": -6, E: -5, F: -4, "F#": -3, G: -2, "G#": -1, A: 0, "A#": 1, B: 2};
+function hz(s){ const m = /^([A-G]#?)(\d)$/.exec(s); return 440 * 2 ** ((NT[m[1]] + (m[2] - 4) * 12) / 12); }
+function tune(seq, t0 = 0, beat = .15, vol = .09){ let t = t0; seq.trim().split(/\s+/).forEach(tok => { const [nn, d = "1"] = tok.split(":"); box(hz(nn), t, vol); t += beat * parseFloat(d); }); }
+const KOLEDY = {
+  drzwi: ["E5 E5 E5:2 E5 E5 E5:2 E5 G5 C5:1.5 D5:.5 E5:4", .15],                                   /* Jingle Bells, 1857 */
+  koperta: ["D5:2 G5:2 G5 A5 G5 F#5 E5:2 E5:2 E5:2 A5:2 A5 B5 A5 G5 F#5:2 D5:2", .12],               /* We Wish You a Merry Christmas */
+  snieg: ["G5:3 A5 G5:2 E5:6 G5:3 A5 G5:2 E5:6", .15],                                              /* Cicha noc, 1818 */
+  iris: ["C6:2 B5:1.5 A5:.5 G5:3 F5 E5:2 D5:2 C5:4", .17],                                          /* Joy to the World, 1839 */
+  konfetti: ["G5:3 F5 E5:2 D5:2 C5:2 D5:2 E5:2 C5:2 D5 E5 F5 D5 E5:3 D5 C5:2 B4:2 C5:4", .1],      /* Deck the Halls */
+  lampki: ["G4:4 C5:3 C5 C5:6 D5:2 E5:3 E5 E5:6", .075],                                            /* O choinko */
+  worek: ["G5 C6 C6:1.5 B5:.5 C6 E6 E6 D6:2", .2]                                                   /* Hark! The Herald Angels Sing, 1840 */
+};
+const snd = {
+  rustle(t0 = 0){ noise(t0, .35, "bandpass", 2200, 4200, .09); },
+  whoosh(t0 = 0){ noise(t0, 1.3, "lowpass", 300, 2600, .05); },
+  pop(t0 = 0){ noise(t0, .08, "highpass", 1200, 3000, .12); },
+  stamp(t0 = 0){ const a = ac(); if (!a) return; const t = a.currentTime + t0, o = a.createOscillator(), v = a.createGain();
+    o.type = "sine"; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(60, t + .14);
+    v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(.25, t + .008); v.gain.exponentialRampToValueAtTime(.0001, t + .2);
+    o.connect(v); v.connect(out()); o.start(t); o.stop(t + .22); noise(t0, .06, "lowpass", 900, 300, .08); },
+  thud(){ const a = ac(); if (!a) return; const t = a.currentTime, o = a.createOscillator(), v = a.createGain();
+    o.type = "sine"; o.frequency.setValueAtTime(190, t); o.frequency.exponentialRampToValueAtTime(90, t + .15);
+    v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(.18, t + .01); v.gain.exponentialRampToValueAtTime(.0001, t + .18);
+    o.connect(v); v.connect(MASTER); o.start(t); o.stop(t + .2); }
+};
+/* animacje: inna każdego dnia */
+const VAR = ["drzwi", "koperta", "snieg", "iris", "konfetti", "lampki", "worek"];
+const VNAME = {drzwi: "drzwiczki", koperta: "koperta", snieg: "śnieg", iris: "złote koło", konfetti: "konfetti", lampki: "lampki", worek: "woreczek"};
+let BAG_OK = false; { const t = new Image(); t.onload = () => { BAG_OK = true; }; t.src = "img/worek_otwarty.jpg"; }
+function variantFor(n){ const v = VAR[(n - 1) % VAR.length]; return (v === "worek" && !BAG_OK) ? "koperta" : v; }
+function rnd(a, b){ return a + Math.random() * (b - a); }
+function runAnim(stage, body, n, v, ready){
+  stage.classList.add("v-" + v);
+  const ov = el("div", "ov"); stage.appendChild(ov);
+  const at = (ms, fn) => setTimeout(() => { if (card.contains(stage)) fn(); }, ms);
+  const reveal = ms => at(ms, () => body.classList.remove("hide"));
+  /* koniec: obrazek ZAWSZE widoczny, nawet gdy przeglądarka zgubi przejście */
+  const finish = () => { if (!card.contains(stage)) return; stage.classList.add("fin"); body.classList.remove("hide"); ov.remove(); };
+  const clear = ms => { at(ms, () => ov.classList.add("fade")); at(ms + 650, finish); };
+  setTimeout(finish, 6000);
+  const [mel, beat] = KOLEDY[v];
+  const bulbs = [];
+  if (v === "drzwi") ov.append(el("div", "door l"), el("div", "door r"), el("div", "pieczec", String(n)));
+  else if (v === "koperta") ov.append(el("div", "koperta"), el("div", "klapka"));
+  else if (v === "lampki"){
+    ov.appendChild(el("div", "kabel"));
+    for (let i = 0; i < 12; i++){
+      const t = i / 11, b = el("span", "bulb");
+      b.style.left = `${4 + t * 92}%`; b.style.top = `calc(5% + ${Math.round(46 * (1 - (2 * t - 1) ** 2)) - 2}px)`;
+      ov.appendChild(b); bulbs.push(b);
+    }
+  } else if (v === "worek"){
+    const sb = el("img", "s-bag"), so = el("img", "s-open");
+    sb.src = "img/worek_a.jpg"; so.src = "img/worek_otwarty.jpg"; sb.alt = so.alt = ""; ov.append(sb, so);
+  }
+  /* start dopiero, gdy obrazek okienka jest pobrany */
+  ready.then(() => { if (!card.contains(stage)) return; void stage.offsetWidth; play(); });
+  function play(){
+    if (v === "drzwi"){
+      sleigh(.1, 10, .11, .045); snd.rustle(.3); tune(mel, .45, beat);
+      at(350, () => stage.classList.add("go")); reveal(1100); clear(1500);
+    } else if (v === "koperta"){
+      snd.rustle(.05); tune(mel, .55, beat);
+      at(120, () => stage.classList.add("k1")); at(650, () => stage.classList.add("k2")); reveal(1300); clear(1700);
+    } else if (v === "snieg"){
+      for (let i = 0; i < 42; i++){
+        const f = el("span", "flake"), sz = rnd(3, 7);
+        f.style.cssText = `left:${rnd(0, 100)}%;width:${sz}px;height:${sz}px;animation-duration:${rnd(1.4, 2.6)}s;animation-delay:${rnd(0, .7)}s`;
+        f.style.setProperty("--dx", `${rnd(-30, 30)}px`); ov.appendChild(f);
+      }
+      snd.whoosh(0); tune(mel, .3, beat, .08);
+      at(60, () => stage.classList.add("go")); reveal(1300); clear(3100);
+    } else if (v === "iris"){
+      ov.appendChild(el("span", "ring"));
+      bell(196, 0, 2.4, .06); tune(mel, .15, beat);
+      at(60, () => stage.classList.add("go")); reveal(1000); clear(1400);
+    } else if (v === "konfetti"){
+      const cols = ["#c9902a", "#e6b85c", "#2f5b46", "#8fc1a6", "#fbf6ea", "#b8462f"];
+      for (let i = 0; i < 46; i++){
+        const c = el("span", "conf");
+        c.style.background = cols[i % cols.length]; c.style.animationDelay = `${rnd(0, .15)}s`;
+        c.style.setProperty("--dx", `${rnd(-260, 260)}px`); c.style.setProperty("--dy", `${-rnd(160, 420)}px`); c.style.setProperty("--r", `${rnd(-540, 540)}deg`);
+        ov.appendChild(c);
+      }
+      snd.pop(0); sleigh(0, 8, .09, .04); tune(mel, .1, beat);
+      at(60, () => stage.classList.add("go")); reveal(800); clear(1900);
+    } else if (v === "lampki"){
+      tune(mel, .15, beat);
+      bulbs.forEach((b, i) => at(150 + i * 130, () => b.classList.add("on")));
+      at(150 + 12 * 130 + 120, () => stage.classList.add("go")); reveal(1850); clear(2900);
+    } else {
+      snd.rustle(.05); sleigh(.6, 6, .1, .045); tune(mel, .75, beat);
+      at(60, () => stage.classList.add("wiggle"));
+      at(720, () => { stage.classList.add("opened");
+        for (let i = 0; i < 16; i++){ const s = el("span", "star"), a = (Math.PI * 2 * i) / 16 + Math.random() * .4, d = 70 + Math.random() * 90;
+          s.style.setProperty("--dx", `${Math.cos(a) * d}px`); s.style.setProperty("--dy", `${Math.sin(a) * d - 30}px`); s.style.setProperty("--r", `${Math.round(Math.random() * 180)}deg`);
+          s.style.animationDelay = `${Math.random() * .15}s`; ov.appendChild(s); } });
+      at(1350, () => stage.classList.add("reveal")); reveal(1350); clear(2100);
+    }
+  }
+}
+function stempel(anim){ const s = el("div", "stempel" + (anim ? " anim" : "")); s.append(el("b", null, "✓"), el("span", null, "zrobione")); return s; }
+/* zaznaczone „zrobione”: pieczęć, gwiazdki, dzwonki i pozytywka w górę */
+function hurra(stage, btn){
+  if (!RM){ btn.classList.remove("pop"); void btn.offsetWidth; btn.classList.add("pop"); }
+  const go = () => {
+    if (!card.contains(stage)) return;
+    newBus();
+    snd.stamp(.28); sleigh(.3, 8, .07, .05); tune("C6 E6 G6 C7:4", .38, .075, .1); bell(2093, .7, 1.8, .045);
+    const st = stempel(true); stage.appendChild(st);
+    if (RM) return;
+    setTimeout(() => {
+      if (!card.contains(st)) return;
+      const r = st.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const cols = ["#c9902a", "#e6b85c", "#f3d27a", "#fbf6ea", "#8fc1a6"];
+      for (let i = 0; i < 24; i++){
+        const s = el("span", "spark"), a = (Math.PI * 2 * i) / 24 + Math.random() * .3, d = 55 + Math.random() * 105;
+        s.style.left = cx + "px"; s.style.top = cy + "px"; s.style.background = cols[i % cols.length];
+        s.style.setProperty("--dx", `${Math.cos(a) * d}px`); s.style.setProperty("--dy", `${Math.sin(a) * d}px`); s.style.setProperty("--r", `${Math.round(Math.random() * 360)}deg`);
+        s.style.animationDelay = `${Math.random() * .1}s`;
+        dlg.appendChild(s); setTimeout(() => s.remove(), 1300);
+      }
+    }, 300);
+  };
+  /* przycisk jest na dole, pieczęć na obrazku u góry: najpierw płynnie do obrazka */
+  if (card.scrollTop > 8){ card.scrollTo({top: 0, behavior: RM ? "auto" : "smooth"}); setTimeout(go, RM ? 0 : 550); }
+  else go();
+}
+let previewVar = null;
+function openCard(n, forceVar){
+  const o = byN[n]; card.replaceChildren();
+  const animate = !RM && (PREVIEW || !seen[n] || forceVar);
+  const stage = el("div", "stage");
+  const art = el("img", "s-art"); art.alt = "";
+  art.addEventListener("error", () => { if (!art.dataset.r && !SEJF){ art.dataset.r = "1"; art.src = img(n) + "?r=" + Date.now(); } });
+  art.src = img(n); stage.appendChild(art);
+  card.appendChild(stage);
+  const body = el("div", "body");
+  seen[n] = true; store.set("otwarte", seen);
+  const top = el("div", "top"), head = el("div");
+  head.appendChild(el("div", "n", String(n)));
+  const h = el("h3", null, o.tytul); h.id = "d-title"; head.appendChild(h);
+  const x = el("button", "x", "×"); x.type = "button"; x.setAttribute("aria-label", "Zamknij"); x.addEventListener("click", () => dlg.close());
+  top.append(head, x); body.appendChild(top);
+  if (o.cytat){ const q = el("p", "cyt", "„" + o.cytat.tekst + "”"); q.appendChild(el("cite", null, o.cytat.autor + (o.cytat.dzielo ? ", " + o.cytat.dzielo : ""))); body.appendChild(q); }
+  const od = el("p", "od", o.od); od.appendChild(el("span", null, "Gabrysia")); body.appendChild(od);
+  const a = el("div"); a.appendChild(el("h4", null, "Potrzebujesz")); a.appendChild(list("ul", o.potrzebujesz)); body.appendChild(a);
+  if (o.zamienniki && o.zamienniki.length){
+    const z = el("div", "swap"); z.appendChild(el("h4", null, "Nie masz? Nie szkodzi")); z.appendChild(list("ul", o.zamienniki)); body.appendChild(z);
+  }
+  const b = el("div"); b.appendChild(el("h4", null, "Jak")); b.appendChild(list("ol", o.kroki)); body.appendChild(b);
+  if (o.wskazowka) body.appendChild(el("p", "tip", o.wskazowka));
+  const ep = el("div", "ep"), link = el("a", null, o.yt ? "Obejrzyj ten odcinek" : "Odcinek z tym okienkiem: o 18:00 na Zaciszu");
+  link.href = o.yt || D.kanal; link.target = "_blank"; link.rel = "noopener";
+  const t = el("button", "btn", done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"); t.type = "button";
+  if (done[n]) t.classList.add("isdone");
+  t.addEventListener("click", () => {
+    done[n] = !done[n]; store.set("zrobione", done);
+    t.textContent = done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"; t.classList.toggle("isdone", !!done[n]); render();
+    const old = stage.querySelector(".stempel"); if (old) old.remove();
+    if (done[n]) hurra(stage, t); else box(hz("E5"), 0, .05);
+  });
+  ep.append(link, t); body.appendChild(ep); card.appendChild(body);
+  if (done[n]) stage.appendChild(stempel(false));
+  if (!dlg.open){ if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", ""); }
+  card.scrollTop = 0; note.textContent = "";
+  const v = forceVar || variantFor(n);
+  newBus();
+  if (animate){
+    body.classList.add("hide");
+    const ready = Promise.race([art.decode ? art.decode().catch(() => {}) : Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
+    runAnim(stage, body, n, v, ready);
+  } else { sleigh(0, 4, .1, .035); box(hz("G5"), .05, .07); box(hz("C6"), .2, .07); }
+  if (PREVIEW){
+    stage.appendChild(el("span", "vname", "animacja: " + VNAME[v]));
+    const r = el("button", "replay", "▶ następna animacja"); r.type = "button";
+    r.addEventListener("click", () => { let i = VAR.indexOf(v); do { i = (i + 1) % VAR.length; } while (VAR[i] === "worek" && !BAG_OK); openCard(n, VAR[i]); });
+    stage.appendChild(r);
+  }
+}
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener("close", hush);
+dlg.addEventListener("close", () => render());
+const JOIN = D.wspieraj;
+document.getElementById("join-top").href = JOIN;
+/* udostępnianie: zawsze czysty adres strony, bez podglądu */
+{
+  const url = location.origin + location.pathname;
+  const txt = "Kalendarz adwentowy Zacisza. 24 okienka, jedna mała przyjemność na każdy dzień grudnia, z rzeczy, które masz w domu.";
+  document.getElementById("sh-fb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+  document.getElementById("sh-wa").href = "https://wa.me/?text=" + encodeURIComponent(txt + " " + url);
+  const nat = document.getElementById("sh-native");
+  if (navigator.share){ nat.hidden = false; nat.addEventListener("click", () => navigator.share({title: document.title, text: txt, url}).catch(() => {})); }
+  const cp = document.getElementById("sh-copy");
+  cp.addEventListener("click", () => {
+    const ok = () => { cp.textContent = "Skopiowane ✓"; setTimeout(() => { cp.textContent = "Skopiuj link"; }, 2500); };
+    const old = () => { const t = document.createElement("textarea"); t.value = url; document.body.appendChild(t); t.select(); try{ document.execCommand("copy"); ok(); }catch(e){} t.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(ok, old); else old();
+  });
+}
+/* nowy dzień przy otwartej karcie: telefon trzyma stronę w tle, więc po powrocie sprawdzamy datę i przeładowujemy */
+function nowyDzien(){ if (PREVIEW || TEST) return false; const t = warsawToday(); return t.y !== T.y || t.m !== T.m || t.d !== T.d; }
+function odswiezJesliNowyDzien(){ if (nowyDzien() && !dlg.open) location.reload(); }
+document.addEventListener("visibilitychange", () => { if (!document.hidden) odswiezJesliNowyDzien(); });
+window.addEventListener("pageshow", odswiezJesliNowyDzien);
+window.addEventListener("focus", odswiezJesliNowyDzien);
+dlg.addEventListener("close", odswiezJesliNowyDzien);
+setInterval(odswiezJesliNowyDzien, 60000);
+/* zmiana adresu na #podglad-gabrysi albo #jak-widzki w otwartej karcie */
+window.addEventListener("hashchange", () => location.reload());
+/* sejf: w wersji publicznej treść i obrazek okienka są zaszyfrowane; klucz danego dnia robot wystawia w klucze.json po północy (czas polski) */
+function b64(s){ return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
+async function odszyfruj(n){
+  if (gotowe[n]) return;
+  const key = await crypto.subtle.importKey("raw", b64(KLUCZE[n]), "AES-GCM", false, ["decrypt"]);
+  const r = await fetch(`sejf/${String(n).padStart(2, "0")}.bin?v=${IMGV}`);
+  if (!r.ok) throw new Error("sejf " + r.status);
+  const buf = new Uint8Array(await r.arrayBuffer());
+  const plain = new Uint8Array(await crypto.subtle.decrypt({name: "AES-GCM", iv: buf.slice(0, 12)}, key, buf.slice(12)));
+  const len = new DataView(plain.buffer).getUint32(0);
+  byN[n] = JSON.parse(new TextDecoder().decode(plain.slice(4, 4 + len)));
+  OBRAZ[n] = URL.createObjectURL(new Blob([plain.slice(4 + len)], {type: "image/jpeg"}));
+  gotowe[n] = true;
+}
+async function otworz(n){
+  if (SEJF && !gotowe[n]){
+    note.textContent = "Otwieram okienko…";
+    try{ await odszyfruj(n); }catch(e){ note.textContent = "Nie udało się otworzyć okienka. Sprawdź internet i spróbuj jeszcze raz."; return; }
+    note.textContent = "";
+  }
+  openCard(n);
+}
+let pobieram = false;
+async function pobierzKlucze(){
+  if (!SEJF || pobieram) return;
+  pobieram = true;
+  try{
+    const r = await fetch("klucze.json?t=" + Date.now(), {cache: "no-store"});
+    if (r.ok){
+      const k = await r.json();
+      const nowe = Object.keys(k).some(n => !KLUCZE[n]);
+      KLUCZE = k;
+      if (nowe){
+        for (const n of ORDER){ if (KLUCZE[n] && seen[n] && !gotowe[n]){ try{ await odszyfruj(n); }catch(e){} } }
+        if (!dlg.open) render();
+        pokazKoniec();
+      }
+    }
+  }catch(e){}
+  pobieram = false;
+}
+if (SEJF){
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) pobierzKlucze(); });
+  window.addEventListener("focus", pobierzKlucze);
+  dlg.addEventListener("close", pobierzKlucze);
+  setInterval(pobierzKlucze, 120000);
+}
+/* „Fajnie się bawisz?”: kartka pod okienkami od okienka 3 do 11.12 (po wypłatach); przewija do niej raz, po 3. otwartym okienku */
+const wsp = document.getElementById("wsparcie");
+document.getElementById("join-mid").href = D.wspieraj;
+document.getElementById("mid-share").addEventListener("click", () => document.getElementById("h-share").scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"}));
+function czasNaWsparcie(){
+  if (PREVIEW) return true;
+  const t = warsawToday(), przed12 = t.y < D.rok || (t.y === D.rok && (t.m < 12 || t.d <= 11));
+  return przed12 && (SEJF ? !!KLUCZE[3] : isOpen(3));
+}
+function pokazKoniec(){ wsp.hidden = !czasNaWsparcie(); }
+dlg.addEventListener("close", () => {
+  pokazKoniec();
+  if (Object.keys(seen).length >= 3 && !wsp.hidden && !store.get("wsparcieWidziane", false)){
+    store.set("wsparcieWidziane", true);
+    setTimeout(() => wsp.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "center"}), 400);
+  }
+});
+render();
+pokazKoniec();
+pobierzKlucze();
+</script>
+</body>
+</html>

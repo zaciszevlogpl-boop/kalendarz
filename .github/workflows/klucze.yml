@@ -1,0 +1,50 @@
+# Robot kalendarza: po północy czasu polskiego wystawia klucz nowego okienka i publikuje stronę.
+# Polska zimą = UTC+1, więc północ = 23:00 UTC. Sprawdza co 10 min w tej godzinie (minuty 3, 13, …, bo pełne godziny GitHub opóźnia) i raz na godzinę w ciągu dnia.
+name: Klucze okienek
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "3,13,23,33,43,53 23 * 11,12 *"
+    - cron: "17 0-22 * 11,12 *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  sprawdz:
+    runs-on: ubuntu-latest
+    outputs:
+      zmiana: ${{ steps.k.outputs.zmiana }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: k
+        name: Które okienka już wolno otworzyć
+        env:
+          KLUCZE: ${{ secrets.KLUCZE }}
+        run: python3 .github/klucze.py
+  publikuj:
+    needs: sprawdz
+    if: needs.sprawdz.outputs.zmiana == 'true' || github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Klucze do dzisiaj
+        env:
+          KLUCZE: ${{ secrets.KLUCZE }}
+        run: python3 .github/klucze.py
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v5
