@@ -428,7 +428,7 @@ footer{text-align:center;justify-items:center;font-weight:500}
   --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
   --tlo-mgla:.15;
 }
-html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11060928);background-size:auto,560px 560px;background-repeat:repeat}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11060937);background-size:auto,560px 560px;background-repeat:repeat}
 body{background:transparent}
 body::before{display:none}
 .hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
@@ -459,15 +459,44 @@ dialog::backdrop{background:rgba(90,70,45,.45)}
 .paper.zostan h2::before,.paper.zostan h2::after{display:none}
 .zostan p{margin:0 0 10px;max-width:62ch}
 .zostan .btn{margin-top:6px}
+.zakladki{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.zak{appearance:none;font:inherit;font-family:var(--sans);font-size:14px;font-weight:600;border:1.5px solid #ead6b8;background:rgba(255,250,243,.96);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;box-shadow:0 3px 10px rgba(120,85,45,.08)}
+.zak[aria-current="page"]{background:var(--pine);color:#fff;border-color:var(--pine)}
+.zak:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.paper.strefa{display:block;text-align:center;padding:30px 22px 26px}
+.paper.strefa[hidden]{display:none}
+.paper.strefa h2{margin:0 0 12px}
+.paper.strefa h2::before,.paper.strefa h2::after{display:none}
+.strefa p{margin:0 auto 10px;max-width:40ch}
+.strefa .wkrotce{display:inline-block;background:#f1dcbc;border-radius:999px;padding:5px 16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px;margin-bottom:16px}
+.strefa .sharerow{justify-content:center;margin-top:16px}
+body[data-widok="strefa"] .wrap > :not(.zakladki):not(#strefa):not(.preview):not(.cover):not(footer){display:none!important}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 09:28</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 09:37</div>
+  <nav class="zakladki" aria-label="Zakładki">
+    <button type="button" class="zak" data-z="kalendarz" aria-current="page">🎄 Kalendarz</button>
+    <button type="button" class="zak" data-z="Meal prep">🔒 Meal prep</button>
+    <button type="button" class="zak" data-z="Styczniowe wyzwanie">🔒 Styczniowe wyzwanie</button>
+    <button type="button" class="zak" data-z="Habit tracker">🔒 Habit tracker</button>
+  </nav>
 
   <div class="cover">
     <img src="img/00_salon_zima.jpg" alt="Malowany zimowy salon: pies śpi na kanapie, kotka w wiklinowym domku przy pianinie, za oknem śnieg, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
   </div>
+
+  <section class="paper strefa" id="strefa" aria-labelledby="strefa-tytul" hidden>
+    <h2 id="strefa-tytul"></h2>
+    <p class="wkrotce">Wkrótce</p>
+    <p>Ta zakładka będzie dostępna tylko dla wspierających kanał.</p>
+    <p>W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
+    <div class="sharerow">
+      <a class="btn" id="join-strefa" target="_blank" rel="noopener">Dołącz do wspierających</a>
+      <button class="btn ghost" type="button" id="strefa-wroc">Wróć do kalendarza</button>
+    </div>
+  </section>
 
   <header class="hero">
     <svg class="deco d1" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
@@ -574,7 +603,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11060932";
+const IMGV = "11060943";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -1130,6 +1159,21 @@ dlg.addEventListener("close", () => {
     setTimeout(() => wsp.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "center"}), 400);
   }
 });
+/* zakładki: kalendarz + strefa wspierających (na razie „wkrótce”) */
+{
+  const zak = [...document.querySelectorAll(".zak")], strefa = document.getElementById("strefa");
+  document.getElementById("join-strefa").href = D.wspieraj;
+  function pokazZakladke(z){
+    const kal = z === "kalendarz";
+    document.body.dataset.widok = kal ? "" : "strefa";
+    zak.forEach(b => { if (b.dataset.z === z) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+    strefa.hidden = kal;
+    if (!kal) document.getElementById("strefa-tytul").textContent = "🔒 " + z;
+    document.querySelector(".zakladki").scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"});
+  }
+  zak.forEach(b => b.addEventListener("click", () => pokazZakladke(b.dataset.z)));
+  document.getElementById("strefa-wroc").addEventListener("click", () => pokazZakladke("kalendarz"));
+}
 render();
 pokazKoniec();
 pobierzKlucze();
