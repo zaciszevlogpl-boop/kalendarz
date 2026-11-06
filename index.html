@@ -10,25 +10,23 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://zaciszevlogpl-boop.github.io/kalendarz/img/00_salon_zima.jpg">
 <meta property="og:url" content="https://zaciszevlogpl-boop.github.io/kalendarz/">
-<meta name="theme-color" content="#2f5b46">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5b46'/%3E%3Cpath d='M32 10l5.6 14.4L52 26l-11 9.6L44.6 50 32 42.4 19.4 50 23 35.6 12 26l14.4-1.6z' fill='%23e6b85c'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#fbf3e6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6e7d1'/%3E%3Cpath d='M32 10l5.6 14.4L52 26l-11 9.6L44.6 50 32 42.4 19.4 50 23 35.6 12 26l14.4-1.6z' fill='%23c99b5c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Dancing+Script:wght@500;600&family=Quicksand:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#eef0ec; --glass:#f7f8f5; --ink:#23281f; --muted:#69705f; --line:#d9ddd3;
-  --kraft:#d8c09a; --kraft-dk:#c4a87c; --kraft-ink:#3d2f1e;
-  --pine:#2f5b46; --pine-ink:#f3f6f1; --gold:#c9902a; --done:#2f5b46;
-  --script:"Snell Roundhand","Pinyon Script",cursive;
-  --sans:"Jost","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --bg:#f5f8fa; --glass:#ffffff; --ink:#4c5b66; --muted:#7a8a96; --line:#dbe7ef;
+  --kraft:#eef3f7; --kraft-dk:#c9dce9; --kraft-ink:#4c5b66;
+  --pine:#527a98; --pine-ink:#ffffff; --gold:#c99b5c; --done:#527a98;
+  --blue:#dce9f2; --blue-dk:#6a8fac; --blush:#f6e3d8; --sage:#e3ece0; --cream:#f3ebda;
+  --script:"Dancing Script","Snell Roundhand",cursive;
+  --sans:"Quicksand","Helvetica Neue",Helvetica,Arial,sans-serif;
   --serif:"Cormorant Garamond","Iowan Old Style",Palatino,Georgia,serif;
   color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root{
-  --bg:#141a17; --glass:#1c2420; --ink:#ece7dc; --muted:#a3ab9c; --line:#2d3832;
-  --kraft:#8a7354; --kraft-dk:#75613f; --kraft-ink:#fbf3e4;
-  --pine:#8fc1a6; --pine-ink:#10201a; --gold:#e6b85c; --done:#8fc1a6; color-scheme:dark}}
+/* tryb ciemny telefonu: zostaje jasna akwarela (świadomie, to jej wygląd) */
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.55;font-size:16px;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -89,7 +87,7 @@ h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
 .env .bag{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .env.hasbag .flap::before{display:none}
 .env.hasbag .flap .num{color:#3d2f1e;text-shadow:0 1px 0 rgba(255,255,255,.5)}
-.stage{position:relative;aspect-ratio:16/10;overflow:hidden;background:#efe6d6;perspective:900px;isolation:isolate}
+.stage{position:relative;aspect-ratio:1/1;overflow:hidden;background:#efe6d6;perspective:900px;isolation:isolate}
 .stage .s-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .ov{position:absolute;inset:0;pointer-events:none;transition:opacity .6s ease}
 .ov.fade{opacity:0}
@@ -147,6 +145,149 @@ h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
 .v-worek.reveal .s-open{opacity:0;transform:scale(1.2)}
 .star{position:absolute;left:50%;top:42%;z-index:4;width:12px;height:12px;background:var(--gold);clip-path:polygon(50% 0,61% 38%,100% 50%,61% 62%,50% 100%,39% 62%,0 50%,39% 38%);opacity:0;animation:burst 1.2s ease-out forwards}
 @keyframes burst{0%{transform:translate(-50%,-50%) scale(.2);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--r)) scale(1);opacity:0}}
+/* ===== animacje24 ===== 24 różne otwarcia (05.11) */
+/* 1 pieczęć lakowa pęka, list rozsuwa się */
+.a-pol{position:absolute;top:-2%;bottom:-2%;width:51%;z-index:3;background:radial-gradient(circle at 30% 20%,#fffaf0,#f1e6d2);box-shadow:0 0 18px rgba(0,0,0,.12);transition:transform 1.05s cubic-bezier(.6,.05,.25,1)}
+.a-pol::before{content:"";position:absolute;inset:14% 12%;background:repeating-linear-gradient(transparent 0 22px,rgba(120,100,70,.14) 22px 23px)}
+.a-pol.l{left:0}.a-pol.r{right:0}
+.a-wosk{position:absolute;top:50%;width:84px;height:84px;margin-top:-42px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d65b4f,#8c241d 70%);box-shadow:inset 0 0 0 7px rgba(0,0,0,.13),inset 0 0 0 9px rgba(255,255,255,.12);display:grid;place-items:center;color:#f7d9c9;font-family:var(--script);font-size:38px;line-height:1}
+.a-pol.l .a-wosk{right:-42px;clip-path:inset(-2px 50% -2px -2px)}
+.a-pol.r .a-wosk{left:-42px;clip-path:inset(-2px -2px -2px 50%)}
+.v-pieczec.w1 .a-wosk{animation:awosk .45s ease}
+@keyframes awosk{30%{transform:scale(1.12) rotate(-6deg)}60%{transform:scale(.96) rotate(4deg)}}
+.v-pieczec .s-art{transform:scale(1.06);transition:transform 1.4s ease}
+.v-pieczec.go .s-art{transform:none}
+.v-pieczec.go .a-pol.l{transform:translateX(-104%) rotate(-5deg)}
+.v-pieczec.go .a-pol.r{transform:translateX(104%) rotate(5deg)}
+/* 2 magnes spada, karteczka sfruwa z lodówki */
+.a-note{position:absolute;inset:-3%;z-index:3;display:grid;place-items:center;background:linear-gradient(#fffdf7,#f6efdf);box-shadow:0 8px 22px rgba(0,0,0,.18);transform:rotate(-1.5deg);transform-origin:50% 0}
+.a-note b{font:400 70px/1 var(--script);color:#d06a5e}
+.a-magnes{position:absolute;left:50%;top:6%;width:34px;height:34px;margin-left:-17px;border-radius:50%;z-index:4;background:radial-gradient(circle at 35% 30%,#f0cf86,#b5862f);box-shadow:0 3px 6px rgba(0,0,0,.3)}
+.v-karteczka.m .a-magnes{animation:amagnes .75s cubic-bezier(.5,0,.9,.4) forwards}
+@keyframes amagnes{0%{transform:none}15%{transform:translateY(-6px)}100%{transform:translate(30px,560px) rotate(200deg)}}
+.v-karteczka.go .a-note{animation:akartka 1.3s cubic-bezier(.45,0,.8,.6) forwards}
+@keyframes akartka{0%{transform:rotate(-1.5deg)}25%{transform:translate(8px,6%) rotate(5deg)}55%{transform:translate(-18px,45%) rotate(-7deg)}100%{transform:translate(40px,125%) rotate(14deg)}}
+/* 3 zaparowane lustro, mgiełka ścierana od lewej */
+.v-mgla .s-art{filter:blur(9px);transform:scale(1.04);transition:filter 1.5s ease .2s,transform 1.5s ease .2s}
+.v-mgla.go .s-art{filter:none;transform:none}
+.a-mgla{position:absolute;inset:0;z-index:3;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.94),rgba(234,241,246,.9));-webkit-mask-image:linear-gradient(90deg,transparent 0 34%,#000 50% 100%);mask-image:linear-gradient(90deg,transparent 0 34%,#000 50% 100%);-webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;transition:-webkit-mask-position 1.7s cubic-bezier(.45,.05,.35,1),mask-position 1.7s cubic-bezier(.45,.05,.35,1)}
+.v-mgla.go .a-mgla{-webkit-mask-position:0 0;mask-position:0 0}
+.a-kropla{position:absolute;width:6px;height:9px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:rgba(255,255,255,.95);box-shadow:inset -1px -1px 2px rgba(110,140,165,.55);animation:akropla 2.2s ease-in forwards}
+@keyframes akropla{to{transform:translateY(70px)}}
+/* 4 papierowa gwiazda otwiera okienko na nocnym niebie */
+.v-gwiazda{background:#24324a}
+.v-gwiazda .s-art{clip-path:polygon(50.00% 47.60%,50.59% 49.18%,52.28% 49.26%,50.96% 50.31%,51.41% 51.94%,50.00% 51.01%,48.59% 51.94%,49.04% 50.31%,47.72% 49.26%,49.41% 49.18%);transition:clip-path 1.35s cubic-bezier(.55,.05,.3,1)}
+.v-gwiazda.go .s-art{clip-path:polygon(50.00% -190.00%,109.25% -31.55%,278.25% -24.16%,145.87% 81.15%,191.07% 244.16%,50.00% 150.80%,-91.07% 244.16%,-45.87% 81.15%,-178.25% -24.16%,-9.25% -31.55%)}
+.a-gw{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;z-index:3;background:radial-gradient(circle,#fff3c8,#e2b45a 60%);clip-path:polygon(50.00% 0.00%,62.34% 33.01%,97.55% 34.55%,69.97% 56.49%,79.39% 90.45%,50.00% 71.00%,20.61% 90.45%,30.03% 56.49%,2.45% 34.55%,37.66% 33.01%);transform:scale(.1) rotate(-40deg);opacity:0}
+.v-gwiazda.go .a-gw{animation:agw 1.3s ease-out forwards}
+@keyframes agw{0%{transform:scale(.1) rotate(-40deg);opacity:0}25%{opacity:1}100%{transform:scale(6) rotate(30deg);opacity:0}}
+/* 5 deszcz pierniczków */
+.a-pier{position:absolute;top:-12%;z-index:3;background:radial-gradient(circle at 50% 50%,#fff4e2 0 3px,transparent 3.5px),#b9773f;animation:apier linear forwards}
+.a-pier.s{clip-path:polygon(50.00% 0.00%,63.23% 31.80%,97.55% 34.55%,71.40% 56.95%,79.39% 90.45%,50.00% 72.50%,20.61% 90.45%,28.60% 56.95%,2.45% 34.55%,36.77% 31.80%)}
+.a-pier.h{clip-path:polygon(50% 92%,10% 52%,2% 32%,8% 12%,26% 4%,42% 10%,50% 22%,58% 10%,74% 4%,92% 12%,98% 32%,90% 52%)}
+.a-pier.o{border-radius:50%;background:#b9773f;box-shadow:inset 0 0 0 3px #b9773f,inset 0 0 0 5px #fff4e2}
+@keyframes apier{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--dx),640px) rotate(var(--r))}}
+.v-pierniczki .s-art{opacity:0;transform:scale(.85)}
+.v-pierniczki.go .s-art{animation:pop .75s cubic-bezier(.2,.8,.2,1.2) forwards}
+/* 6 ślady na śniegu, potem śnieg topnieje */
+.a-snieg{position:absolute;inset:0;z-index:3;background:radial-gradient(circle at 20% 30%,#fff,transparent 40%),radial-gradient(circle at 80% 70%,#e6eef5,transparent 50%),#eef3f7;transition:opacity 1s ease,filter 1s ease}
+.a-krok{position:absolute;width:13px;height:20px;margin:-10px 0 0 -6px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:rgba(120,145,170,.55);opacity:0;transform:rotate(var(--r)) scale(.6);transition:opacity .2s,transform .25s}
+.a-krok.on{opacity:1;transform:rotate(var(--r))}
+.v-slady.go .a-snieg{opacity:0;filter:blur(6px)}
+/* 7 kokarda się rozwiązuje, wstążki zjeżdżają, papier znika */
+.a-papier{position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(45deg,rgba(0,0,0,.035) 0 2px,transparent 2px 9px),var(--kraft);transition:opacity .7s ease,transform .9s ease}
+.a-wst{position:absolute;z-index:3;transition:transform .8s cubic-bezier(.6,.05,.3,1)}
+.a-wst.v{left:50%;top:-2%;bottom:-2%;width:13%;margin-left:-6.5%;background:linear-gradient(90deg,#9e3326,#c4513f 30%,#d9695a 50%,#c4513f 70%,#9e3326)}
+.a-wst.h{top:50%;left:-2%;right:-2%;height:17%;transform:translateY(-50%);background:linear-gradient(#9e3326,#c4513f 30%,#d9695a 50%,#c4513f 70%,#9e3326)}
+.a-kokarda{position:absolute;left:50%;top:50%;width:110px;height:64px;margin:-32px 0 0 -55px;z-index:4;transition:transform .45s cubic-bezier(.5,-.4,.6,1),opacity .4s}
+.a-kokarda::before,.a-kokarda::after{content:"";position:absolute;top:6px;width:50px;height:44px;box-sizing:border-box;border:9px solid #c4513f;border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+.a-kokarda::before{left:0;transform:rotate(-18deg)}.a-kokarda::after{right:0;transform:rotate(18deg)}
+.a-kokarda i{position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:6px;background:#a93a2d;z-index:1}
+.v-wstazka.k .a-kokarda{transform:scale(0) rotate(160deg);opacity:0}
+.v-wstazka.go .a-wst.v{transform:translateY(-115%)}
+.v-wstazka.go .a-wst.h{transform:translate(115%,-50%)}
+.v-wstazka.g2 .a-papier{opacity:0;transform:scale(1.08)}
+.v-wstazka .s-art{transform:scale(1.05);transition:transform 1.2s ease}
+.v-wstazka.g2 .s-art{transform:none}
+/* 8 kartki książki przewracają się */
+.a-str{position:absolute;inset:0;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.08),transparent 8%),repeating-linear-gradient(transparent 0 19px,rgba(110,90,60,.12) 19px 20px) 0 18%/100% 70% no-repeat,#f8f2e6;transform-origin:left center;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform 1s cubic-bezier(.55,.05,.35,1)}
+.a-str.b{z-index:2}
+.a-str .lit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:400 76px/1 var(--script);color:#b99a6a}
+.v-strona.p1 .a-str.a{transform:rotateY(-175deg)}
+.v-strona.p2 .a-str.b{transform:rotateY(-175deg)}
+/* 9 ekran telefonu gaśnie jak stary telewizor */
+.a-ekran{position:absolute;inset:0;z-index:3;background:radial-gradient(ellipse at 50% 40%,#3b5875,#16202b 70%)}
+.a-ekran::before{content:"";position:absolute;left:12%;right:12%;top:14%;height:34px;border-radius:12px;background:rgba(255,255,255,.18)}
+.a-ekran::after{content:"";position:absolute;left:12%;right:30%;top:calc(14% + 44px);height:34px;border-radius:12px;background:rgba(255,255,255,.12)}
+.v-ekran.go .a-ekran{animation:atv .9s cubic-bezier(.6,0,.9,.5) forwards}
+@keyframes atv{0%{transform:scale(1,1);filter:brightness(1)}40%{transform:scale(1,.012);filter:brightness(3)}70%{transform:scale(.25,.012);filter:brightness(4)}100%{transform:scale(0,0);filter:brightness(5)}}
+.v-ekran .s-art{filter:saturate(.4) brightness(.8);transition:filter 1.4s ease .5s}
+.v-ekran.go .s-art{filter:none}
+/* 10 bąbelki */
+.a-bab{position:absolute;bottom:-14%;z-index:3;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85) 0 12%,rgba(255,255,255,.08) 30%,rgba(190,220,235,.15));opacity:0;animation:abab ease-out forwards}
+@keyframes abab{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:1}80%{transform:translate(var(--dx),var(--dy)) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.5);opacity:0}}
+.v-babelki .s-art{filter:blur(6px) brightness(1.15);opacity:.4;transition:filter 1.6s ease .2s,opacity 1.2s ease .2s}
+.v-babelki.go .s-art{filter:none;opacity:1}
+/* 11 kręgi na wodzie */
+.v-fale .s-art{filter:blur(10px) saturate(.8);transform:scale(1.06);transition:filter 1.8s ease,transform 1.8s ease}
+.v-fale.go .s-art{filter:none;transform:none}
+.a-woda{position:absolute;inset:0;z-index:2;background:rgba(150,190,215,.35);transition:opacity 1.6s ease}
+.v-fale.go .a-woda{opacity:0}
+.a-fala{position:absolute;left:50%;top:55%;width:24px;height:12px;margin:-6px 0 0 -12px;z-index:3;border:2px solid rgba(255,255,255,.85);border-radius:50%;opacity:0}
+.v-fale.go .a-fala{animation:afala 1.8s ease-out forwards}
+@keyframes afala{0%{transform:scale(.3);opacity:0}15%{opacity:.95}100%{transform:scale(26);opacity:0}}
+/* 15 nutki */
+.a-nuta{position:absolute;bottom:-12%;z-index:3;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,.25);opacity:0}
+.v-nuty.go .a-nuta{animation:anuta ease-out forwards}
+@keyframes anuta{0%{transform:translate(0,0) rotate(0);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx),-360px) rotate(var(--r));opacity:0}}
+.v-nuty .s-art{opacity:.25;filter:blur(5px);transform:scale(1.07);transition:opacity 1.3s ease .3s,filter 1.4s ease .3s,transform 1.8s ease .3s}
+.v-nuty.go .s-art{opacity:1;filter:none;transform:none}
+/* 16 flesz i polaroid, który się wywołuje */
+.a-flesz{position:absolute;inset:0;z-index:5;background:#fff;opacity:0}
+.v-polaroid.f .a-flesz{animation:aflesz .55s ease-out forwards}
+@keyframes aflesz{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+.a-ramka{position:absolute;inset:0;z-index:4;box-shadow:inset 0 0 0 12px #fdfbf6,inset 0 -34px 0 12px #fdfbf6}
+.v-polaroid .s-art{filter:sepia(.5) saturate(.15) brightness(1.7) contrast(.55);transition:filter 2.2s ease .4s}
+.v-polaroid.go .s-art{filter:none}
+/* 17 kocyk zsuwa się, z kubka unosi się para */
+.a-koc{position:absolute;left:-2%;right:-2%;top:-2%;bottom:-2%;z-index:3;background:repeating-linear-gradient(60deg,rgba(255,255,255,.35) 0 5px,transparent 5px 11px),repeating-linear-gradient(-60deg,rgba(140,110,80,.12) 0 5px,transparent 5px 11px),linear-gradient(#efe3cf,#e6d6bc);box-shadow:0 10px 18px rgba(0,0,0,.18);transition:transform 1.2s cubic-bezier(.6,.05,.3,1)}
+.a-koc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;background:linear-gradient(#e6d6bc,#cdb894);border-radius:0 0 50% 50%/0 0 100% 100%}
+.v-kocyk.go .a-koc{transform:translateY(108%)}
+.a-para{position:absolute;bottom:22%;z-index:4;width:26px;height:60px;border-radius:50%;background:rgba(255,255,255,.6);filter:blur(7px);opacity:0}
+.v-kocyk.go .a-para{animation:apara 2.2s ease-out forwards}
+@keyframes apara{0%{transform:translate(0,0) scale(.6);opacity:0}30%{opacity:.85}100%{transform:translate(var(--dx),-120px) scale(1.4);opacity:0}}
+.v-kocyk .s-art{filter:brightness(.9);transition:filter 1.2s ease}
+.v-kocyk.go .s-art{filter:none}
+/* 18 ziarenka kawy rozsypują się */
+.a-tlo{position:absolute;inset:0;z-index:2;background:#5a3b26;transition:opacity .8s ease .15s}
+.v-ziarenka.go .a-tlo{opacity:0}
+.a-ziarno{position:absolute;z-index:3;width:18px;height:13px;margin:-6px 0 0 -9px;border-radius:50%;background:linear-gradient(90deg,transparent 46%,#2b1a0f 47% 53%,transparent 54%),radial-gradient(circle at 35% 30%,#a06a3e,#5b3519);transform:rotate(var(--a));transition:transform 1.1s cubic-bezier(.2,.7,.3,1),opacity 1s ease .2s}
+.v-ziarenka.go .a-ziarno{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}
+.v-ziarenka .s-art{transform:scale(1.08);transition:transform 1.3s ease}
+.v-ziarenka.go .s-art{transform:none}
+/* 20 noc z księżycem, zzz, potem świt */
+.a-niebo{position:absolute;inset:0;z-index:3;transition:opacity 1.2s ease}
+.a-noc{position:absolute;inset:0;background:linear-gradient(#18233a,#2e3d5e);opacity:.93}
+.a-swit{position:absolute;inset:0;background:linear-gradient(#f7c9a3,#fbe6c8);opacity:0;transition:opacity .9s ease}
+.a-ksiezyc{position:absolute;right:14%;top:12%;width:44px;height:44px;border-radius:50%;box-shadow:inset -12px 6px 0 0 #f4e7c3}
+.a-gwiazdka{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:amigot 1.2s ease-in-out infinite alternate}
+@keyframes amigot{from{opacity:.25}to{opacity:1}}
+.a-zzz{position:absolute;z-index:5;font:600 22px var(--sans);color:#e9eefc;opacity:0}
+.v-noc.z .a-zzz{animation:azzz 2s ease-out forwards}
+@keyframes azzz{0%{transform:translate(0,0) scale(.7);opacity:0}25%{opacity:1}100%{transform:translate(28px,-70px) scale(1.25);opacity:0}}
+.v-noc.sw .a-swit{opacity:.5}
+.v-noc.go .a-niebo{opacity:0}
+/* 21 wieczko słoika odkręca się i odlatuje */
+.a-krem{position:absolute;inset:0;z-index:2;background:radial-gradient(circle at 50% 50%,#f6eddc,#e9dcc3);transition:opacity .7s ease}
+.a-wieczko{position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;z-index:3;border-radius:50%;background:repeating-linear-gradient(0deg,rgba(185,70,47,.5) 0 12px,transparent 12px 24px),repeating-linear-gradient(90deg,rgba(185,70,47,.5) 0 12px,transparent 12px 24px),#fbf6ea;box-shadow:0 6px 16px rgba(0,0,0,.2),inset 0 0 0 5px rgba(201,155,92,.9)}
+.a-wieczko::after{content:"";position:absolute;inset:18px;border-radius:50%;border:3px dashed rgba(140,100,50,.6)}
+.v-wieczko.t .a-wieczko{animation:atwist .9s ease-in-out forwards}
+@keyframes atwist{from{transform:translateY(0) rotate(0)}to{transform:translateY(0) rotate(-220deg) scale(1.05)}}
+.v-wieczko.go .a-wieczko{animation:alift .7s cubic-bezier(.5,0,.8,.4) forwards}
+@keyframes alift{from{transform:translateY(0) rotate(-220deg) scale(1.05)}to{transform:translateY(-440px) rotate(-260deg) scale(.9)}}
+.v-wieczko.go .a-krem{opacity:0}
+.v-wieczko .s-art{transform:scale(1.12);transition:transform 1.3s ease}
+.v-wieczko.go .s-art{transform:none}
 .stage.fin .s-art{opacity:1!important;filter:none!important;clip-path:none!important;transform:none!important;animation:none!important;transition:none!important}
 .card .body{transition:opacity .5s ease .15s,transform .5s ease .15s}
 /* zrobione: pieczęć na obrazku, gwiazdki z przycisku */
@@ -203,22 +344,139 @@ dialog::backdrop{background:rgba(20,26,23,.55)}
 .preview{background:var(--gold);color:#1a1408;border-radius:6px;padding:8px 12px;font-size:14px}
 footer{font-size:13px;color:var(--muted);display:grid;gap:4px}
 footer a{color:inherit}
+/* ===== styl C „Zimowa akwarela” 05.11 ===== */
+html{background:var(--bg)}
+body{background:var(--bg);font-weight:500;color:var(--ink)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(42vmax 32vmax at 92% 2%,rgba(186,212,232,.55),transparent 70%),
+  radial-gradient(40vmax 30vmax at -4% 36%,rgba(245,215,200,.42),transparent 70%),
+  radial-gradient(44vmax 34vmax at 104% 72%,rgba(214,226,206,.5),transparent 70%),
+  radial-gradient(36vmax 28vmax at 10% 100%,rgba(220,233,242,.6),transparent 70%)}
+.wrap{max-width:820px;gap:36px;padding-block:20px 56px}
+.cover{justify-self:center;width:100%;max-width:720px;border-radius:50% 50% 22px 22px/24% 24% 22px 22px;background:var(--blue);box-shadow:0 14px 34px rgba(76,91,102,.18);outline:6px solid rgba(255,255,255,.75);outline-offset:-6px}
+.cover .shade,.cover h1{display:none}
+.hero{position:relative;justify-items:center;text-align:center;gap:10px}
+.hero h1{margin:0;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(34px,8.4vw,52px);line-height:1.02;color:var(--ink);text-wrap:balance}
+.hero h1 span{display:block;font-family:var(--script);font-style:normal;font-weight:500;font-size:1.32em;line-height:1.05;color:var(--gold)}
+.eyebrow{font-weight:700;font-size:11.5px;letter-spacing:.2em;color:var(--blue-dk)}
+.lead{margin-inline:auto;max-width:36em;font-size:16px;line-height:1.6}
+.support{margin-inline:auto;max-width:36em;font-size:14.5px}
+.support a{color:var(--pine);font-weight:600}
+.herorow{justify-content:center}
+.today{justify-self:center;background:#fff;color:var(--ink);border:1.5px solid #c9dce9;font-weight:600;padding:8px 18px;box-shadow:0 4px 12px rgba(76,91,102,.08)}
+.today::before{content:"✨";font-size:15px}
+.today b{color:var(--gold);font-size:28px;font-weight:600}
+.snd{border-color:#c9dce9;background:rgba(255,255,255,.7);font-weight:600}
+.deco{position:absolute;width:18px;height:18px;pointer-events:none}
+.deco.d1{top:2px;left:4%;color:#8fb0c8}
+.deco.d2{top:-10px;right:9%;width:14px;height:14px;color:#e2c48e}
+.deco.d3{bottom:4px;left:8%;width:15px;height:15px;color:#bcd2e2}
+h2{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(26px,6.4vw,32px);letter-spacing:0;text-transform:none;color:var(--blue-dk);text-align:center;margin:0 0 14px}
+h2::before,h2::after{content:"❄";font-family:var(--sans);font-style:normal;font-size:.5em;color:#bcd2e2;vertical-align:middle;margin:0 .6em}
+.steps{gap:10px}
+.steps li{background:rgba(255,255,255,.88);border:0;border-radius:20px;padding:14px 16px;box-shadow:0 4px 14px rgba(76,91,102,.07);grid-template-columns:auto 1fr;column-gap:12px;align-items:start}
+.steps li::before{grid-row:span 2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--blue);color:var(--blue-dk);font-family:var(--serif);font-style:italic;font-weight:700;font-size:22px}
+.steps b{font-weight:700}
+.paper{background:rgba(255,255,255,.9);border:0;border-radius:24px;padding:18px 20px;box-shadow:0 6px 18px rgba(76,91,102,.08);outline:1.5px dashed #c9dce9;outline-offset:-8px}
+.paper.share,.paper.wsparcie{padding:22px 22px 20px}
+.paper.share h2,.paper.wsparcie h2{text-align:left;font-size:26px}
+.paper.share h2::before,.paper.share h2::after,.paper.wsparcie h2::before,.paper.wsparcie h2::after{display:none}
+.wsparcie{background:linear-gradient(160deg,#fff 0%,#fdf4ef 100%);outline-color:#e9c9b6}
+.btn{font-weight:700;padding:11px 20px;box-shadow:0 4px 12px rgba(82,122,152,.22)}
+.btn.ghost{background:#fff;color:var(--pine);border:1.5px solid #c9dce9;box-shadow:none}
+.tabs{justify-content:center}
+.tab{background:rgba(255,255,255,.75);border:1.5px solid #dbe7ef;font-weight:600}
+.tab[aria-selected="true"]{background:var(--blue);color:var(--ink);border-color:#c9dce9}
+.panel{background:rgba(255,255,255,.9);border:0;border-radius:22px;box-shadow:0 6px 18px rgba(76,91,102,.07)}
+.panel h3{font-weight:700}
+.checks input{accent-color:#8fb0c8}
+.wall{padding-top:22px}
+.wall::before{top:8px;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 9px,transparent 9px 14px);opacity:.55}
+.grid{gap:14px}
+.env{background:#fff;border-radius:20px;box-shadow:0 6px 16px rgba(76,91,102,.1)}
+.env .num{font-family:var(--serif);font-style:italic;font-weight:700}
+.env.hasbag .flap .num{color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.env .seal{top:8px;right:8px;background:rgba(255,255,255,.82);color:var(--blue-dk);border-radius:999px;padding:3px 8px;font-weight:700;font-size:10.5px;opacity:1}
+.env .tag .num{font-family:var(--serif);font-style:italic;font-weight:700}
+.env .tag .ok{background:#fff;color:var(--pine);font-weight:700}
+.env.locked{filter:saturate(.85)}
+.env.today{box-shadow:0 0 0 3px #e2c48e,0 0 24px rgba(201,155,92,.5)}
+.note{text-align:center}
+dialog{border-radius:24px;background:#fff;box-shadow:0 24px 60px rgba(76,91,102,.35)}
+dialog:focus,dialog:focus-visible,.card:focus{outline:none}
+dialog::backdrop{background:rgba(76,91,102,.42);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.card .n{font-family:var(--script);font-weight:600}
+.card h3{font-family:var(--serif);font-style:italic;font-weight:600;font-size:26px;line-height:1.15}
+.card h4{font-weight:700;color:var(--blue-dk)}
+.card .tip{background:var(--blue);border-radius:14px}
+.card .swap{border-radius:14px;border-color:#e2c48e;background:#fffaf3}
+.card .od{border-left-color:#e2c48e}
+.x{background:#fff;border-color:#dbe7ef}
+.snd,.tab,.btn,.today{font-family:var(--sans)}
+.preview{border-radius:14px;background:#f3ebda;color:var(--ink);font-weight:600}
+footer{text-align:center;justify-items:center;font-weight:500}
+.card .wsp{display:grid;gap:10px;justify-items:start;background:linear-gradient(160deg,#fff 0%,#fdf4ef 100%);border:1.5px dashed #e9c9b6;border-radius:14px;padding:12px 14px}
+.card .wsp p{margin:0;font-size:15px}
+.card .wsp p::before{content:"\2661  ";color:var(--gold)}
+.card .wsp .btn{font-size:14.5px;padding:9px 16px}
+@media (max-width:420px){.paper{padding:16px 16px}.steps li{padding:12px 14px}.grid{grid-template-columns:repeat(3,1fr);gap:10px}.env{border-radius:16px}.env .flap{padding:8px}.env .seal{top:6px;right:6px;padding:2px 6px;font-size:9.5px}}
+/* ===== styl D „Ciepłe święta” 06.11: kolory okładki + malowana tapeta w tle ===== */
+:root{
+  --bg:#fbf3e6; --glass:#fffaf3; --ink:#5b4a3b; --muted:#8c7866; --line:#ecdcc6;
+  --kraft:#f6ead8; --kraft-dk:#e3cfae; --kraft-ink:#5b4a3b;
+  --pine:#6d8a5b; --pine-ink:#ffffff; --gold:#c4924f; --done:#6d8a5b;
+  --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
+  --tlo-mgla:.15;
+}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11060928);background-size:auto,560px 560px;background-repeat:repeat}
+body{background:transparent}
+body::before{display:none}
+.hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
+h2{color:var(--blue-dk);text-shadow:0 0 12px #fbf3e6,0 0 4px #fbf3e6}
+h2::before,h2::after{color:#c9a46f}
+.today{border-color:#e6cfae;box-shadow:0 4px 12px rgba(120,85,45,.1)}
+.snd{border-color:#e6cfae;background:rgba(255,250,243,.85)}
+.deco.d1{color:#8fa77e}.deco.d2{color:#d9b46f}.deco.d3{color:#d8ab9b}
+.steps li{background:rgba(255,250,243,.98);box-shadow:0 4px 14px rgba(120,85,45,.09)}
+.paper{background:rgba(255,250,243,.98);outline-color:#e3cba6;box-shadow:0 6px 18px rgba(120,85,45,.1)}
+.wsparcie{background:linear-gradient(160deg,#fffaf3 0%,#fbeee4 100%);outline-color:#e6c2ad}
+.btn{box-shadow:0 4px 12px rgba(80,105,65,.25)}
+.btn.ghost{background:#fffaf3;border-color:#dcc4a0}
+.tab{background:rgba(255,250,243,.9);border-color:#ead6b8}
+.tab[aria-selected="true"]{background:#f1dcbc;color:var(--ink);border-color:#dcbf93}
+.panel{background:rgba(255,250,243,.98);box-shadow:0 6px 18px rgba(120,85,45,.09)}
+.checks input{accent-color:#7f9a6d}
+.env{background:#fffaf3;box-shadow:0 6px 16px rgba(110,80,40,.14)}
+.env .seal{background:rgba(255,250,243,.88)}
+.note{text-shadow:0 0 8px #fbf3e6}
+footer{background:rgba(255,250,243,.96);border-radius:18px;padding:12px 16px}
+dialog{background:#fffaf3;box-shadow:0 24px 60px rgba(90,65,35,.35)}
+dialog::backdrop{background:rgba(90,70,45,.45)}
+.x{background:#fffaf3;border-color:#ead6b8}
+.cover{background:var(--kraft)}
+.paper.zostan{display:block;padding:22px 22px 20px}
+.paper.zostan h2{text-align:left;font-size:26px;margin:0 0 10px}
+.paper.zostan h2::before,.paper.zostan h2::after{display:none}
+.zostan p{margin:0 0 10px;max-width:62ch}
+.zostan .btn{margin-top:6px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 03.11 22:46</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 09:28</div>
 
   <div class="cover">
-    <img src="img/00_salon_zima.jpg" alt="Malowany salon zimą: kanapa, pianino, pies i kot, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
-    <div class="shade"></div>
-    <h1>Kalendarz adwentowy Zacisza</h1>
+    <img src="img/00_salon_zima.jpg" alt="Malowany zimowy salon: pies śpi na kanapie, kotka w wiklinowym domku przy pianinie, za oknem śnieg, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
   </div>
 
   <header class="hero">
-    <div class="eyebrow">Zacisze · spokojny vlog · grudzień</div>
+    <svg class="deco d1" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
+    <svg class="deco d2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H21l-5.6 4.2 2.1 7L12 16l-5.5 4.1 2.1-7L3 8.9h6.6z" fill="currentColor"/></svg>
+    <svg class="deco d3" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
+    <div class="eyebrow">Zostań na chwilę · zimowy prezent</div>
+    <h1>Kalendarz adwentowy <span>Zacisza</span></h1>
     <div class="lead" id="lead"></div>
-    <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy.</p>
+    <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy. W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
     <div class="herorow"><div class="today" id="today"></div><button class="snd" id="snd" type="button" aria-pressed="true">🔔 Dźwięk włączony</button></div>
   </header>
 
@@ -244,11 +502,20 @@ footer a{color:inherit}
     <p class="note" id="note" role="status" aria-live="polite"></p>
   </section>
 
+  <section class="paper zostan" aria-labelledby="h-zostan">
+    <h2 id="h-zostan">🍂 Dlaczego „zostań na chwilę”?</h2>
+    <p>Tak nazywa się mój kanał na YouTube. Wiesz, jak to jest, kiedy przyjaciółka wpada do Ciebie w biegu, tylko na moment? Mówisz jej: poczekaj, zostań na chwilę. Wypij herbatę, tu są pierniki. Co u Ciebie?</p>
+    <p>O to właśnie chodzi. Skoro już wpadłaś i kliknęłaś, to zostań na chwilę. Usiądź ze mną w tym moim zaciszu internetu i rozgość się, pogadajmy.</p>
+    <p>Tak samo z tym kalendarzem. Codziennie jedno okienko i chwila tylko dla Ciebie.</p>
+    <a class="btn ghost" href="https://www.youtube.com/@zdrowezmiany" target="_blank" rel="noopener">Zajrzyj na kanał</a>
+  </section>
+
   <section class="paper wsparcie" id="wsparcie" aria-labelledby="h-wsparcie" hidden>
     <h2 id="h-wsparcie">Fajnie się bawisz?</h2>
     <p>Mam nadzieję, że pierwsze okienka dały Ci kilka chwil tylko dla siebie.</p>
     <p>Kalendarz jest prezentem i takim zostanie, do ostatniego okienka.</p>
     <p>Przygotowanie go zajęło mi sporo czasu i serca. Jeśli sprawia Ci radość i możesz sobie na to pozwolić, możesz wesprzeć Zacisze. Dzięki temu mogę robić takie rzeczy dalej.</p>
+    <p>W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
     <div class="sharerow">
       <a class="btn" id="join-mid" target="_blank" rel="noopener">Wesprzyj Zacisze</a>
       <button class="btn ghost" id="mid-share" type="button">Wyślij kalendarz komuś</button>
@@ -278,7 +545,7 @@ footer a{color:inherit}
 <script>
 /* stare iPhone’y (iOS 12 i 13) nie znają replaceChildren: bez tego kalendarz byłby pusty */
 if (!Element.prototype.replaceChildren) Element.prototype.replaceChildren = function(){ while (this.firstChild) this.removeChild(this.firstChild); this.append.apply(this, arguments); };
-const D = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ0eXR1bCI6ICJLYWxlbmRhcnogYWR3ZW50b3d5IFphY2lzemEiLCAia2FuYWwiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vQHpkcm93ZXptaWFueSIsICJyb2siOiAyMDI2LCAid3N0ZXAiOiBbIk3Ds2ogcHJlemVudCBkbGEgQ2llYmllIG5hIGdydWR6aWXFhC4iLCAiRHdhZHppZcWbY2lhIGN6dGVyeSBva2llbmthLiBXIGthxbxkeW0gamVzdCBqZWRuYSBtYcWCYSBwcnp5amVtbm/Fm8SHLCBrdMOzcsSFIHpyb2Jpc3ogdyBkb211LCB6IHRlZ28sIGNvIHp3eWtsZSBqZXN0IHcga3VjaG5pIGkgdyBzenVmbGFkemllLiDFu2FkbnljaCBvYm93acSFemvDs3csIMW8YWRuZWdvIHNwcnrEhXRhbmlhLiIsICJOaWUgYmllZ25paiBkbyBza2xlcHUuIEplxZtsaSBjemVnb8WbIG5pZSBtYXN6LCBwcnp5IGthxbxkeW0gb2tpZW5rdSB6bmFqZHppZXN6IHphbWllbm5pay4gVHUgdGFrIG5hcHJhd2TEmSBjaG9kemkgbyBwb215c8WCIGkgY3phcy4iLCAiQ29kemllbm5pZSBvIDE4OjAwIG90d2llcmFtIHRvIHNhbW8gb2tpZW5rbyB3IG9kY2lua3UgbmEgWmFjaXN6dS4gTW/FvGVzeiByb2JpxIcgamUgcmF6ZW0gemUgbW7EhSBhbGJvIHd0ZWR5LCBraWVkeSBtYXN6IGNod2lsxJkuIl0sICJqYWsiOiBbWyJTcHJhd2TFuiBsaXN0xJkgbmEgdHlkemllxYQiLCAiTmEgcG9jesSFdGt1IHR5Z29kbmlhIHphanJ6eWosIGNvIENpIHNpxJkgcHJ6eWRhLiBXacSZa3N6b8WbxIcgcnplY3p5IGp1xbwgbWFzeiwgYSBwcnp5IHJlc3pjaWUgamVzdCB6YW1pZW5uaWsuIl0sIFsiT3R3w7NyeiBva2llbmtvIiwgIkthxbxkZSBva2llbmtvIG90d2llcmEgc2nEmSBzYW1vIHcgc3dvaW0gZG5pdS4gxZpyb2RlayB0byBwcnplcGlzIGFsYm8ga3LDs3RrYSBpbnN0cnVrY2phLiJdLCBbIlpyw7NiIHRvIHplIG1uxIUiLCAiTyAxODowMCB3eWNob2R6aSBvZGNpbmVrIHogdHltIG9raWVua2llbS4gWmF6bmFjeiwga2llZHkgenJvYmlzeiBzd29qZS4iXV0sICJwcnp5Z290dWoiOiB7InR5dHVsIjogIlByenlnb3R1aiB3IGxpc3RvcGFkemllIChqZcWbbGkgY2hjZXN6KSIsICJvcGlzIjogIkplxZtsaSBtYXN6IGphYsWCa2EsIG1vxbxlc3ogamUgd2N6ZcWbbmllaiB1c3VzennEhy4gUHJ6eWRhZHrEhSBzacSZIHcgZ3J1ZG5pdS4gU3Vzem9uZSBqYWLFgmthIG1vxbxlc3ogdGXFvCBrdXBpxIcgdyBza2xlcGllLCBhIGJleiBuaWNoIHRlxbwgZGFzeiByYWTEmS4iLCAia3Jva2kiOiBbIkphYsWCa2EgdW15aiBwb2QgYmllxbzEhWPEhSB3b2TEhSwgcG9jaWVyYWrEhWMgc2vDs3JrxJkuIERvcGllcm8gcG90ZW0gb2JpZXJ6LiBTa8OzcmtpIG9kxYLDs8W8IG9zb2Juby4iLCAiTWnEhcW8c3ogcG9rcsOzaiB3IHBsYXN0cnkgb2suIDMgbW0gaSB3eWTFgnViIHBlc3RraS4gUGxhc3RyeSBpIHNrw7Nya2kgcG/FgsOzxbwgamVkbsSFIHdhcnN0d8SFIG5hIGJsYWNoYWNoIHogcGFwaWVyZW0uIiwgIlBpZWthcm5payBvay4gOTDCsEMgeiB0ZXJtb29iaWVnaWVtIChiZXogdGVybW9vYmllZ3UgOTMgZG8gMTAwwrBDKSwgZHJ6d2ljemtpIHphbWtuacSZdGUuIFBvIGdvZHppbmllIHByemV3csOzxIcgcGxhc3RyeS4iLCAiT2QgZHJ1Z2llaiBnb2R6aW55IHd5am1paiBqZWRlbiBwbGFzdGVyIG5hIGJsYXQuIEplxZtsaSBwbyAyIGRvIDMgbWludXRhY2ggc2nEmSDFgmFtaWUsIHd5xYLEhWN6IHBpZWthcm5paywgdWNoeWwgZHJ6d2ljemtpIGkgem9zdGF3IG5hIGdvZHppbsSZLiIsICJaaW1uZSBwcnplxYLDs8W8IGRvIHN1Y2hlZ28gc8WCb2lrYSwgd3lwZcWCbmlvbmVnbyB3IGR3w7NjaCB0cnplY2ljaC4gUHJ6ZXogcGllcndzenkgdHlkemllxYQgcG90cnrEhXNhaiBuaW0gcmF6IGR6aWVubmllLiBQYXJhIG5hIHN6a2xlIHpuYWN6eTogd3lzeXAgaSBkb3N1c3ouIl0sICJ1d2FnYSI6ICJTa8OzcmtpIHNjaG7EhSBzenliY2llaiBuacW8IHBsYXN0cnksIHNwcmF3ZHphaiBqZSBvZCBwaWVyd3N6ZWogZ29kemlueS4gQ3rEmcWbxIcgcGxhc3Ryw7N3IHBva3LDs2ogZ3J1Ymllaiwgb2suIDYgbW0uIFPFgm9payB0cnp5bWFqIHcgY2jFgm9kbmVqLCBjaWVtbmVqIHN6YWZjZSwgbmllIG5hZCBrdWNoZW5rxIUuIn0sICJ0eWdvZG5pZSI6IFt7Im5hendhIjogIlR5ZHppZcWEIDEiLCAiZG5pIjogIjEgZG8gNyBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbIm3EhWthIHBzemVubmEsIDI1MCBnIiwgIm1hc8WCbywgNTAgZyIsICJtacOzZCIsICIyIGphamthIiwgInNvZGEgb2N6eXN6Y3pvbmEiLCAiY3luYW1vbiAoaW1iaXIsIGdvxbpkemlraSBpIGdhxYJrYSwgamXFm2xpIHPEhSkiLCAicGFwaWVyIGRvIHBpZWN6ZW5pYSAoYWxibyBtYXPFgm8gaSBtxIVrYSBuYSBibGFjaMSZKSIsICIxIGphYsWCa28iLCAiaGVyYmF0YSwga3TDs3LEhSBsdWJpc3oiXV0sIFsiWiBzenVmbGFkeSBpIHN6YWZ5IiwgWyJrYXJ0a2EsIGTFgnVnb3Bpcywga29wZXJ0YSAoYWxibyBzcGluYWN6KSIsICJtYWduZXMgKGFsYm8gdGHFm21hKSIsICJjaWVua2kgcGFwaWVyIChhbGJvIHBhcGllciDFm25pYWRhbmlvd3ksIGthcnRraSB6IHplc3p5dHUpLCBub8W8eWN6a2ksIGtsZWogYWxibyB0YcWbbWEiLCAiYmxhc3phbmEgcHVzemthIChhbGJvIHPFgm9payB6IHpha3LEmXRrxIUsIGFsYm8gdW15dGEgcHVzemthIHBvIHBvbWlkb3JhY2gpIiwgInBhcGllciBpIHN6bnVyZWsgKGFsYm8gcGFwaWVyIHogcGFjemtpIGkgd3N0xIXFvGthKSIsICJjaWVwxYJlIGJ1dHksIGN6YXBrYSwgdGVybW9zIChuaWUgbWFzej8gaGVyYmF0YSBwcnplZCB3eWrFm2NpZW0pIl1dXX0sIHsibmF6d2EiOiAiVHlkemllxYQgMiIsICJkbmkiOiAiOCBkbyAxNCBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbImhlcmJhdGEgb3dvY293YSAoYWxibyBzdXN6b25lIHNrw7Nya2kgamFixYJlaykiLCAibGFza2EgY3luYW1vbnUiLCAiam9ndXJ0IG5hdHVyYWxueSBpIG1pw7NkIChhbGJvIHDFgmF0a2kgb3dzaWFuZSkiLCAic8OzbCwgb2suIDEgc3prbGFua2kiLCAiMyBqYWprYSwgY3VraWVyLCBtYXPFgm8sIG3EhWthLCBtbGVrbywgcHJvc3playBkbyBwaWVjemVuaWEiLCAiNTAwIGRvIDcwMCBnIGphYsWCZWsgKGFsYm8gaW5ueWNoIG93b2PDs3cpIiwgInRvLCBjbyBsdWJpc3ogbmEgxZtuaWFkYW5pZSJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbImtzacSFxbxrYSBpIGtvYyIsICJyxJljem5payBpIG1pc2thIiwgInN1c3pvbnkgcm96bWFyeW4sIGplxZtsaSBqZXN0IChiZXogbmllZ28gdGXFvCBkb2JyemUpIiwgImtyZW0iLCAia2FydGthIGFsYm8gZ3J1YnN6eSBwYXBpZXIgaSBrc2nEhcW8a2EsIHcga3TDs3JlaiBqxIUgc2Nob3dhc3oiXV1dfSwgeyJuYXp3YSI6ICJUeWR6aWXFhCAzIiwgImRuaSI6ICIxNSBkbyAyMSBncnVkbmlhIiwgImxpc3R5IjogW1siWiBrdWNobmkiLCBbImtha2FvIChrYcW8ZGUsIGpha2llIG1hc3osIGFsYm8gbWnDs2QgaSBjeW5hbW9uIGRvIGNpZXDFgmVnbyBtbGVrYSkiLCAiY3VraWVyLCBjeW5hbW9uLCBtbGVrbyIsICJmdXN5IHogcG9yYW5uZWoga2F3eSB6IHRlZ28gc2FtZWdvIGRuaWEgKGFsYm8gY3VraWVyKSIsICJvbGl3YSAoYWxibyB6d3lrxYJ5IG9sZWopIiwgIjIgZG8gMyBqYWLFgmthIChhbGJvIGt1cGlvbmUgbWnEmWtraWUga3LEhcW8a2ksIGFsYm8gc2vDs3JraSBwb21hcmHFhGN6eSkiXV0sIFsiWiBzenVmbGFkeSBpIHN6YWZ5IiwgWyJzxYJ1Y2hhd2tpIGFsYm8gZ8WCb8WbbmlrIHcgdGVsZWZvbmllIiwgImdydWJhIGlnxYJhIGkgbml0a2EgKGFsYm8gd3lrYcWCYWN6a2EgZG8gZHppdXJlaykiLCAia29jLCBwb2R1c3prYSwgYnVkemlrIiwgIjMgZG8gNCBtYcWCZSBzxYJvaWtpICh0ZSBwbyBkxbxlbWllIHPEhSBpZGVhbG5lKSwgcGFwaWVyLCBzem51cmVrIiwgImtyZW0gZG8gcsSFayJdXV19LCB7Im5hendhIjogIlR5ZHppZcWEIDQiLCAiZG5pIjogIjIyIGRvIDI0IGdydWRuaWEiLCAibGlzdHkiOiBbWyJaIGt1Y2huaSIsIFsiMSDFm3JlZG5pZSBqYWLFgmtvIiwgInDFgmF0a2kgb3dzaWFuZSBhbGJvIG9yemVjaHksIG1pw7NkIGFsYm8gY3VraWVyLCBjeW5hbW9uLCBtYXPFgm8iLCAiam9ndXJ0IG5hdHVyYWxueSwgamXFm2xpIGx1YmlzeiJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbImtvYyIsICJrYXJ0a2kgcGFwaWVydSwgZMWCdWdvcGlzLCBrb3BlcnR5IChqZcWbbGkgbWFzeikiLCAibGlzdCB6IHBpZXJ3c3plZ28gb2tpZW5rYSJdXV19XSwgIm9raWVua2EiOiBbeyJuIjogMX0sIHsibiI6IDJ9LCB7Im4iOiAzfSwgeyJuIjogNH0sIHsibiI6IDV9LCB7Im4iOiA2fSwgeyJuIjogN30sIHsibiI6IDh9LCB7Im4iOiA5fSwgeyJuIjogMTB9LCB7Im4iOiAxMX0sIHsibiI6IDEyfSwgeyJuIjogMTN9LCB7Im4iOiAxNH0sIHsibiI6IDE1fSwgeyJuIjogMTZ9LCB7Im4iOiAxN30sIHsibiI6IDE4fSwgeyJuIjogMTl9LCB7Im4iOiAyMH0sIHsibiI6IDIxfSwgeyJuIjogMjJ9LCB7Im4iOiAyM30sIHsibiI6IDI0fV0sICJ3c3BpZXJhaiI6ICJodHRwczovL3d3dy55b3V0dWJlLmNvbS9AemRyb3dlem1pYW55L21lbWJlcnNoaXAiLCAic2VqZiI6IHRydWV9"), c => c.charCodeAt(0))));
+const D = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJ0eXR1bCI6ICJLYWxlbmRhcnogYWR3ZW50b3d5IFphY2lzemEiLCAia2FuYWwiOiAiaHR0cHM6Ly93d3cueW91dHViZS5jb20vQHpkcm93ZXptaWFueSIsICJyb2siOiAyMDI2LCAid3N0ZXAiOiBbIk3Ds2ogcHJlemVudCBkbGEgQ2llYmllIG5hIGdydWR6aWXFhC4iLCAiRHdhZHppZcWbY2lhIGN6dGVyeSBva2llbmthLiBXIGthxbxkeW0gamVzdCBqZWRuYSBtYcWCYSBwcnp5amVtbm/Fm8SHLCBrdMOzcsSFIHpyb2Jpc3ogdyBkb211LCB6IHRlZ28sIGNvIHp3eWtsZSBqZXN0IHcga3VjaG5pIGkgdyBzenVmbGFkemllLiDFu2FkbnljaCBvYm93acSFemvDs3csIMW8YWRuZWdvIHNwcnrEhXRhbmlhLiIsICJOaWUgYmllZ25paiBkbyBza2xlcHUuIEplxZtsaSBjemVnb8WbIG5pZSBtYXN6LCBwcnp5IGthxbxkeW0gb2tpZW5rdSB6bmFqZHppZXN6IHphbWllbm5pay4gVHUgdGFrIG5hcHJhd2TEmSBjaG9kemkgbyBwb215c8WCIGkgY3phcy4iLCAiQ29kemllbm5pZSBvIDE4OjAwIG90d2llcmFtIHRvIHNhbW8gb2tpZW5rbyB3IG9kY2lua3UgbmEgWmFjaXN6dS4gTW/FvGVzeiByb2JpxIcgamUgcmF6ZW0gemUgbW7EhSBhbGJvIHd0ZWR5LCBraWVkeSBtYXN6IGNod2lsxJkuIl0sICJqYWsiOiBbWyJTcHJhd2TFuiBsaXN0xJkgbmEgdHlkemllxYQiLCAiTmEgcG9jesSFdGt1IHR5Z29kbmlhIHphanJ6eWosIGNvIENpIHNpxJkgcHJ6eWRhLiBXacSZa3N6b8WbxIcgcnplY3p5IGp1xbwgbWFzeiwgYSBwcnp5IHJlc3pjaWUgamVzdCB6YW1pZW5uaWsuIl0sIFsiT3R3w7NyeiBva2llbmtvIiwgIkthxbxkZSBva2llbmtvIG9kYmxva293dWplIHNpxJkgdyBzd29pbSBkbml1LiBXdGVkeSBrbGlrYXN6IHdvcmVjemVrLCBhIHcgxZtyb2RrdSBjemVrYSBwcnplcGlzIGFsYm8ga3LDs3RrYSBpbnN0cnVrY2phLiJdLCBbIlpyw7NiIHRvIHplIG1uxIUiLCAiTyAxODowMCB3eWNob2R6aSBvZGNpbmVrIHogdHltIG9raWVua2llbS4gWmF6bmFjeiwga2llZHkgenJvYmlzeiBzd29qZS4iXV0sICJqYWtfZHJ1ayI6IFtbIlNwcmF3ZMW6IGxpc3TEmSBuYSB0eWR6aWXFhCIsICJOYSBwb2N6xIV0a3UgdHlnb2RuaWEgemFqcnp5aiwgY28gQ2kgc2nEmSBwcnp5ZGEuIFdpxJlrc3pvxZvEhyByemVjenkganXFvCBtYXN6LCBhIHByenkgcmVzemNpZSBqZXN0IHphbWllbm5pay4iXSwgWyJPdHfDs3J6IG9raWVua28iLCAiS2HFvGRlZ28gZG5pYSBvdHdpZXJhc3ogamVkbsSFIGthcnRlY3prxJkuIFcgxZtyb2RrdSBqZXN0IHByemVwaXMgYWxibyBrcsOzdGthIGluc3RydWtjamEuIl0sIFsiWnLDs2IgdG8gemUgbW7EhSIsICJPIDE4OjAwIHd5Y2hvZHppIG9kY2luZWsgeiB0eW0gb2tpZW5raWVtLiBaYXpuYWN6LCBraWVkeSB6cm9iaXN6IHN3b2plLiJdXSwgInByenlnb3R1aiI6IHsidHl0dWwiOiAiUHJ6eWdvdHVqIHcgbGlzdG9wYWR6aWUgKGplxZtsaSBjaGNlc3opIiwgIm9waXMiOiAiSmXFm2xpIG1hc3ogamFixYJrYSwgbW/FvGVzeiBqZSB3Y3plxZtuaWVqIHVzdXN6ecSHLiBQcnp5ZGFkesSFIHNpxJkgdyBncnVkbml1LiBTdXN6b25lIGphYsWCa2EgbW/FvGVzeiB0ZcW8IGt1cGnEhyB3IHNrbGVwaWUsIGEgYmV6IG5pY2ggdGXFvCBkYXN6IHJhZMSZLiIsICJrcm9raSI6IFsiSmFixYJrYSB1bXlqIHBvZCBiaWXFvMSFY8SFIHdvZMSFLCBwb2NpZXJhasSFYyBza8OzcmvEmS4gRG9waWVybyBwb3RlbSBvYmllcnouIFNrw7Nya2kgb2TFgsOzxbwgb3NvYm5vLiIsICJNacSFxbxzeiBwb2tyw7NqIHcgcGxhc3RyeSBvay4gMyBtbSBpIHd5ZMWCdWIgcGVzdGtpLiBQbGFzdHJ5IGkgc2vDs3JraSBwb8WCw7PFvCBqZWRuxIUgd2Fyc3R3xIUgbmEgYmxhY2hhY2ggeiBwYXBpZXJlbS4iLCAiUGlla2FybmlrIG9rLiA5MMKwQyB6IHRlcm1vb2JpZWdpZW0gKGJleiB0ZXJtb29iaWVndSA5MyBkbyAxMDDCsEMpLCBkcnp3aWN6a2kgemFta25pxJl0ZS4gUG8gZ29kemluaWUgcHJ6ZXdyw7PEhyBwbGFzdHJ5LiIsICJPZCBkcnVnaWVqIGdvZHppbnkgd3lqbWlqIGplZGVuIHBsYXN0ZXIgbmEgYmxhdC4gSmXFm2xpIHBvIDIgZG8gMyBtaW51dGFjaCBzacSZIMWCYW1pZSwgd3nFgsSFY3ogcGlla2FybmlrLCB1Y2h5bCBkcnp3aWN6a2kgaSB6b3N0YXcgbmEgZ29kemluxJkuIiwgIlppbW5lIHByemXFgsOzxbwgZG8gc3VjaGVnbyBzxYJvaWthLCB3eXBlxYJuaW9uZWdvIHcgZHfDs2NoIHRyemVjaWNoLiBQcnpleiBwaWVyd3N6eSB0eWR6aWXFhCBwb3RyesSFc2FqIG5pbSByYXogZHppZW5uaWUuIFBhcmEgbmEgc3prbGUgem5hY3p5OiB3eXN5cCBpIGRvc3Vzei4iXSwgInV3YWdhIjogIlNrw7Nya2kgc2NobsSFIHN6eWJjaWVqIG5pxbwgcGxhc3RyeSwgc3ByYXdkemFqIGplIG9kIHBpZXJ3c3plaiBnb2R6aW55LiBDesSZxZvEhyBwbGFzdHLDs3cgcG9rcsOzaiBncnViaWVqLCBvay4gNiBtbS4gU8WCb2lrIHRyenltYWogdyBjaMWCb2RuZWosIGNpZW1uZWogc3phZmNlLCBuaWUgbmFkIGt1Y2hlbmvEhS4ifSwgInR5Z29kbmllIjogW3sibmF6d2EiOiAiVHlkemllxYQgMSIsICJkbmkiOiAiMSBkbyA3IGdydWRuaWEiLCAibGlzdHkiOiBbWyJaIGt1Y2huaSIsIFsibcSFa2EgcHN6ZW5uYSwgMjUwIGciLCAibWFzxYJvLCA1MCBnIiwgIm1pw7NkIiwgIjIgamFqa2EiLCAic29kYSBvY3p5c3pjem9uYSIsICJjeW5hbW9uIChpbWJpciwgZ2/FumR6aWtpIGkgZ2HFgmthLCBqZcWbbGkgc8SFKSIsICJwYXBpZXIgZG8gcGllY3plbmlhIChhbGJvIG1hc8WCbyBpIG3EhWthIG5hIGJsYWNoxJkpIiwgIjEgamFixYJrbyIsICJoZXJiYXRhLCBrdMOzcsSFIGx1YmlzeiJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbImthcnRrYSwgZMWCdWdvcGlzLCBrb3BlcnRhIChhbGJvIHNwaW5hY3opIiwgIm1hZ25lcyAoYWxibyB0YcWbbWEpIiwgImNpZW5raSBwYXBpZXIgKGFsYm8gcGFwaWVyIMWbbmlhZGFuaW93eSwga2FydGtpIHogemVzenl0dSksIG5vxbx5Y3praSwga2xlaiBhbGJvIHRhxZttYSIsICJibGFzemFuYSBwdXN6a2EgKGFsYm8gc8WCb2lrIHogemFrcsSZdGvEhSwgYWxibyB1bXl0YSBwdXN6a2EgcG8gcG9taWRvcmFjaCkiLCAicGFwaWVyIGkgc3pudXJlayAoYWxibyBwYXBpZXIgeiBwYWN6a2kgaSB3c3TEhcW8a2EpIiwgImNpZXDFgmUgYnV0eSwgY3phcGthLCB0ZXJtb3MgKG5pZSBtYXN6PyBoZXJiYXRhIHByemVkIHd5asWbY2llbSkiXV1dfSwgeyJuYXp3YSI6ICJUeWR6aWXFhCAyIiwgImRuaSI6ICI4IGRvIDE0IGdydWRuaWEiLCAibGlzdHkiOiBbWyJaIGt1Y2huaSIsIFsiaGVyYmF0YSBvd29jb3dhIChhbGJvIHN1c3pvbmUgc2vDs3JraSBqYWLFgmVrKSIsICJsYXNrYSBjeW5hbW9udSIsICJqb2d1cnQgbmF0dXJhbG55IGkgbWnDs2QgKGFsYm8gcMWCYXRraSBvd3NpYW5lKSIsICJzw7NsLCBvay4gMSBzemtsYW5raSIsICIzIGphamthLCBjdWtpZXIsIG1hc8WCbywgbcSFa2EsIG1sZWtvLCBwcm9zemVrIGRvIHBpZWN6ZW5pYSIsICI1MDAgZG8gNzAwIGcgamFixYJlayAoYWxibyBpbm55Y2ggb3dvY8OzdykiLCAidG8sIGNvIGx1YmlzeiBuYSDFm25pYWRhbmllIl1dLCBbIlogc3p1ZmxhZHkgaSBzemFmeSIsIFsia3NpxIXFvGthIGkga29jIiwgInLEmWN6bmlrIGkgbWlza2EiLCAic3Vzem9ueSByb3ptYXJ5biwgamXFm2xpIGplc3QgKGJleiBuaWVnbyB0ZcW8IGRvYnJ6ZSkiLCAia3JlbSIsICJrYXJ0a2EgYWxibyBncnVic3p5IHBhcGllciBpIGtzacSFxbxrYSwgdyBrdMOzcmVqIGrEhSBzY2hvd2FzeiJdXV19LCB7Im5hendhIjogIlR5ZHppZcWEIDMiLCAiZG5pIjogIjE1IGRvIDIxIGdydWRuaWEiLCAibGlzdHkiOiBbWyJaIGt1Y2huaSIsIFsia2FrYW8gKGthxbxkZSwgamFraWUgbWFzeiwgYWxibyBtacOzZCBpIGN5bmFtb24gZG8gY2llcMWCZWdvIG1sZWthKSIsICJjdWtpZXIsIGN5bmFtb24sIG1sZWtvIiwgImZ1c3kgeiBwb3Jhbm5laiBrYXd5IHogdGVnbyBzYW1lZ28gZG5pYSAoYWxibyBjdWtpZXIpIiwgIm9saXdhIChhbGJvIHp3eWvFgnkgb2xlaikiLCAiMiBkbyAzIGphYsWCa2EgKGFsYm8ga3VwaW9uZSBtacSZa2tpZSBrcsSFxbxraSwgYWxibyBza8OzcmtpIHBvbWFyYcWEY3p5KSJdXSwgWyJaIHN6dWZsYWR5IGkgc3phZnkiLCBbInPFgnVjaGF3a2kgYWxibyBnxYJvxZtuaWsgdyB0ZWxlZm9uaWUiLCAiZ3J1YmEgaWfFgmEgaSBuaXRrYSAoYWxibyB3eWthxYJhY3prYSBkbyBkeml1cmVrKSIsICJrb2MsIHBvZHVzemthLCBidWR6aWsiLCAiMyBkbyA0IG1hxYJlIHPFgm9pa2kgKHRlIHBvIGTFvGVtaWUgc8SFIGlkZWFsbmUpLCBwYXBpZXIsIHN6bnVyZWsiLCAia3JlbSBkbyByxIVrIl1dXX0sIHsibmF6d2EiOiAiVHlkemllxYQgNCIsICJkbmkiOiAiMjIgZG8gMjQgZ3J1ZG5pYSIsICJsaXN0eSI6IFtbIloga3VjaG5pIiwgWyIxIMWbcmVkbmllIGphYsWCa28iLCAicMWCYXRraSBvd3NpYW5lIGFsYm8gb3J6ZWNoeSwgbWnDs2QgYWxibyBjdWtpZXIsIGN5bmFtb24sIG1hc8WCbyIsICJqb2d1cnQgbmF0dXJhbG55LCBqZcWbbGkgbHViaXN6Il1dLCBbIlogc3p1ZmxhZHkgaSBzemFmeSIsIFsia29jIiwgImthcnRraSBwYXBpZXJ1LCBkxYJ1Z29waXMsIGtvcGVydHkgKGplxZtsaSBtYXN6KSIsICJsaXN0IHogcGllcndzemVnbyBva2llbmthIl1dXX1dLCAib2tpZW5rYSI6IFt7Im4iOiAxfSwgeyJuIjogMn0sIHsibiI6IDN9LCB7Im4iOiA0fSwgeyJuIjogNX0sIHsibiI6IDZ9LCB7Im4iOiA3fSwgeyJuIjogOH0sIHsibiI6IDl9LCB7Im4iOiAxMH0sIHsibiI6IDExfSwgeyJuIjogMTJ9LCB7Im4iOiAxM30sIHsibiI6IDE0fSwgeyJuIjogMTV9LCB7Im4iOiAxNn0sIHsibiI6IDE3fSwgeyJuIjogMTh9LCB7Im4iOiAxOX0sIHsibiI6IDIwfSwgeyJuIjogMjF9LCB7Im4iOiAyMn0sIHsibiI6IDIzfSwgeyJuIjogMjR9XSwgIndzcGllcmFqIjogImh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL0B6ZHJvd2V6bWlhbnkvam9pbiIsICJzZWpmIjogdHJ1ZX0="), c => c.charCodeAt(0))));
 /* wersja publiczna (D.sejf): okienka bez treści, otwiera je dopiero klucz z serwera */
 const SEJF = !!D.sejf;
 let KLUCZE = {};
@@ -307,7 +574,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11051305";
+const IMGV = "11060932";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -325,7 +592,7 @@ const todayBox = document.getElementById("today");
   if (n){ todayBox.append("Dziś otwierasz okienko "); todayBox.appendChild(el("b", null, String(n))); return; }
   if (T.y > D.rok || (T.y === D.rok && T.m === 12 && T.d > 24)){ todayBox.append("Wszystkie okienka są otwarte. Wesołych świąt"); return; }
   const days = Math.round((Date.UTC(D.rok, 11, 1) - Date.UTC(T.y, T.m-1, T.d)) / 86400000);
-  todayBox.append(days === 1 ? "Pierwsze okienko otworzy się jutro" : `Pierwsze okienko otworzy się za ${days} dni, 1 grudnia`);
+  todayBox.append(days === 1 ? "Pierwsze okienko odblokuje się jutro" : `Pierwsze okienko odblokuje się za ${days} dni, 1 grudnia`);
 })();
 
 const steps = document.getElementById("steps");
@@ -367,6 +634,8 @@ showTab(Math.min(curTab, sections.length - 1));
 const done = store.get("zrobione", {});
 const grid = document.getElementById("grid"), note = document.getElementById("note");
 const byN = Object.fromEntries(D.okienka.map(o => [o.n, o]));
+/* miniaturka 4:5 obcina boki kwadratu: tu przesuwamy kadr, żeby zwierzak był cały */
+const FOKUS = {13: "10% 50%"};
 function render(){
   grid.replaceChildren();
   const tn = todayN();
@@ -376,7 +645,7 @@ function render(){
     if (!open) b.classList.add("locked");
     if (tn === n) b.classList.add("today");
     if (shown){
-      const pic = el("img", "pic"); pic.src = img(n); pic.alt = ""; pic.loading = "lazy";
+      const pic = el("img", "pic"); pic.src = img(n); pic.alt = ""; pic.loading = "lazy"; if (FOKUS[n]) pic.style.objectPosition = FOKUS[n];
       pic.onerror = () => pic.remove();
       b.appendChild(pic);
       const tag = el("span", "tag"); tag.appendChild(el("span", "num", String(n)));
@@ -389,13 +658,13 @@ function render(){
       b.appendChild(bag);
       const f = el("span", "flap"); f.appendChild(el("span", "seal", open ? "otwórz" : `${n} gru`)); f.appendChild(el("span", "num", String(n)));
       b.appendChild(f);
-      b.setAttribute("aria-label", open ? `Okienko ${n}, do otwarcia` : `Okienko ${n}, otworzy się ${n} grudnia`);
+      b.setAttribute("aria-label", open ? `Okienko ${n}, do otwarcia` : `Okienko ${n}, odblokuje się ${n} grudnia`);
     }
     b.addEventListener("click", () => {
       if (!isOpen(n)){
         if (nowyDzien()){ location.reload(); return; }
         const zaChwile = SEJF && (T.y > D.rok || (T.y === D.rok && T.m === 12 && T.d >= n));
-        note.textContent = zaChwile ? `Okienko ${n} właśnie się otwiera. Spróbuj za kilka minut.` : `Okienko ${n} otworzy się ${n} grudnia. Cierpliwości.`;
+        note.textContent = zaChwile ? `Okienko ${n} właśnie się odblokowuje. Spróbuj za kilka minut.` : `Okienko ${n} odblokuje się ${n} grudnia. Cierpliwości.`;
         if (zaChwile) pobierzKlucze();
         snd.thud();
         b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); return;
@@ -514,7 +783,97 @@ const snd = {
 const VAR = ["drzwi", "koperta", "snieg", "iris", "konfetti", "lampki", "worek"];
 const VNAME = {drzwi: "drzwiczki", koperta: "koperta", snieg: "śnieg", iris: "złote koło", konfetti: "konfetti", lampki: "lampki", worek: "woreczek"};
 let BAG_OK = false; { const t = new Image(); t.onload = () => { BAG_OK = true; }; t.src = "img/worek_otwarty.jpg"; }
-function variantFor(n){ const v = VAR[(n - 1) % VAR.length]; return (v === "worek" && !BAG_OK) ? "koperta" : v; }
+/* 05.11: jedna animacja na okienko, każda inna (24 różne), dopasowana do treści okienka */
+const ANIM = [null, "pieczec", "karteczka", "mgla", "gwiazda", "pierniczki", "slady", "wstazka", "strona", "ekran", "babelki", "fale",
+  "drzwi", "snieg", "koperta", "nuty", "polaroid", "kocyk", "ziarenka", "lampki", "noc", "wieczko", "iris", "konfetti", "worek"];
+/* melodia dnia: 7 kolęd, sąsiednie dni nigdy tej samej */
+const MELN = [null, "snieg", "koperta", "lampki", "iris", "konfetti", "drzwi", "worek", "snieg", "koperta", "lampki", "iris",
+  "drzwi", "snieg", "koperta", "konfetti", "worek", "lampki", "drzwi", "lampki", "snieg", "konfetti", "iris", "konfetti", "worek"];
+function variantFor(n){ const v = ANIM[n] || "koperta"; return (v === "worek" && !BAG_OK) ? "lampki" : v; }
+function mk(cls, css){ const e = el("span", cls); if (css) e.style.cssText = css; return e; }
+function setv(e, o){ Object.keys(o).forEach(k => e.style.setProperty(k, o[k])); return e; }
+const NOWE = {
+  pieczec: {
+    setup(ov, n){ const l = mk("a-pol l"), r = mk("a-pol r"); [l, r].forEach(p => p.appendChild(el("span", "a-wosk", String(n)))); ov.append(l, r); },
+    play({stage, at, reveal, clear, mel, beat}){ snd.rustle(.05); at(250, () => stage.classList.add("w1")); at(700, () => { snd.pop(0); snd.rustle(.05); stage.classList.add("go"); }); tune(mel, .85, beat); reveal(1500); clear(1900); }
+  },
+  karteczka: {
+    setup(ov){ const t = mk("a-note"); t.appendChild(el("b", null, "\u2665")); ov.append(t, mk("a-magnes")); },
+    play({stage, at, reveal, clear, mel, beat}){ at(250, () => { stage.classList.add("m"); snd.pop(0); }); at(650, () => { stage.classList.add("go"); snd.rustle(0); }); tune(mel, .7, beat); reveal(1600); clear(2000); }
+  },
+  mgla: {
+    setup(ov){ const f = mk("a-mgla"); for (let i = 0; i < 7; i++) f.appendChild(mk("a-kropla", `left:${rnd(8, 92)}%;top:${rnd(8, 55)}%;animation-delay:${rnd(0, .6)}s`)); ov.append(f); },
+    play({stage, at, reveal, clear, mel, beat}){ snd.whoosh(.1); at(150, () => stage.classList.add("go")); tune(mel, .4, beat); reveal(1500); clear(2000); }
+  },
+  gwiazda: {
+    setup(ov){ ov.append(mk("a-gw")); },
+    play({stage, at, reveal, clear, mel, beat}){ bell(1568, .05, 1.6, .05); bell(2093, .3, 1.8, .04); at(80, () => stage.classList.add("go")); tune(mel, .45, beat); reveal(1200); clear(1600); }
+  },
+  pierniczki: {
+    setup(ov){ const k = ["s", "h", "o"]; for (let i = 0; i < 24; i++){ const sz = Math.round(rnd(20, 34));
+      ov.appendChild(setv(mk("a-pier " + k[i % 3], `left:${rnd(-2, 96)}%;width:${sz}px;height:${sz}px;animation-duration:${rnd(1.5, 2.3)}s;animation-delay:${rnd(0, .7)}s`), {"--dx": `${rnd(-40, 40)}px`, "--r": `${rnd(-300, 300)}deg`})); } },
+    play({stage, at, reveal, clear, mel, beat}){ for (let i = 0; i < 6; i++) box(hz(["C6", "E6", "G6"][i % 3]), .15 + i * .11, .035); at(850, () => stage.classList.add("go")); tune(mel, .9, beat); reveal(1300); clear(2700); }
+  },
+  slady: {
+    setup(ov){ const s = mk("a-snieg");
+      for (let i = 0; i < 10; i++){ const t = i / 9, side = i % 2 ? 1 : -1;
+        s.appendChild(mk("a-krok", `left:${10 + t * 80 + side * 2.5}%;top:${86 - t * 72 + side * 3}%;--r:55deg`)); }
+      ov.append(s); },
+    play({stage, ov, at, reveal, clear, mel, beat}){ [...ov.querySelectorAll(".a-krok")].forEach((k, i) => at(200 + i * 150, () => { k.classList.add("on"); noise(0, .09, "lowpass", 1600, 500, .08); }));
+      at(1800, () => { stage.classList.add("go"); sleigh(0, 8, .1, .045); }); tune(mel, 1.9, beat); reveal(2100); clear(2700); }
+  },
+  wstazka: {
+    setup(ov){ const k = mk("a-kokarda"); k.appendChild(el("i")); ov.append(mk("a-papier"), mk("a-wst v"), mk("a-wst h"), k); },
+    play({stage, at, reveal, clear, mel, beat}){ snd.rustle(.05); at(300, () => { stage.classList.add("k"); snd.pop(0); }); at(650, () => { stage.classList.add("go"); snd.rustle(0); }); at(1050, () => stage.classList.add("g2")); tune(mel, .7, beat); reveal(1500); clear(1900); }
+  },
+  strona: {
+    setup(ov, n){ const b = mk("a-str b"), a = mk("a-str a"); a.appendChild(el("span", "lit", String(n))); ov.append(b, a); },
+    play({stage, at, reveal, clear, mel, beat}){ at(250, () => { stage.classList.add("p1"); snd.rustle(0); }); at(750, () => { stage.classList.add("p2"); snd.rustle(0); }); tune(mel, .5, beat); reveal(1600); clear(1900); }
+  },
+  ekran: {
+    setup(ov){ ov.append(mk("a-ekran")); },
+    play({stage, at, reveal, clear, mel, beat}){ at(400, () => { stage.classList.add("go"); tune("E6:.5 B5:.5 E5:1", 0, .09, .06); }); tune(mel, 1.3, beat); reveal(1400); clear(1700); }
+  },
+  babelki: {
+    setup(ov){ for (let i = 0; i < 22; i++){ const sz = Math.round(rnd(10, 34));
+      ov.appendChild(setv(mk("a-bab", `left:${rnd(2, 95)}%;width:${sz}px;height:${sz}px;animation-duration:${rnd(1.4, 2.4)}s;animation-delay:${rnd(0, .8)}s`), {"--dx": `${rnd(-40, 40)}px`, "--dy": `${-rnd(180, 330)}px`})); } },
+    play({stage, at, reveal, clear, mel, beat}){ for (let i = 0; i < 8; i++) noise(rnd(.6, 2.4), .05, "highpass", 2500, 4000, .05); at(120, () => stage.classList.add("go")); tune(mel, .4, beat); reveal(1500); clear(2700); }
+  },
+  fale: {
+    setup(ov){ ov.append(mk("a-woda")); for (let i = 0; i < 5; i++) ov.appendChild(mk("a-fala", `animation-delay:${i * .28}s`)); },
+    play({stage, at, reveal, clear, mel, beat}){ bell(1320, 0, .6, .05); bell(990, .25, .6, .04); snd.whoosh(.1); at(60, () => stage.classList.add("go")); tune(mel, .5, beat); reveal(1400); clear(2100); }
+  },
+  nuty: {
+    setup(ov){ const g = ["\u266A", "\u266B", "\u266C", "\u2669"];
+      for (let i = 0; i < 16; i++) ov.appendChild(setv(el("span", "a-nuta", g[i % 4]), {"left": `${rnd(4, 92)}%`, "font-size": `${Math.round(rnd(18, 34))}px`, "color": i % 3 ? "#e8c27a" : "#fffaf0", "animation-duration": `${rnd(1.8, 2.6)}s`, "animation-delay": `${rnd(0, 1)}s`, "--dx": `${rnd(-60, 60)}px`, "--r": `${rnd(-35, 35)}deg`})); },
+    play({stage, at, reveal, clear, mel, beat}){ at(100, () => stage.classList.add("go")); tune(mel, .15, beat); reveal(1400); clear(2700); }
+  },
+  polaroid: {
+    setup(ov){ ov.append(mk("a-ramka"), mk("a-flesz")); },
+    play({stage, at, reveal, clear, mel, beat}){ at(200, () => { stage.classList.add("f"); snd.pop(0); snd.pop(.06); }); at(450, () => stage.classList.add("go")); tune(mel, .8, beat); reveal(1800); clear(2800); }
+  },
+  kocyk: {
+    setup(ov){ ov.append(mk("a-koc")); for (let i = 0; i < 4; i++) ov.appendChild(setv(mk("a-para", `left:${42 + i * 5}%;animation-delay:${1.1 + i * .25}s`), {"--dx": `${rnd(-25, 25)}px`})); },
+    play({stage, at, reveal, clear, mel, beat}){ noise(.05, .9, "lowpass", 500, 1400, .06); at(250, () => stage.classList.add("go")); tune(mel, .6, beat); reveal(1400); clear(2700); }
+  },
+  ziarenka: {
+    setup(ov){ ov.append(mk("a-tlo"));
+      for (let i = 0; i < 70; i++){ const x = rnd(0, 100), y = rnd(0, 100), a = rnd(0, 180);
+        const z = setv(mk("a-ziarno", `left:${x}%;top:${y}%;transition-delay:${rnd(0, .15)}s,${rnd(.2, .35)}s`), {"--a": `${a}deg`, "--dx": `${(x - 50) / 50 * rnd(160, 320)}px`, "--dy": `${(y - 50) / 50 * rnd(110, 220)}px`, "--r": `${a + rnd(-300, 300)}deg`});
+        ov.appendChild(z); } },
+    play({stage, at, reveal, clear, mel, beat}){ for (let i = 0; i < 10; i++) noise(rnd(.4, .9), .03, "bandpass", 2500, 3500, .05); at(350, () => { stage.classList.add("go"); snd.rustle(0); }); tune(mel, .6, beat); reveal(1300); clear(1900); }
+  },
+  noc: {
+    setup(ov){ const s = mk("a-niebo"); s.append(mk("a-noc"), mk("a-swit"), mk("a-ksiezyc"));
+      for (let i = 0; i < 12; i++) s.appendChild(mk("a-gwiazdka", `left:${rnd(5, 95)}%;top:${rnd(4, 45)}%;animation-delay:${rnd(0, 1.2)}s`));
+      ov.appendChild(s); for (let i = 0; i < 3; i++) ov.appendChild(mk("a-zzz", `left:${50 + i * 5}%;top:${58 - i * 7}%;animation-delay:${.2 + i * .45}s`)).textContent = "z"; },
+    play({stage, at, reveal, clear, mel, beat}){ at(100, () => stage.classList.add("z")); bell(392, .1, 2.2, .04); tune(mel, .3, beat * 1.5, .07); at(1900, () => stage.classList.add("sw")); at(2250, () => stage.classList.add("go")); reveal(2400); clear(3100); }
+  },
+  wieczko: {
+    setup(ov){ ov.append(mk("a-krem"), mk("a-wieczko")); },
+    play({stage, at, reveal, clear, mel, beat}){ at(150, () => { stage.classList.add("t"); noise(0, .8, "bandpass", 900, 1800, .05); }); at(1050, () => { stage.classList.add("go"); snd.pop(0); }); tune(mel, 1.1, beat); reveal(1600); clear(2000); }
+  }
+};
 function rnd(a, b){ return a + Math.random() * (b - a); }
 function runAnim(stage, body, n, v, ready){
   stage.classList.add("v-" + v);
@@ -525,7 +884,12 @@ function runAnim(stage, body, n, v, ready){
   const finish = () => { if (!card.contains(stage)) return; stage.classList.add("fin"); body.classList.remove("hide"); ov.remove(); };
   const clear = ms => { at(ms, () => ov.classList.add("fade")); at(ms + 650, finish); };
   setTimeout(finish, 6000);
-  const [mel, beat] = KOLEDY[v];
+  const [mel, beat] = KOLEDY[MELN[n]] || KOLEDY[v] || KOLEDY.snieg;
+  if (NOWE[v]){
+    NOWE[v].setup(ov, n);
+    ready.then(() => { if (!card.contains(stage)) return; void stage.offsetWidth; NOWE[v].play({stage, ov, at, reveal, clear, mel, beat, n}); });
+    return;
+  }
   const bulbs = [];
   if (v === "drzwi") ov.append(el("div", "door l"), el("div", "door r"), el("div", "pieczec", String(n)));
   else if (v === "koperta") ov.append(el("div", "koperta"), el("div", "klapka"));
@@ -613,6 +977,14 @@ function hurra(stage, btn){
   if (card.scrollTop > 8){ card.scrollTo({top: 0, behavior: RM ? "auto" : "smooth"}); setTimeout(go, RM ? 0 : 550); }
   else go();
 }
+/* wsparcie2027 */
+/* co 6 dni łagodna zachęta do wspierania, za każdym razem innym zdaniem */
+const WSP = {
+  6: "Jeśli Zacisze daje Ci chwilę spokoju, dołącz do wspierających kanał. W 2027 roku będzie więcej materiałów tylko dla wspierających.",
+  12: "Jesteśmy w połowie kalendarza. Jeśli chcesz, żeby takich rzeczy było więcej, dołącz do wspierających. W 2027 roku będzie więcej materiałów tylko dla nich.",
+  18: "Mała prośba: jeśli możesz, dołącz do wspierających Zacisze. W 2027 roku będzie dla nich więcej materiałów.",
+  24: "Dziękuję, że jesteś ze mną cały grudzień. W 2027 roku będzie więcej materiałów tylko dla wspierających. Jeśli chcesz w nich być, dołącz."
+};
 let previewVar = null;
 function openCard(n, forceVar){
   const o = byN[n]; card.replaceChildren();
@@ -637,6 +1009,11 @@ function openCard(n, forceVar){
   }
   const b = el("div"); b.appendChild(el("h4", null, "Jak")); b.appendChild(list("ol", o.kroki)); body.appendChild(b);
   if (o.wskazowka) body.appendChild(el("p", "tip", o.wskazowka));
+  if (WSP[n] && D.wspieraj){
+    const w = el("div", "wsp"); w.appendChild(el("p", null, WSP[n]));
+    const j = el("a", "btn ghost", "Dołącz do wspierających"); j.href = D.wspieraj; j.target = "_blank"; j.rel = "noopener";
+    w.appendChild(j); body.appendChild(w);
+  }
   const ep = el("div", "ep"), link = el("a", null, o.yt ? "Obejrzyj ten odcinek" : "Odcinek z tym okienkiem: o 18:00 na Zaciszu");
   link.href = o.yt || D.kanal; link.target = "_blank"; link.rel = "noopener";
   const t = el("button", "btn", done[n] ? "Zrobione ✓" : "Zaznacz: zrobione"); t.type = "button";
@@ -658,12 +1035,6 @@ function openCard(n, forceVar){
     const ready = Promise.race([art.decode ? art.decode().catch(() => {}) : Promise.resolve(), new Promise(r => setTimeout(r, 1500))]);
     runAnim(stage, body, n, v, ready);
   } else { sleigh(0, 4, .1, .035); box(hz("G5"), .05, .07); box(hz("C6"), .2, .07); }
-  if (PREVIEW){
-    stage.appendChild(el("span", "vname", "animacja: " + VNAME[v]));
-    const r = el("button", "replay", "▶ następna animacja"); r.type = "button";
-    r.addEventListener("click", () => { let i = VAR.indexOf(v); do { i = (i + 1) % VAR.length; } while (VAR[i] === "worek" && !BAG_OK); openCard(n, VAR[i]); });
-    stage.appendChild(r);
-  }
 }
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 dlg.addEventListener("close", hush);
