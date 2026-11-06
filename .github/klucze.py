@@ -8,7 +8,7 @@ import datetime, json, os, sys, urllib.request
 from zoneinfo import ZoneInfo
 
 ROK = 2026
-URL = "https://zaciszevlogpl-boop.github.io/kalendarz/klucze.json"
+URL = "https://www.zaciszevlog.pl/klucze.json"
 PL = ZoneInfo("Europe/Warsaw")
 
 teraz = datetime.datetime.now(PL)

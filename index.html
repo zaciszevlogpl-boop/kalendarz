@@ -8,8 +8,8 @@
 <meta property="og:title" content="Kalendarz adwentowy Zacisza">
 <meta property="og:description" content="24 okienka, jedno na każdy dzień grudnia. Małe przyjemności do zrobienia w domu.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://zaciszevlogpl-boop.github.io/kalendarz/img/00_salon_zima.jpg">
-<meta property="og:url" content="https://zaciszevlogpl-boop.github.io/kalendarz/">
+<meta property="og:image" content="https://www.zaciszevlog.pl/img/00_salon_zima.jpg">
+<meta property="og:url" content="https://www.zaciszevlog.pl/">
 <meta name="theme-color" content="#fbf3e6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6e7d1'/%3E%3Cpath d='M32 10l5.6 14.4L52 26l-11 9.6L44.6 50 32 42.4 19.4 50 23 35.6 12 26l14.4-1.6z' fill='%23c99b5c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -428,7 +428,7 @@ footer{text-align:center;justify-items:center;font-weight:500}
   --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
   --tlo-mgla:.15;
 }
-html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11060937);background-size:auto,560px 560px;background-repeat:repeat}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11061305);background-size:auto,560px 560px;background-repeat:repeat}
 body{background:transparent}
 body::before{display:none}
 .hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
@@ -475,7 +475,7 @@ body[data-widok="strefa"] .wrap > :not(.zakladki):not(#strefa):not(.preview):not
 </head>
 <body>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 09:37</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 13:05</div>
   <nav class="zakladki" aria-label="Zakładki">
     <button type="button" class="zak" data-z="kalendarz" aria-current="page">🎄 Kalendarz</button>
     <button type="button" class="zak" data-z="Meal prep">🔒 Meal prep</button>
@@ -603,7 +603,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11060943";
+const IMGV = "11061306";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
