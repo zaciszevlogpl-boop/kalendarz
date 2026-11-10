@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Kalendarz adwentowy Zacisza</title>
-<meta name="description" content="24 okienka, jedno na każdy dzień grudnia. Małe przyjemności do zrobienia w domu, razem z Gabrysią z kanału Zacisze.">
+<title>Zacisze · zostań na chwilę</title>
+<meta name="description" content="Zacisze, spokojny vlog Gabrysi. Kalendarz adwentowy: 24 okienka, jedno na każdy dzień grudnia, małe przyjemności do zrobienia w domu.">
 <meta property="og:title" content="Kalendarz adwentowy Zacisza">
 <meta property="og:description" content="24 okienka, jedno na każdy dzień grudnia. Małe przyjemności do zrobienia w domu.">
 <meta property="og:type" content="website">
@@ -428,7 +428,7 @@ footer{text-align:center;justify-items:center;font-weight:500}
   --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
   --tlo-mgla:.15;
 }
-html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11061305);background-size:auto,560px 560px;background-repeat:repeat}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11101720);background-size:auto,560px 560px;background-repeat:repeat}
 body{background:transparent}
 body::before{display:none}
 .hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
@@ -470,22 +470,72 @@ dialog::backdrop{background:rgba(90,70,45,.45)}
 .strefa p{margin:0 auto 10px;max-width:40ch}
 .strefa .wkrotce{display:inline-block;background:#f1dcbc;border-radius:999px;padding:5px 16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px;margin-bottom:16px}
 .strefa .sharerow{justify-content:center;margin-top:16px}
-body[data-widok="strefa"] .wrap > :not(.zakladki):not(#strefa):not(.preview):not(.cover):not(footer){display:none!important}
+/* ===== strona www 06.11: Start + Kalendarz, zdjęcia Gabrysi, obwódka okienek ===== */
+body:not([data-widok="kalendarz"]) .v-kal{display:none!important}
+body:not([data-widok="start"]) .v-start{display:none!important}
+header.site{display:grid;justify-items:center;text-align:center;margin-bottom:-22px}
+.logo{text-decoration:none;color:var(--ink);display:grid;justify-items:center;line-height:1;gap:6px}
+.logo-z{font-family:var(--script);font-weight:600;font-size:clamp(46px,11vw,64px);color:var(--blue-dk);text-shadow:0 0 16px #fbf3e6,0 0 5px #fbf3e6,0 0 2px #fbf3e6}
+.logo-t{font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);background:rgba(255,250,243,.92);border-radius:999px;padding:4px 12px}
+a.zak{text-decoration:none;display:inline-block}
+.v-start h2,.o-kal h2{text-align:left}
+.v-start h2::before,.v-start h2::after{display:none}
+.v-start p{margin:0}
+.home-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0;padding:0;overflow:hidden;outline:none;align-items:stretch}
+.home-hero .foto{min-height:100%}
+.home-hero .foto img{width:100%;height:100%;object-fit:cover;object-position:40% 30%}
+.home-hero .tekst{padding:30px 28px;display:grid;gap:12px;align-content:center}
+.home-hero h1{margin:0;font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(38px,6vw,54px);line-height:1;color:var(--ink)}
+.home-hero h1 span{display:block;font-family:var(--script);font-style:normal;font-weight:500;font-size:1.2em;line-height:1.05;color:var(--gold)}
+.home-hero .sharerow{margin-top:6px}
+.home-kal{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:22px;align-items:center}
+.home-kal .kal-ilu{display:block}
+.home-kal .kal-ilu img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:18px;box-shadow:0 8px 20px rgba(120,85,45,.16)}
+.home-kal .tekst{display:grid;gap:10px;justify-items:start}
+.home-kal h2{margin:0}
+.paper.zostan.v-start{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:22px;align-items:center}
+.zostan .zf img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 8px 20px rgba(120,85,45,.16)}
+.zostan .zt{display:grid;gap:10px;justify-items:start}
+.zostan .zt h2{margin:0}
+.galeria h2{text-align:center}
+.galeria .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.galeria .gal img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:16px;border:5px solid #fffaf3;box-shadow:0 6px 16px rgba(120,85,45,.14)}
+.home-wkrotce{display:grid;gap:12px;justify-items:start}
+.home-wkrotce h2{margin:0}
+.wk-lista{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.wk{display:grid;gap:4px;text-decoration:none;color:var(--ink);background:#f6ead8;border-radius:16px;padding:14px 12px;text-align:center}
+.wk span{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kal-top{margin-bottom:-14px}
+.paper.o-kal{display:grid;gap:10px;justify-items:center;text-align:center}
+.env{border:2px solid #241d17}
+@media (max-width:640px){
+  .home-hero{grid-template-columns:1fr}
+  .home-hero .foto img{aspect-ratio:4/4.4;height:auto}
+  .home-hero .tekst{padding:22px 18px 24px}
+  .home-kal,.paper.zostan.v-start{grid-template-columns:1fr}
+  .zostan .zf{justify-self:center;width:min(100%,280px)}
+  .galeria .gal{grid-template-columns:repeat(2,1fr)}
+  .wk-lista{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<script>document.body.dataset.widok = /^#(kalendarz|jak-widzki|podglad-gabrysi)$/.test(location.hash) ? "kalendarz" : (/^#(meal-prep|styczniowe-wyzwanie|habit-tracker)$/.test(location.hash) ? "strefa" : "start");</script>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 06.11 13:05</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 10.11 17:20</div>
+  <header class="site">
+    <a class="logo" href="#start"><span class="logo-z">Zacisze</span><span class="logo-t">zostań na chwilę</span></a>
+  </header>
+
   <nav class="zakladki" aria-label="Zakładki">
-    <button type="button" class="zak" data-z="kalendarz" aria-current="page">🎄 Kalendarz</button>
-    <button type="button" class="zak" data-z="Meal prep">🔒 Meal prep</button>
-    <button type="button" class="zak" data-z="Styczniowe wyzwanie">🔒 Styczniowe wyzwanie</button>
-    <button type="button" class="zak" data-z="Habit tracker">🔒 Habit tracker</button>
+    <a class="zak" href="#start">🏡 Start</a>
+    <a class="zak" href="#kalendarz">🎄 Kalendarz adwentowy</a>
+    <a class="zak" href="#meal-prep">🔒 Meal prep</a>
+    <a class="zak" href="#styczniowe-wyzwanie">🔒 Styczniowe wyzwanie</a>
+    <a class="zak" href="#habit-tracker">🔒 Habit tracker</a>
   </nav>
 
-  <div class="cover">
-    <img src="img/00_salon_zima.jpg" alt="Malowany zimowy salon: pies śpi na kanapie, kotka w wiklinowym domku przy pianinie, za oknem śnieg, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
-  </div>
+
 
   <section class="paper strefa" id="strefa" aria-labelledby="strefa-tytul" hidden>
     <h2 id="strefa-tytul"></h2>
@@ -494,52 +544,111 @@ body[data-widok="strefa"] .wrap > :not(.zakladki):not(#strefa):not(.preview):not
     <p>W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
     <div class="sharerow">
       <a class="btn" id="join-strefa" target="_blank" rel="noopener">Dołącz do wspierających</a>
-      <button class="btn ghost" type="button" id="strefa-wroc">Wróć do kalendarza</button>
+      <a class="btn ghost" href="#kalendarz" id="strefa-wroc">Wróć do kalendarza</a>
     </div>
   </section>
 
-  <header class="hero">
-    <svg class="deco d1" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
-    <svg class="deco d2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H21l-5.6 4.2 2.1 7L12 16l-5.5 4.1 2.1-7L3 8.9h6.6z" fill="currentColor"/></svg>
-    <svg class="deco d3" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
-    <div class="eyebrow">Zostań na chwilę · zimowy prezent</div>
-    <h1>Kalendarz adwentowy <span>Zacisza</span></h1>
-    <div class="lead" id="lead"></div>
-    <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy. W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
-    <div class="herorow"><div class="today" id="today"></div><button class="snd" id="snd" type="button" aria-pressed="true">🔔 Dźwięk włączony</button></div>
-  </header>
-
-  <section aria-labelledby="h-jak">
-    <h2 id="h-jak">Jak to działa</h2>
-    <ol class="steps" id="steps"></ol>
+  <!-- ===== START ===== -->
+  <section class="paper v-start home-hero" aria-labelledby="h-start">
+    <div class="foto"><img src="img/g_kot.jpg?v=11101720" alt="Gabrysia przytula swoją kotkę" width="1000" height="1250"></div>
+    <div class="tekst">
+      <div class="eyebrow">Zacisze · spokojny vlog</div>
+      <h1 id="h-start">Zostań <span>na chwilę</span></h1>
+      <p>Cześć, tu Gabrysia. To jest moje Zacisze, spokojny vlog o zwykłych dniach w domu.</p>
+      <p>Tutaj zwalniamy, odpoczywamy i cieszymy się codziennością.</p>
+      <div class="sharerow">
+        <a class="btn" href="#kalendarz">🎄 Otwórz kalendarz adwentowy</a>
+        <a class="btn ghost" href="https://www.youtube.com/@zdrowezmiany" target="_blank" rel="noopener">Zajrzyj na kanał</a>
+      </div>
+    </div>
   </section>
 
-  <section class="paper">
-    <p><b>Wolisz na papierze?</b> Wersja do druku ma listy na każdy tydzień i 24 karteczki do wycięcia. Jeśli nie chcesz znać okienek wcześniej, poproś kogoś bliskiego, żeby wydrukował, wyciął i schował je do kopert.</p>
-    <a class="btn" href="kalendarz-adwentowy-zacisza-do-druku.pdf" download>Pobierz wersję do druku</a>
+  <section class="paper v-start home-kal" aria-labelledby="h-home-kal">
+    <a class="kal-ilu" href="#kalendarz"><img src="img/00_salon_zima.jpg?v=11101720" alt="Malowany zimowy salon z 24 woreczkami kalendarza nad kanapą" width="1600" height="1067"></a>
+    <div class="tekst">
+      <h2 id="h-home-kal">Kalendarz adwentowy</h2>
+      <p>24 okienka, jedno na każdy dzień grudnia. W każdym mała przyjemność, którą zrobisz w domu, z tego, co zwykle jest w kuchni i w szufladzie.</p>
+      <p>Za darmo, prezent ode mnie.</p>
+      <a class="btn" href="#kalendarz">Otwórz kalendarz</a>
+    </div>
   </section>
 
-  <section aria-labelledby="h-lista">
-    <h2 id="h-lista">Co przygotować</h2>
-    <div class="tabs" role="tablist" id="tabs"></div>
-    <div id="panels"></div>
-  </section>
-
-  <section aria-labelledby="h-ok">
-    <h2 id="h-ok">Okienka</h2>
-    <div class="wall"><div class="grid" id="grid"></div></div>
-    <p class="note" id="note" role="status" aria-live="polite"></p>
-  </section>
-
-  <section class="paper zostan" aria-labelledby="h-zostan">
+  <section class="paper zostan v-start" aria-labelledby="h-zostan">
+    <div class="zf"><img src="img/g_portret.jpg?v=11101720" alt="Gabrysia uśmiechnięta, patrzy w bok" width="1000" height="1250" loading="lazy"></div>
+    <div class="zt">
     <h2 id="h-zostan">🍂 Dlaczego „zostań na chwilę”?</h2>
     <p>Tak nazywa się mój kanał na YouTube. Wiesz, jak to jest, kiedy przyjaciółka wpada do Ciebie w biegu, tylko na moment? Mówisz jej: poczekaj, zostań na chwilę. Wypij herbatę, tu są pierniki. Co u Ciebie?</p>
     <p>O to właśnie chodzi. Skoro już wpadłaś i kliknęłaś, to zostań na chwilę. Usiądź ze mną w tym moim zaciszu internetu i rozgość się, pogadajmy.</p>
     <p>Tak samo z tym kalendarzem. Codziennie jedno okienko i chwila tylko dla Ciebie.</p>
     <a class="btn ghost" href="https://www.youtube.com/@zdrowezmiany" target="_blank" rel="noopener">Zajrzyj na kanał</a>
+    </div>
   </section>
 
-  <section class="paper wsparcie" id="wsparcie" aria-labelledby="h-wsparcie" hidden>
+  <section class="v-start galeria" aria-labelledby="h-galeria">
+    <h2 id="h-galeria">Z mojego Zacisza</h2>
+    <div class="gal">
+      <img src="img/g_1.jpg?v=11101720" alt="Gabrysia w kuchni z durszlakiem pełnym liści" width="900" height="900" loading="lazy">
+      <img src="img/g_2.jpg?v=11101720" alt="Gabrysia w swojej kuchni" width="900" height="900" loading="lazy">
+      <img src="img/g_3.jpg?v=11101720" alt="Gabrysia z książką przy oknie" width="900" height="900" loading="lazy">
+      <img src="img/g_4.jpg?v=11101720" alt="Gabrysia w domu, uśmiechnięta" width="900" height="900" loading="lazy">
+    </div>
+  </section>
+
+  <section class="paper v-start home-wkrotce" aria-labelledby="h-wkrotce">
+    <h2 id="h-wkrotce">Wkrótce dla wspierających</h2>
+    <p>W 2027 roku będzie więcej materiałów tylko dla wspierających kanał.</p>
+    <div class="wk-lista">
+      <a class="wk" href="#meal-prep"><b>🔒 Meal prep</b><span>Wkrótce</span></a>
+      <a class="wk" href="#styczniowe-wyzwanie"><b>🔒 Styczniowe wyzwanie</b><span>Wkrótce</span></a>
+      <a class="wk" href="#habit-tracker"><b>🔒 Habit tracker</b><span>Wkrótce</span></a>
+    </div>
+    <a class="btn join-wsp" target="_blank" rel="noopener">Dołącz do wspierających</a>
+  </section>
+
+  <!-- ===== KALENDARZ ===== -->
+  <header class="hero kal-top v-kal">
+    <svg class="deco d1" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
+    <svg class="deco d2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H21l-5.6 4.2 2.1 7L12 16l-5.5 4.1 2.1-7L3 8.9h6.6z" fill="currentColor"/></svg>
+    <svg class="deco d3" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
+    <div class="eyebrow">Zostań na chwilę · zimowy prezent</div>
+    <h1>Kalendarz adwentowy <span>Zacisza</span></h1>
+    <div class="herorow"><div class="today" id="today"></div><button class="snd" id="snd" type="button" aria-pressed="true">🔔 Dźwięk włączony</button></div>
+  </header>
+
+  <section class="v-kal" aria-labelledby="h-ok">
+    <h2 id="h-ok">Okienka</h2>
+    <div class="wall"><div class="grid" id="grid"></div></div>
+    <p class="note" id="note" role="status" aria-live="polite"></p>
+  </section>
+
+  <div class="cover v-kal">
+    <img src="img/00_salon_zima.jpg" alt="Malowany zimowy salon: pies śpi na kanapie, kotka w wiklinowym domku przy pianinie, za oknem śnieg, nad kanapą sznurek z 24 woreczkami" onerror="this.remove()">
+  </div>
+
+  <section class="paper o-kal v-kal">
+    <div class="lead" id="lead"></div>
+    <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy. W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
+  </section>
+
+  <section class="v-kal" aria-labelledby="h-jak">
+    <h2 id="h-jak">Jak to działa</h2>
+    <ol class="steps" id="steps"></ol>
+  </section>
+
+  <section class="paper v-kal">
+    <p><b>Wolisz na papierze?</b> Wersja do druku ma listy na każdy tydzień i 24 karteczki do wycięcia. Jeśli nie chcesz znać okienek wcześniej, poproś kogoś bliskiego, żeby wydrukował, wyciął i schował je do kopert.</p>
+    <a class="btn" href="kalendarz-adwentowy-zacisza-do-druku.pdf" download>Pobierz wersję do druku</a>
+  </section>
+
+  <section class="v-kal" aria-labelledby="h-lista">
+    <h2 id="h-lista">Co przygotować</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="panels"></div>
+  </section>
+
+
+
+  <section class="paper wsparcie v-kal" id="wsparcie" aria-labelledby="h-wsparcie" hidden>
     <h2 id="h-wsparcie">Fajnie się bawisz?</h2>
     <p>Mam nadzieję, że pierwsze okienka dały Ci kilka chwil tylko dla siebie.</p>
     <p>Kalendarz jest prezentem i takim zostanie, do ostatniego okienka.</p>
@@ -552,7 +661,7 @@ body[data-widok="strefa"] .wrap > :not(.zakladki):not(#strefa):not(.preview):not
     <p class="drobne">A jeśli nie teraz, to naprawdę w porządku. Komentarz pod odcinkiem albo kalendarz wysłany przyjaciółce też bardzo mi pomaga. Dziękuję, że jesteś.</p>
   </section>
 
-  <section class="paper share" aria-labelledby="h-share">
+  <section class="paper share v-kal" aria-labelledby="h-share">
     <h2 id="h-share">Podziel się kalendarzem</h2>
     <p>Wyślij go mamie, siostrze, przyjaciółce, cioci. Każdej kobiecie, z którą możesz się nim podzielić. I udostępnij u siebie w mediach społecznościowych.</p>
     <div class="sharerow">
@@ -603,7 +712,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11061306";
+const IMGV = "11101720";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -1072,7 +1181,7 @@ const JOIN = D.wspieraj;
 document.getElementById("join-top").href = JOIN;
 /* udostępnianie: zawsze czysty adres strony, bez podglądu */
 {
-  const url = location.origin + location.pathname;
+  const url = location.protocol.startsWith("http") ? location.origin + "/kalendarz" : location.origin + location.pathname;
   const txt = "Kalendarz adwentowy Zacisza. 24 okienka, jedna mała przyjemność na każdy dzień grudnia, z rzeczy, które masz w domu.";
   document.getElementById("sh-fb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
   document.getElementById("sh-wa").href = "https://wa.me/?text=" + encodeURIComponent(txt + " " + url);
@@ -1093,8 +1202,6 @@ window.addEventListener("pageshow", odswiezJesliNowyDzien);
 window.addEventListener("focus", odswiezJesliNowyDzien);
 dlg.addEventListener("close", odswiezJesliNowyDzien);
 setInterval(odswiezJesliNowyDzien, 60000);
-/* zmiana adresu na #podglad-gabrysi albo #jak-widzki w otwartej karcie */
-window.addEventListener("hashchange", () => location.reload());
 /* sejf: w wersji publicznej treść i obrazek okienka są zaszyfrowane; klucz danego dnia robot wystawia w klucze.json po północy (czas polski) */
 function b64(s){ return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
 async function odszyfruj(n){
@@ -1159,20 +1266,30 @@ dlg.addEventListener("close", () => {
     setTimeout(() => wsp.scrollIntoView({behavior: RM ? "auto" : "smooth", block: "center"}), 400);
   }
 });
-/* zakładki: kalendarz + strefa wspierających (na razie „wkrótce”) */
+/* widoki strony: Start, Kalendarz i zakładki z kłódką; adres po # (np. zaciszevlog.pl/#kalendarz) */
 {
   const zak = [...document.querySelectorAll(".zak")], strefa = document.getElementById("strefa");
+  const STREFY = {"#meal-prep": "Meal prep", "#styczniowe-wyzwanie": "Styczniowe wyzwanie", "#habit-tracker": "Habit tracker"};
+  const TRYBY = ["#jak-widzki", "#podglad-gabrysi"];
   document.getElementById("join-strefa").href = D.wspieraj;
-  function pokazZakladke(z){
-    const kal = z === "kalendarz";
-    document.body.dataset.widok = kal ? "" : "strefa";
-    zak.forEach(b => { if (b.dataset.z === z) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
-    strefa.hidden = kal;
-    if (!kal) document.getElementById("strefa-tytul").textContent = "🔒 " + z;
-    document.querySelector(".zakladki").scrollIntoView({behavior: RM ? "auto" : "smooth", block: "start"});
+  document.querySelectorAll(".join-wsp").forEach(a => { a.href = D.wspieraj; });
+  function widok(){
+    const h = location.hash;
+    const z = (h === "#kalendarz" || TRYBY.includes(h)) ? "kalendarz" : (STREFY[h] ? "strefa" : "start");
+    document.body.dataset.widok = z;
+    const akt = z === "kalendarz" ? "#kalendarz" : (z === "strefa" ? h : "#start");
+    zak.forEach(b => { if (b.getAttribute("href") === akt) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+    strefa.hidden = z !== "strefa";
+    if (z === "strefa") document.getElementById("strefa-tytul").textContent = "🔒 " + STREFY[h];
+    document.title = z === "kalendarz" ? "Kalendarz adwentowy Zacisza" : (z === "strefa" ? STREFY[h] + " · Zacisze" : "Zacisze · zostań na chwilę");
   }
-  zak.forEach(b => b.addEventListener("click", () => pokazZakladke(b.dataset.z)));
-  document.getElementById("strefa-wroc").addEventListener("click", () => pokazZakladke("kalendarz"));
+  widok();
+  window.addEventListener("hashchange", () => {
+    /* wejście w tryb próbny / podgląd albo wyjście z niego = nowa strona (stan okienek w innym miejscu) */
+    if (TRYBY.includes(location.hash) !== (TEST || PREVIEW)){ location.reload(); return; }
+    widok();
+    window.scrollTo(0, 0);
+  });
 }
 render();
 pokazKoniec();
