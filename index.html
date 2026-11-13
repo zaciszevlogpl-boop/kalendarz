@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6e7d1'/%3E%3Cpath d='M32 10l5.6 14.4L52 26l-11 9.6L44.6 50 32 42.4 19.4 50 23 35.6 12 26l14.4-1.6z' fill='%23c99b5c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Dancing+Script:wght@500;600&family=Quicksand:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&display=swap">
 <style>
 :root{
   --bg:#f5f8fa; --glass:#ffffff; --ink:#4c5b66; --muted:#7a8a96; --line:#dbe7ef;
@@ -428,7 +428,7 @@ footer{text-align:center;justify-items:center;font-weight:500}
   --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
   --tlo-mgla:.15;
 }
-html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11120919);background-size:auto,560px 560px;background-repeat:repeat}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11131749);background-size:auto,560px 560px;background-repeat:repeat}
 body{background:transparent}
 body::before{display:none}
 .hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
@@ -517,30 +517,163 @@ a.zak{text-decoration:none;display:inline-block}
   .galeria .gal{grid-template-columns:repeat(2,1fr)}
   .wk-lista{grid-template-columns:1fr}
 }
+/* ===== czytelność 13.11 (audyt: kontrast AA, 2 kroje, numery na pigułkach, 1. ekran telefonu) ===== */
+:root{
+  --muted:#6f5a48; --pine:#56743f; --done:#56743f; --gold:#a8742f; --blue-dk:#8f5e2c;
+  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+  --sans:"Figtree","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --script:"Fraunces","Iowan Old Style",Georgia,serif;
+  --krem:rgba(255,250,243,.96);
+  --tlo-mgla:.3;
+}
+body{font-weight:400;line-height:1.6}
+[hidden]{display:none!important}
+b,strong{font-weight:700}
+h1,h2,h3,.card .n,.env .num,.today b,.steps li::before,.logo-t{font-variation-settings:"SOFT" 100}
+/* belka: logo + menu (tapeta zostaje dookoła, tekst na kremie) */
+.topbar{display:grid;justify-items:center;gap:12px;background:var(--krem);border-radius:24px;padding:14px 8px 16px;box-shadow:0 6px 18px rgba(120,85,45,.1)}
+header.site{margin:0}
+.logo{color:var(--blue-dk);gap:6px}
+.logo svg.logo-z{display:block;height:clamp(50px,13vw,64px);width:auto;text-shadow:none}
+.logo-t{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--muted);background:none;padding:0}
+.zakladki{gap:6px;flex-wrap:nowrap}
+a.zak,.zak{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;font-size:15px;font-weight:600;border-color:#e3cba6;white-space:nowrap}
+@media (max-width:360px){a.zak,.zak{padding:0 10px;font-size:14px}}
+/* nagłówki: prosto, bez kursywy; poza kartką na kremowej pigułce, nie na choince */
+h2{font-family:var(--serif);font-style:normal;font-weight:600;font-size:clamp(25px,6vw,30px);color:var(--blue-dk);text-shadow:none}
+section.v-kal:not(.paper) > h2,.galeria > h2{display:table;margin:0 auto 14px;background:var(--krem);border-radius:999px;padding:4px 18px 6px;box-shadow:0 3px 10px rgba(120,85,45,.08)}
+.hero h1,.home-hero h1{font-family:var(--serif);font-style:normal;font-weight:600}
+.hero h1 span,.home-hero h1 span{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.06em;color:var(--gold)}
+.eyebrow{font-size:12.5px;letter-spacing:.1em;color:var(--blue-dk)}
+/* kartki bez przerywanych ramek */
+.paper,.wsparcie{outline:none}
+.card .wsp{border:1px solid #ecd3c2}
+.card .swap{border:1px solid #e3cba6;background:#fffaf3;font-size:15px}
+/* kalendarz: skrót nad woreczkami */
+.kal-top{margin-bottom:0}
+.skrot{list-style:none;margin:2px 0 4px;padding:0;display:grid;gap:8px;text-align:left;max-width:34em;justify-self:center}
+.skrot li{position:relative;padding-left:24px;font-size:16px;line-height:1.5}
+.skrot li::before{content:"✦";position:absolute;left:2px;top:0;color:var(--gold)}
+.today::before{content:none}
+.today b{font-family:var(--serif);font-style:normal;font-weight:700}
+.herorow.akcje{justify-content:center}
+.strefa .wk-lista{margin:6px 0 16px}
+.gcal{font-size:14.5px;font-weight:600;color:var(--pine)}
+/* przyciski i cele dotykowe min. 44 px */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;font-size:16px;font-weight:700}
+.tab{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;font-size:15px}
+.x{width:44px;height:44px}
+.snd{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;font-size:15px;color:var(--ink);--ikona:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3Cpath d='M3 3l18 18'/%3E%3C/svg%3E")}
+.snd[aria-pressed="true"]{--ikona:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3C/svg%3E")}
+.snd::before{content:"";width:17px;height:17px;flex:none;background:currentColor;-webkit-mask:var(--ikona) center/contain no-repeat;mask:var(--ikona) center/contain no-repeat}
+/* teksty do czytania: do lewej, ciemniej, większe */
+.paper.o-kal{justify-items:start;text-align:left}
+.lead,.support{margin-inline:0;max-width:62ch;text-align:left}
+.support{font-size:15.5px;color:var(--ink)}
+.panel .sub{font-size:15px}
+.wk span{font-size:12.5px;letter-spacing:.1em}
+footer{font-size:14px}
+.note{display:table;margin:10px auto 0;color:var(--ink);background:var(--krem);border-radius:999px;padding:4px 14px;text-shadow:none}
+.note:empty{background:none;padding:0}
+.steps li::before{font-family:var(--serif);font-style:normal;font-weight:700;font-size:20px;color:var(--blue-dk)}
+/* okienka: obwódka puzzla w ciemnym brązie (prośba 06.11), numer na pigułce, bez dubla „N gru” */
+.env{border:2px solid var(--ink)}
+.env .flap{align-items:flex-start;padding:8px}
+.env .num,.env .flap .num,.env.hasbag .flap .num{font-family:var(--serif);font-style:normal;font-weight:650;font-size:clamp(24px,6.4vw,34px);line-height:1.05;color:var(--ink);background:rgba(255,250,243,.94);border-radius:14px;padding:2px 10px 4px;text-shadow:none;box-shadow:0 2px 8px rgba(90,65,35,.18)}
+.env .tag .num{font-family:var(--serif);font-style:normal;font-weight:650;font-size:clamp(24px,6.4vw,32px);line-height:1.05;color:#fff8ec;background:rgba(45,35,25,.7);border-radius:14px;padding:2px 10px 4px;text-shadow:none}
+.env .seal{font-size:12px;letter-spacing:.06em;font-weight:700;color:var(--blue-dk);background:rgba(255,250,243,.94);padding:3px 9px}
+.env .tag .ok{font-size:12px;font-weight:700}
+/* karta okienka: kursywa tylko w cytacie */
+.card .n{font-family:var(--serif);font-style:normal;font-weight:600;font-size:52px;color:var(--gold)}
+.card h3{font-family:var(--serif);font-style:normal;font-weight:600;font-size:25px;line-height:1.2}
+.card .cyt{font-family:var(--serif);font-style:italic;font-weight:400;font-size:20px;line-height:1.45;text-align:left;text-wrap:pretty}
+.card .cyt::before{margin:0 0 12px}
+.card .cyt cite{font-size:12.5px;letter-spacing:.08em;color:var(--muted)}
+.card .od{font-style:normal;font-weight:500}
+.card .od span{font-size:13px;color:var(--muted)}
+.card h4,.card .swap h4{font-size:12.5px;letter-spacing:.1em;color:var(--blue-dk)}
+.card .tip{font-size:15px}
+.card .ep a{color:var(--pine);font-weight:600}
+.stempel span{font-family:var(--serif);font-style:italic;font-weight:600;font-size:16px}
+/* Start na telefonie: niższe zdjęcie, przycisk kalendarza na pierwszym ekranie */
+@media (max-width:640px){
+  .home-hero .foto img{aspect-ratio:4/3;object-position:45% 28%}
+}
+/* okienko na komputerze: obraz obok tekstu */
+@media (min-width:900px){
+  dialog{max-width:min(980px,calc(100vw - 64px))}
+  .card{display:flex;align-items:flex-start}
+  .card .stage{flex:0 0 46%;position:sticky;top:0}
+  .card .body{flex:1 1 0;min-width:0;padding:22px 26px 24px}
+}
+
+/* ===== szeroko 13.11: komputer bez pustych boków + „Ostatnio na Zaciszu” ===== */
+.odcinki{display:grid;gap:14px}
+.odcinki > h2{display:table;margin:0 auto 0;background:var(--krem);border-radius:999px;padding:4px 18px 6px;box-shadow:0 3px 10px rgba(120,85,45,.08)}
+.odc-lista{display:grid;grid-auto-flow:column;grid-auto-columns:80%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;scrollbar-width:thin}
+.odc{scroll-snap-align:start;display:grid;align-content:start;gap:6px;background:var(--krem);border-radius:20px;padding:10px 10px 16px;box-shadow:0 6px 16px rgba(120,85,45,.12);text-decoration:none;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+.odc:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(120,85,45,.18)}
+.odc:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+.odc-img{display:block;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#efe4d4}
+.odc-img img{display:block;width:100%;height:100%;object-fit:cover}
+.odc-meta{margin:6px 6px 0;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-dk)}
+.odc-t{margin:0 6px;font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.25;font-variation-settings:"SOFT" 100;text-wrap:balance}
+.odc-pod{margin:0 6px;font-size:14.5px;line-height:1.45;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.odc-wszystkie{justify-self:center}
+@media (min-width:641px){.odc-lista{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;padding:0}}
+@media (min-width:900px){.odc-lista{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+@media (prefers-reduced-motion:reduce){.odc{transition:none}.odc:hover{transform:none}}
+@media (min-width:1100px){
+  .wrap{max-width:1200px;padding-inline:32px;gap:44px}
+  .topbar{grid-template-columns:auto minmax(0,1fr);align-items:center;justify-items:stretch;gap:24px;padding:14px 22px 14px 30px}
+  .topbar > header{justify-self:start}
+  .topbar > nav{justify-self:end}
+  .home-hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:500px}
+  .home-hero .foto{position:relative;min-height:0}
+  .home-hero .foto img{position:absolute;inset:0;width:100%;height:100%}
+  .paper.o-kal .lead{display:block;columns:2;column-gap:56px;max-width:none}
+  .paper.o-kal .lead > *{break-inside:avoid;margin:0 0 10px}
+  .paper.o-kal .support{max-width:none}
+  #panels{max-width:920px;width:100%;margin-inline:auto}
+  .home-hero .tekst{padding:48px 56px;gap:16px}
+  .home-hero .tekst p{font-size:18px;max-width:44ch;margin:0}
+  .home-kal{padding:26px 48px 26px 26px;gap:44px}
+  .home-kal .tekst p{max-width:52ch}
+  .paper.zostan.v-start{gap:44px;padding:26px 48px 26px 26px}
+  .galeria .gal{gap:18px}
+  .grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+  .hero.kal-top{padding:34px 40px 30px}
+  .paper.o-kal p,.paper.v-kal > p,.paper.share p,.paper.wsparcie p{max-width:72ch}
+}
 </style>
 </head>
 <body>
-<script>document.body.dataset.widok = /^#(kalendarz|jak-widzki|podglad-gabrysi)$/.test(location.hash) ? "kalendarz" : (/^#(meal-prep|styczniowe-wyzwanie|habit-tracker)$/.test(location.hash) ? "strefa" : "start");</script>
+<script>document.body.dataset.widok = /^#(kalendarz|jak-widzki|podglad-gabrysi)$/.test(location.hash) ? "kalendarz" : (/^#(wspierajacy|meal-prep|styczniowe-wyzwanie|habit-tracker)$/.test(location.hash) ? "strefa" : "start");</script>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 12.11 09:19</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 13.11 17:49</div>
+  <div class="topbar">
   <header class="site">
-    <a class="logo" href="#start"><span class="logo-z">Zacisze</span><span class="logo-t">zostań na chwilę</span></a>
+    <a class="logo" href="#start"><svg class="logo-z" viewBox="-1 195 3286 778" role="img" aria-label="Zacisze" fill="currentColor"><path d="M431 432Q409 467 374.5 493.0Q340 519 289 519Q243 519 214.5 490.5Q186 462 186 413Q186 375 204.5 341.5Q223 308 251.5 283.5Q280 259 314.5 245.0Q349 231 382 231Q427 231 469.0 243.0Q511 255 551 269Q590 283 627.0 295.0Q664 307 699 307Q743 307 768.0 292.5Q793 278 808.5 261.0Q824 244 834.0 229.5Q844 215 859 215Q866 215 872.0 219.5Q878 224 878 233Q878 243 866.5 252.0Q855 261 838.0 271.5Q821 282 800.0 294.5Q779 307 759 325Q605 464 447.0 598.5Q289 733 124 863L126 865Q162 849 198.5 834.0Q235 819 276 819Q310 819 344.0 830.0Q378 841 411 854Q445 867 476.0 879.0Q507 891 536 891Q568 891 592.5 883.0Q617 875 637.5 861.0Q658 847 676.5 828.5Q695 810 716 789Q744 761 766.0 732.0Q788 703 812 674L817 678Q788 717 748.0 764.5Q708 812 661.0 854.0Q614 896 562.5 924.5Q511 953 458 953Q417 953 382.0 938.5Q347 924 315.0 907.0Q283 890 253.0 875.5Q223 861 192 861Q167 861 148.5 866.5Q130 872 115.5 881.5Q101 891 87.5 905.5Q74 920 59 938Q52 944 46.5 948.5Q41 953 33 953Q28 953 23.5 950.5Q19 948 19 942Q19 931 28.0 922.5Q37 914 52.0 904.5Q67 895 86.0 883.0Q105 871 124 853Q198 784 279.0 713.0Q360 642 441.5 573.0Q523 504 603.0 438.0Q683 372 756 313L754 311Q713 334 672.0 349.5Q631 365 583 365Q548 365 515.5 352.5Q483 340 451.0 326.0Q419 312 387.0 300.5Q355 289 320 289Q292 289 269.5 300.0Q247 311 231.0 328.5Q215 346 206.5 368.5Q198 391 198 414Q198 431 204.5 447.5Q211 464 223.0 477.5Q235 491 252.5 499.0Q270 507 292 507Q341 507 370.5 484.0Q400 461 424 428Z M1098 591 1202 585Q1193 603 1176.0 628.5Q1159 654 1139.0 683.5Q1119 713 1098.5 744.5Q1078 776 1061.0 805.5Q1044 835 1033.5 860.5Q1023 886 1023 904Q1023 929 1048 929Q1072 929 1113.0 901.0Q1154 873 1199 827Q1218 808 1237.5 786.0Q1257 764 1275.0 742.5Q1293 721 1308.0 702.5Q1323 684 1332 672L1339 676Q1313 711 1279.0 753.5Q1245 796 1197.0 844.0Q1149 892 1102.5 922.5Q1056 953 1010 953Q978 953 960.5 936.5Q943 920 943 896Q943 888 944.0 881.0Q945 874 947 870H945Q914 905 875.0 929.0Q836 953 791 953Q767 953 750.0 944.0Q733 935 722.5 919.5Q712 904 707.0 884.5Q702 865 702 844Q702 795 729.0 746.0Q756 697 797.0 657.5Q838 618 888.5 593.5Q939 569 985 569Q1020 569 1040.0 584.0Q1060 599 1073 631ZM798 847Q798 876 807.5 897.5Q817 919 848 919Q869 918 892.0 901.5Q915 885 936.5 860.0Q958 835 977.5 804.5Q997 774 1011.5 743.0Q1026 712 1034.5 684.5Q1043 657 1043 638Q1043 611 1033.0 596.0Q1023 581 994 581Q971 581 947.5 595.0Q924 609 902.5 632.0Q881 655 861.5 683.5Q842 712 828.0 742.0Q814 772 806.0 799.5Q798 827 798 847Z M1748 679Q1711 724 1668.0 772.5Q1625 821 1575.5 861.0Q1526 901 1469.5 927.0Q1413 953 1350 953Q1290 953 1258.0 920.5Q1226 888 1226 825Q1226 777 1254.0 731.0Q1282 685 1326.0 649.0Q1370 613 1423.0 591.0Q1476 569 1526 569Q1572 569 1599.0 587.5Q1626 606 1626 633Q1626 652 1618.5 667.5Q1611 683 1599.0 693.5Q1587 704 1572.0 709.5Q1557 715 1542 715Q1529 715 1519 713Q1526 690 1534.0 666.0Q1542 642 1542 618Q1542 601 1534.0 591.0Q1526 581 1512 581Q1486 581 1453.0 601.5Q1420 622 1391.0 656.5Q1362 691 1342.0 735.5Q1322 780 1322 828Q1322 866 1345.0 892.5Q1368 919 1409 919Q1458 919 1506.5 892.0Q1555 865 1598.5 826.5Q1642 788 1678.0 746.5Q1714 705 1739 675Z M1873 585Q1826 659 1792.0 711.5Q1758 764 1736.5 801.0Q1715 838 1704.5 861.5Q1694 885 1694 900Q1694 912 1698.5 919.5Q1703 927 1712 927Q1732 927 1768.5 904.0Q1805 881 1860 825Q1882 802 1903.0 779.5Q1924 757 1942.5 736.0Q1961 715 1975.5 698.0Q1990 681 1999 671L2008 677Q1996 693 1978.5 713.5Q1961 734 1941.0 756.5Q1921 779 1900.0 801.0Q1879 823 1859 843Q1801 901 1759.5 924.0Q1718 947 1683 947Q1650 947 1632.0 929.0Q1614 911 1614 882Q1614 862 1621.5 840.5Q1629 819 1647.0 787.0Q1665 755 1695.0 707.5Q1725 660 1770 590ZM1931 363Q1950 363 1964.5 377.0Q1979 391 1979 410Q1979 430 1963.0 446.5Q1947 463 1927 463Q1905 463 1889.0 451.5Q1873 440 1873 417Q1873 394 1890.5 378.5Q1908 363 1931 363Z M2052 934Q2103 923 2146.5 896.5Q2190 870 2228.0 834.5Q2266 799 2299.5 757.5Q2333 716 2365 674L2373 680Q2333 732 2293.0 781.5Q2253 831 2205.5 869.0Q2158 907 2101.5 930.0Q2045 953 1972 953Q1946 953 1920.5 947.5Q1895 942 1874.5 929.5Q1854 917 1841.5 896.5Q1829 876 1829 846Q1829 830 1833.5 814.0Q1838 798 1847.0 785.0Q1856 772 1869.5 763.5Q1883 755 1901 755Q1924 755 1936.5 768.0Q1949 781 1949 798Q1949 819 1937.0 830.0Q1925 841 1909 841Q1896 841 1887 836Q1882 845 1878.5 855.5Q1875 866 1875 877Q1875 905 1896.5 923.0Q1918 941 1947 941Q1965 941 1983.5 935.0Q2002 929 2016.5 917.5Q2031 906 2040.0 890.0Q2049 874 2049 855Q2049 829 2036.5 807.5Q2024 786 2009.0 766.0Q1994 746 1981.5 725.5Q1969 705 1969 682Q1969 654 1982.0 633.0Q1995 612 2016.0 597.5Q2037 583 2063.0 576.0Q2089 569 2116 569Q2164 569 2196.5 589.5Q2229 610 2229 648Q2229 677 2210.0 695.5Q2191 714 2162 714Q2153 714 2145.5 712.5Q2138 711 2133 709Q2144 689 2148.5 669.5Q2153 650 2153 631Q2153 611 2141.5 596.0Q2130 581 2107 581Q2079 581 2064.0 598.5Q2049 616 2049 642Q2049 670 2061.5 691.5Q2074 713 2089.0 733.0Q2104 753 2116.5 775.0Q2129 797 2129 827Q2129 846 2122.5 864.0Q2116 882 2105.0 896.0Q2094 910 2080.5 919.5Q2067 929 2052 932Z M2393 847Q2398 845 2403 845Q2409 845 2417 845Q2440 845 2461.5 853.0Q2483 861 2503.5 870.0Q2524 879 2543.5 887.0Q2563 895 2581 895Q2616 895 2653.0 870.5Q2690 846 2725.0 811.0Q2760 776 2790.5 738.5Q2821 701 2844 674L2852 680Q2833 704 2809.0 733.5Q2785 763 2757.0 793.0Q2729 823 2698.0 852.0Q2667 881 2634.5 903.5Q2602 926 2569.5 939.5Q2537 953 2505 953Q2484 953 2462.0 944.0Q2440 935 2418.5 924.0Q2397 913 2376.0 904.0Q2355 895 2336 895Q2321 895 2308.5 903.0Q2296 911 2284.5 921.0Q2273 931 2264.0 939.0Q2255 947 2248 947Q2243 947 2239.5 943.5Q2236 940 2236 935Q2236 924 2257.0 914.0Q2278 904 2316 882Q2338 870 2372.5 845.0Q2407 820 2449.0 789.0Q2491 758 2538.5 724.5Q2586 691 2634 663L2632 661Q2621 665 2609.0 666.0Q2597 667 2586 667Q2564 667 2544.5 662.5Q2525 658 2506.5 652.0Q2488 646 2470.5 641.5Q2453 637 2436 637Q2417 637 2401.5 649.0Q2386 661 2370 683L2361 677Q2374 659 2390.0 639.5Q2406 620 2425.0 604.5Q2444 589 2466.5 579.0Q2489 569 2515 569Q2538 569 2559.0 575.0Q2580 581 2601.0 588.5Q2622 596 2642.5 602.5Q2663 609 2684 609Q2705 609 2715.0 602.0Q2725 595 2731.0 586.0Q2737 577 2742.0 570.0Q2747 563 2757 563Q2763 563 2767.0 567.5Q2771 572 2771 577Q2771 583 2765.0 589.0Q2759 595 2750.0 601.0Q2741 607 2730.0 613.0Q2719 619 2709 626Q2630 683 2552.5 739.0Q2475 795 2391 845Z M3265 675Q3234 717 3198.5 758.0Q3163 799 3114 844Q3045 906 2981.5 929.5Q2918 953 2862 953Q2805 953 2772.0 919.0Q2739 885 2739 831Q2739 783 2768.0 736.0Q2797 689 2841.0 652.0Q2885 615 2937.5 592.0Q2990 569 3037 569Q3080 569 3104.0 585.5Q3128 602 3128 632Q3128 656 3111.5 676.0Q3095 696 3069.0 712.0Q3043 728 3010.5 740.0Q2978 752 2946.0 761.0Q2914 770 2886.0 776.0Q2858 782 2840 786Q2835 806 2835 822Q2835 865 2859.0 892.0Q2883 919 2926 919Q2968 919 3018.5 894.0Q3069 869 3120 821Q3159 784 3195.0 743.5Q3231 703 3258 668ZM3048 607Q3048 593 3040.5 587.0Q3033 581 3021 581Q2996 581 2967.0 602.0Q2938 623 2912.5 653.5Q2887 684 2867.5 717.5Q2848 751 2842 776Q2883 768 2920.0 749.5Q2957 731 2985.5 707.5Q3014 684 3031.0 657.5Q3048 631 3048 607Z"/></svg><span class="logo-t">zostań na chwilę</span></a>
   </header>
 
   <nav class="zakladki" aria-label="Zakładki">
-    <a class="zak" href="#start">🏡 Start</a>
-    <a class="zak" href="#kalendarz">🎄 Kalendarz adwentowy</a>
-    <a class="zak" href="#meal-prep">🔒 Meal prep</a>
-    <a class="zak" href="#styczniowe-wyzwanie">🔒 Styczniowe wyzwanie</a>
-    <a class="zak" href="#habit-tracker">🔒 Habit tracker</a>
+    <a class="zak" href="#start">Start</a>
+    <a class="zak" href="#kalendarz">Kalendarz</a>
+    <a class="zak" href="#wspierajacy">Dla wspierających</a>
   </nav>
+  </div>
 
 
 
   <section class="paper strefa" id="strefa" aria-labelledby="strefa-tytul" hidden>
     <h2 id="strefa-tytul"></h2>
     <p class="wkrotce">Wkrótce</p>
-    <p>Ta zakładka będzie dostępna tylko dla wspierających kanał.</p>
+    <p id="strefa-opis">Ta zakładka będzie dostępna tylko dla wspierających kanał.</p>
+    <div class="wk-lista" id="strefa-lista" hidden>
+      <a class="wk" href="#meal-prep"><b>Meal prep</b><span>Wkrótce</span></a>
+      <a class="wk" href="#styczniowe-wyzwanie"><b>Styczniowe wyzwanie</b><span>Wkrótce</span></a>
+      <a class="wk" href="#habit-tracker"><b>Habit tracker</b><span>Wkrótce</span></a>
+    </div>
     <p>W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
     <div class="sharerow">
       <a class="btn" id="join-strefa" target="_blank" rel="noopener">Dołącz do wspierających</a>
@@ -550,21 +683,21 @@ a.zak{text-decoration:none;display:inline-block}
 
   <!-- ===== START ===== -->
   <section class="paper v-start home-hero" aria-labelledby="h-start">
-    <div class="foto"><img src="img/g_kot.jpg?v=11120919" alt="Gabrysia przytula swoją kotkę" width="1000" height="1250"></div>
+    <div class="foto"><img src="img/g_kot.jpg?v=11131749" alt="Gabrysia przytula swoją kotkę" width="1000" height="1250"></div>
     <div class="tekst">
       <div class="eyebrow">Zacisze · spokojny vlog</div>
       <h1 id="h-start">Zostań <span>na chwilę</span></h1>
       <p>Cześć, tu Gabrysia. To jest moje Zacisze, spokojny vlog o zwykłych dniach w domu.</p>
       <p>Tutaj zwalniamy, odpoczywamy i cieszymy się codziennością.</p>
       <div class="sharerow">
-        <a class="btn" href="#kalendarz">🎄 Otwórz kalendarz adwentowy</a>
+        <a class="btn" href="#kalendarz">Otwórz kalendarz adwentowy</a>
         <a class="btn ghost" href="https://www.youtube.com/@zdrowezmiany" target="_blank" rel="noopener">Zajrzyj na kanał</a>
       </div>
     </div>
   </section>
 
   <section class="paper v-start home-kal" aria-labelledby="h-home-kal">
-    <a class="kal-ilu" href="#kalendarz"><img src="img/00_salon_zima.jpg?v=11120919" alt="Malowany zimowy salon z 24 woreczkami kalendarza nad kanapą" width="1600" height="1067"></a>
+    <a class="kal-ilu" href="#kalendarz"><img src="img/00_salon_zima.jpg?v=11131749" alt="Malowany zimowy salon z 24 woreczkami kalendarza nad kanapą" width="1600" height="1067"></a>
     <div class="tekst">
       <h2 id="h-home-kal">Kalendarz adwentowy</h2>
       <p>24 okienka, jedno na każdy dzień grudnia. W każdym mała przyjemność, którą zrobisz w domu, z tego, co zwykle jest w kuchni i w szufladzie.</p>
@@ -573,10 +706,16 @@ a.zak{text-decoration:none;display:inline-block}
     </div>
   </section>
 
+  <section class="v-start odcinki" aria-labelledby="h-odcinki" hidden>
+    <h2 id="h-odcinki">Ostatnio na Zaciszu</h2>
+    <div class="odc-lista" id="odc-lista"></div>
+    <a class="btn ghost odc-wszystkie" href="https://www.youtube.com/@zdrowezmiany/videos" target="_blank" rel="noopener">Wszystkie odcinki na YouTube</a>
+  </section>
+
   <section class="paper zostan v-start" aria-labelledby="h-zostan">
-    <div class="zf"><img src="img/g_portret.jpg?v=11120919" alt="Gabrysia uśmiechnięta, patrzy w bok" width="1000" height="1250" loading="lazy"></div>
+    <div class="zf"><img src="img/g_portret.jpg?v=11131749" alt="Gabrysia uśmiechnięta, patrzy w bok" width="1000" height="1250" loading="lazy"></div>
     <div class="zt">
-    <h2 id="h-zostan">🍂 Dlaczego „zostań na chwilę”?</h2>
+    <h2 id="h-zostan">Dlaczego „zostań na chwilę”?</h2>
     <p>Tak nazywa się mój kanał na YouTube. Wiesz, jak to jest, kiedy przyjaciółka wpada do Ciebie w biegu, tylko na moment? Mówisz jej: poczekaj, zostań na chwilę. Wypij herbatę, tu są pierniki. Co u Ciebie?</p>
     <p>O to właśnie chodzi. Skoro już wpadłaś i kliknęłaś, to zostań na chwilę. Usiądź ze mną w tym moim zaciszu internetu i rozgość się, pogadajmy.</p>
     <p>Tak samo z tym kalendarzem. Codziennie jedno okienko i chwila tylko dla Ciebie.</p>
@@ -587,10 +726,10 @@ a.zak{text-decoration:none;display:inline-block}
   <section class="v-start galeria" aria-labelledby="h-galeria">
     <h2 id="h-galeria">Z mojego Zacisza</h2>
     <div class="gal">
-      <img src="img/g_1.jpg?v=11120919" alt="Gabrysia w kuchni z durszlakiem pełnym liści" width="900" height="900" loading="lazy">
-      <img src="img/g_2.jpg?v=11120919" alt="Gabrysia w swojej kuchni" width="900" height="900" loading="lazy">
-      <img src="img/g_3.jpg?v=11120919" alt="Gabrysia z książką przy oknie" width="900" height="900" loading="lazy">
-      <img src="img/g_4.jpg?v=11120919" alt="Gabrysia w domu, uśmiechnięta" width="900" height="900" loading="lazy">
+      <img src="img/g_1.jpg?v=11131749" alt="Gabrysia w kuchni z durszlakiem pełnym liści" width="900" height="900" loading="lazy">
+      <img src="img/g_2.jpg?v=11131749" alt="Gabrysia w swojej kuchni" width="900" height="900" loading="lazy">
+      <img src="img/g_3.jpg?v=11131749" alt="Gabrysia z książką przy oknie" width="900" height="900" loading="lazy">
+      <img src="img/g_4.jpg?v=11131749" alt="Gabrysia w domu, uśmiechnięta" width="900" height="900" loading="lazy">
     </div>
   </section>
 
@@ -598,9 +737,9 @@ a.zak{text-decoration:none;display:inline-block}
     <h2 id="h-wkrotce">Wkrótce dla wspierających</h2>
     <p>W 2027 roku będzie więcej materiałów tylko dla wspierających kanał.</p>
     <div class="wk-lista">
-      <a class="wk" href="#meal-prep"><b>🔒 Meal prep</b><span>Wkrótce</span></a>
-      <a class="wk" href="#styczniowe-wyzwanie"><b>🔒 Styczniowe wyzwanie</b><span>Wkrótce</span></a>
-      <a class="wk" href="#habit-tracker"><b>🔒 Habit tracker</b><span>Wkrótce</span></a>
+      <a class="wk" href="#meal-prep"><b>Meal prep</b><span>Wkrótce</span></a>
+      <a class="wk" href="#styczniowe-wyzwanie"><b>Styczniowe wyzwanie</b><span>Wkrótce</span></a>
+      <a class="wk" href="#habit-tracker"><b>Habit tracker</b><span>Wkrótce</span></a>
     </div>
     <a class="btn join-wsp" target="_blank" rel="noopener">Dołącz do wspierających</a>
   </section>
@@ -612,13 +751,25 @@ a.zak{text-decoration:none;display:inline-block}
     <svg class="deco d3" viewBox="0 0 24 24" aria-hidden="true"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M12 5l-2-2M12 5l2-2M12 19l-2 2M12 19l2 2"/></g></svg>
     <div class="eyebrow">Zostań na chwilę · zimowy prezent</div>
     <h1>Kalendarz adwentowy <span>Zacisza</span></h1>
-    <div class="herorow"><div class="today" id="today"></div><button class="snd" id="snd" type="button" aria-pressed="true">🔔 Dźwięk włączony</button></div>
+    <ul class="skrot">
+      <li>Od 1 grudnia jedno okienko dziennie. W każdym mała przyjemność, którą zrobisz w domu.</li>
+      <li>Za darmo, prezent ode mnie. Nie biegnij do sklepu, przy każdym okienku znajdziesz zamiennik.</li>
+      <li>Codziennie o 18:00 otwieram to samo okienko w odcinku na Zaciszu.</li>
+    </ul>
+    <div class="herorow"><div class="today" id="today"></div></div>
+    <div class="herorow akcje"><a class="btn" id="przypomnij" href="przypomnienie.ics" hidden>Przypomnij mi 1 grudnia</a><button class="btn" id="dzis-btn" type="button" hidden>Otwórz dzisiejsze okienko</button><button class="snd" id="snd" type="button" aria-pressed="false">Dźwięk wyłączony</button></div>
+    <a class="gcal" id="gcal" target="_blank" rel="noopener" hidden>albo dodaj przypomnienie do Kalendarza Google</a>
   </header>
 
   <section class="v-kal" aria-labelledby="h-ok">
     <h2 id="h-ok">Okienka</h2>
     <div class="wall"><div class="grid" id="grid"></div></div>
     <p class="note" id="note" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="v-kal" aria-labelledby="h-jak">
+    <h2 id="h-jak">Jak to działa</h2>
+    <ol class="steps" id="steps"></ol>
   </section>
 
   <div class="cover v-kal">
@@ -628,11 +779,6 @@ a.zak{text-decoration:none;display:inline-block}
   <section class="paper o-kal v-kal">
     <div class="lead" id="lead"></div>
     <p class="support">Kalendarz jest prezentem, za darmo. Jeśli chcesz mnie wspierać, <a id="join-top" target="_blank" rel="noopener">dołącz do wspierających</a>. Dzięki Tobie mogę dalej robić takie rzeczy. W 2027 roku będzie więcej materiałów tylko dla wspierających.</p>
-  </section>
-
-  <section class="v-kal" aria-labelledby="h-jak">
-    <h2 id="h-jak">Jak to działa</h2>
-    <ol class="steps" id="steps"></ol>
   </section>
 
   <section class="paper v-kal">
@@ -712,7 +858,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11120919";
+const IMGV = "11131749";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -779,7 +925,7 @@ function render(){
   const tn = todayN();
   ORDER.forEach(n => {
     const o = byN[n], open = isOpen(n), shown = open && (PREVIEW || seen[n]) && (!SEJF || gotowe[n]);
-    const b = el("button", "env"); b.type = "button";
+    const b = el("button", "env"); b.type = "button"; b.dataset.n = n;
     if (!open) b.classList.add("locked");
     if (tn === n) b.classList.add("today");
     if (shown){
@@ -794,7 +940,7 @@ function render(){
       const bag = el("img", "bag"); bag.src = bagImg(n); bag.alt = ""; bag.loading = "lazy";
       bag.onload = () => b.classList.add("hasbag"); bag.onerror = () => bag.remove();
       b.appendChild(bag);
-      const f = el("span", "flap"); f.appendChild(el("span", "seal", open ? "otwórz" : `${n} gru`)); f.appendChild(el("span", "num", String(n)));
+      const f = el("span", "flap"); if (open) f.appendChild(el("span", "seal", "otwórz")); f.appendChild(el("span", "num", String(n)));
       b.appendChild(f);
       b.setAttribute("aria-label", open ? `Okienko ${n}, do otwarcia` : `Okienko ${n}, odblokuje się ${n} grudnia`);
     }
@@ -817,9 +963,9 @@ function list(tag, items){ const l = el(tag); items.forEach(t => l.appendChild(e
 const seen = store.get("otwarte", {});
 const RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* dźwięk: generowany w przeglądarce, bez plików; melodie = stare kolędy z domeny publicznej */
-let SOUND = store.get("dzwiek", true), AC = null, MASTER = null, BUS = null, NB = null;
+let SOUND = store.get("dzwiek", false), AC = null, MASTER = null, BUS = null, NB = null;
 const sndBtn = document.getElementById("snd");
-function sndLabel(){ sndBtn.textContent = SOUND ? "🔔 Dźwięk włączony" : "🔕 Dźwięk wyłączony"; sndBtn.setAttribute("aria-pressed", SOUND ? "true" : "false"); }
+function sndLabel(){ sndBtn.textContent = SOUND ? "Dźwięk włączony" : "Dźwięk wyłączony"; sndBtn.setAttribute("aria-pressed", SOUND ? "true" : "false"); }
 sndLabel();
 sndBtn.addEventListener("click", () => { SOUND = !SOUND; store.set("dzwiek", SOUND); sndLabel(); if (SOUND){ newBus(); sleigh(0, 6, .1); } else hush(); });
 function ac(){
@@ -1269,7 +1415,7 @@ dlg.addEventListener("close", () => {
 /* widoki strony: Start, Kalendarz i zakładki z kłódką; adres po # (np. zaciszevlog.pl/#kalendarz) */
 {
   const zak = [...document.querySelectorAll(".zak")], strefa = document.getElementById("strefa");
-  const STREFY = {"#meal-prep": "Meal prep", "#styczniowe-wyzwanie": "Styczniowe wyzwanie", "#habit-tracker": "Habit tracker"};
+  const STREFY = {"#wspierajacy": "Dla wspierających", "#meal-prep": "Meal prep", "#styczniowe-wyzwanie": "Styczniowe wyzwanie", "#habit-tracker": "Habit tracker"};
   const TRYBY = ["#jak-widzki", "#podglad-gabrysi"];
   document.getElementById("join-strefa").href = D.wspieraj;
   document.querySelectorAll(".join-wsp").forEach(a => { a.href = D.wspieraj; });
@@ -1277,10 +1423,15 @@ dlg.addEventListener("close", () => {
     const h = location.hash;
     const z = (h === "#kalendarz" || TRYBY.includes(h)) ? "kalendarz" : (STREFY[h] ? "strefa" : "start");
     document.body.dataset.widok = z;
-    const akt = z === "kalendarz" ? "#kalendarz" : (z === "strefa" ? h : "#start");
+    const akt = z === "kalendarz" ? "#kalendarz" : (z === "strefa" ? "#wspierajacy" : "#start");
     zak.forEach(b => { if (b.getAttribute("href") === akt) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
     strefa.hidden = z !== "strefa";
-    if (z === "strefa") document.getElementById("strefa-tytul").textContent = "🔒 " + STREFY[h];
+    if (z === "strefa"){
+      document.getElementById("strefa-tytul").textContent = STREFY[h];
+      const zb = h === "#wspierajacy";
+      document.getElementById("strefa-lista").hidden = !zb;
+      document.getElementById("strefa-opis").textContent = zb ? "Te zakładki będą dostępne tylko dla wspierających kanał." : "Ta zakładka będzie dostępna tylko dla wspierających kanał.";
+    }
     document.title = z === "kalendarz" ? "Kalendarz adwentowy Zacisza" : (z === "strefa" ? STREFY[h] + " · Zacisze" : "Zacisze · zostań na chwilę");
   }
   widok();
@@ -1290,6 +1441,49 @@ dlg.addEventListener("close", () => {
     widok();
     window.scrollTo(0, 0);
   });
+}
+/* szeroko 13.11: „Ostatnio na Zaciszu”, lista osadzona przy budowaniu, świeższą dociąga z odcinki.json (robot co godzinę) */
+const ODC0 = [{"id": "-XfZUo-gZJo", "tytul": "O której ostatnia kawa, żeby spać?", "pod": "13 ciekawostek o kawie i śnie z badań", "typ": "Pogadanka", "data": "13.11", "img": "https://i.ytimg.com/vi/-XfZUo-gZJo/maxresdefault.jpg"}, {"id": "hc30mrLSvhA", "tytul": "Nie umiem odpoczywać", "pod": "co naprawdę regeneruje? 8 ciekawostek o odpoczynku z badań", "typ": "Pogadanka", "data": "06.11", "img": "https://i.ytimg.com/vi/hc30mrLSvhA/maxresdefault.jpg"}, {"id": "qyc7kn2Zj6o", "tytul": "Nie leżałam przed telewizorem", "pod": "spływ Dunajcem, stajnia, ścianka i Gorce", "typ": "Vlog", "data": "04.11", "img": "https://i.ytimg.com/vi/qyc7kn2Zj6o/maxresdefault.jpg"}, {"id": "NBgE98TndKc", "tytul": "Nigdy nie jest za późno, żeby zacząć", "pod": "trzy lata odkładałam jedną małą rzecz", "typ": "Pogadanka", "data": "29.10", "img": "https://i.ytimg.com/vi/NBgE98TndKc/maxresdefault.jpg"}, {"id": "GSjpCvix1Rw", "tytul": "10 000 kroków to marketing, nie nauka", "pod": "ile kroków wystarczy? 8 ciekawostek o chodzeniu z badań", "typ": "Pogadanka", "data": "25.10", "img": "https://i.ytimg.com/vi/GSjpCvix1Rw/maxresdefault.jpg"}, {"id": "yivyFdawClg", "tytul": "Zrób to wieczorem, żeby rano było łatwiej", "pod": "9 ciekawostek o nawykach i motywacji z badań", "typ": "Pogadanka", "data": "23.10", "img": "https://i.ytimg.com/vi/yivyFdawClg/maxresdefault.jpg"}];
+function pokazOdcinki(lista){
+  const box = document.getElementById("odc-lista");
+  if (!box || !Array.isArray(lista) || lista.length < 3) return;
+  box.replaceChildren(...lista.filter(o => o && /^[\w-]{11}$/.test(o.id) && /^https:\/\/i\.ytimg\.com\//.test(o.img)).map(o => {
+    const a = document.createElement("a");
+    a.className = "odc"; a.href = "https://www.youtube.com/watch?v=" + o.id; a.target = "_blank"; a.rel = "noopener";
+    const f = document.createElement("span"); f.className = "odc-img";
+    const im = document.createElement("img"); im.src = o.img; im.alt = ""; im.loading = "lazy"; im.width = 1280; im.height = 720; f.append(im);
+    const m = document.createElement("span"); m.className = "odc-meta"; m.textContent = [o.typ, o.data].filter(Boolean).join(" · ");
+    const t = document.createElement("b"); t.className = "odc-t"; t.textContent = o.tytul;
+    a.append(f, m, t);
+    if (o.pod){ const p = document.createElement("span"); p.className = "odc-pod"; p.textContent = o.pod; a.append(p); }
+    return a;
+  }));
+  box.closest("section").hidden = false;
+}
+pokazOdcinki(ODC0);
+try{
+  fetch("odcinki.json?t=" + Date.now(), {cache: "no-store"}).then(r => r.ok ? r.json() : null)
+    .then(l => { if (l && JSON.stringify(l) !== JSON.stringify(ODC0)) pokazOdcinki(l); }).catch(() => {});
+}catch(e){}
+/* czytelność 13.11: przed 1.12 przypomnienie do kalendarza w telefonie, w grudniu przycisk „Otwórz okienko N” */
+{
+  const przed = !PREVIEW && !TEST && (T.y < D.rok || (T.y === D.rok && T.m < 12));
+  const pr = document.getElementById("przypomnij"), gc = document.getElementById("gcal");
+  if (przed){
+    pr.hidden = false; gc.hidden = false;
+    gc.href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent("Zacisze: pierwsze okienko kalendarza adwentowego")
+      + "&dates=" + D.rok + "1201T170000Z/" + D.rok + "1201T173000Z&details=" + encodeURIComponent("Okienko 1 już czeka, a o 18:00 odcinek. https://www.zaciszevlog.pl/kalendarz");
+  }
+  const n = todayN(), db = document.getElementById("dzis-btn");
+  if (n){
+    db.hidden = false; db.textContent = `Otwórz okienko ${n}`;
+    db.addEventListener("click", () => {
+      const b = grid.querySelector(`[data-n="${n}"]`);
+      if (!b) return;
+      b.scrollIntoView({block: "center", behavior: RM ? "auto" : "smooth"});
+      setTimeout(() => b.click(), RM ? 0 : 450);
+    });
+  }
 }
 render();
 pokazKoniec();

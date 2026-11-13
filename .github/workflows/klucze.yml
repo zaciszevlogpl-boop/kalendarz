@@ -1,4 +1,5 @@
 # Robot kalendarza: po północy czasu polskiego wystawia klucz nowego okienka i publikuje stronę.
+# 13.11: przy okazji odświeża odcinki.json (sekcja „Ostatnio na Zaciszu”), publikuje tylko gdy coś się zmieniło.
 # Polska zimą = UTC+1, więc północ = 23:00 UTC. Sprawdza co 10 min w tej godzinie (minuty 3, 13, …, bo pełne godziny GitHub opóźnia) i raz na godzinę w ciągu dnia.
 name: Klucze okienek
 on:
@@ -7,6 +8,7 @@ on:
   schedule:
     - cron: "3,13,23,33,43,53 23 * 11,12 *"
     - cron: "17 0-22 * 11,12 *"
+    - cron: "37 */2 * 1-10 *"
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       zmiana: ${{ steps.k.outputs.zmiana }}
+      odcinki: ${{ steps.o.outputs.odcinki }}
     steps:
       - uses: actions/checkout@v7
       - id: k
@@ -25,9 +28,12 @@ jobs:
         env:
           KLUCZE: ${{ secrets.KLUCZE }}
         run: python3 .github/klucze.py
+      - id: o
+        name: Czy są nowe odcinki na kanale
+        run: python3 .github/odcinki.py --sprawdz
   publikuj:
     needs: sprawdz
-    if: needs.sprawdz.outputs.zmiana == 'true' || github.event_name != 'schedule'
+    if: needs.sprawdz.outputs.zmiana == 'true' || needs.sprawdz.outputs.odcinki == 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -42,6 +48,8 @@ jobs:
         env:
           KLUCZE: ${{ secrets.KLUCZE }}
         run: python3 .github/klucze.py
+      - name: Najnowsze odcinki
+        run: python3 .github/odcinki.py
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

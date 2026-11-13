@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Zacisze//Kalendarz adwentowy//PL
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:zacisze-okienko-1-2026@zaciszevlog.pl
+DTSTAMP:20261113T120000Z
+DTSTART:20261201T170000Z
+DTEND:20261201T173000Z
+SUMMARY:Zacisze: pierwsze okienko kalendarza adwentowego
+DESCRIPTION:Okienko 1 już czeka\, a o 18:00 odcinek. https://www.zaciszevlog.pl/kalendarz
+URL:https://www.zaciszevlog.pl/kalendarz
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Zacisze: pierwsze okienko
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
