@@ -177,6 +177,15 @@
   .modal .x { position:absolute; top:-44px; right:0; font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:rgba(255,255,255,.1); border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer; }
   .modal .out { display:block; text-align:center; margin-top:10px; font-size:13px; color:var(--soft); }
   .igframe { width:100%; height:640px; border:0; border-radius:14px; background:#fff; }
+
+  .gal { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+  .gal .shot img { aspect-ratio:4/3; object-fit:cover; object-position:top; background:#fff; }
+  .gal .shot.tallimg img { aspect-ratio:4/3; object-position:top center; }
+  .stats-line { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 16px; }
+  .stats-line span { font-size:13.5px; padding:6px 12px; border-radius:999px; background:rgba(126,224,176,.1); color:var(--ok); border:1px solid rgba(126,224,176,.3); }
+  .modal img.big { display:block; max-width:100%; max-height:84vh; margin:0 auto; border-radius:12px; background:#fff; }
+  @media (max-width:800px) { .gal { grid-template-columns:1fr 1fr; } }
+  @media (max-width:440px) { .gal { grid-template-columns:1fr; } }
   .next { margin-top:26px; text-align:right; }
   .cta { text-align:center; padding:44px 22px; }
   .cta h3 { font-family:var(--serif); font-weight:400; font-size:clamp(26px, 4vw, 40px); margin:0 0 10px; }
@@ -525,6 +534,32 @@ agenci kontroli jakości (17)
   </section>
 
   <section>
+    <h2 class="rv">Materiały z mojej pracy w hotelu</h2>
+    <div class="stats-line rv"><span>Facebook: zasięg organiczny +106,9%</span><span>Facebook: obserwujący +112%</span><span>Instagram: obserwujący +216,7%</span><span>Instagram: wejścia na profil +95%</span></div>
+    <p class="note rv" style="margin:-6px 0 16px">Raport tygodniowy social mediów hotelu, 30.12.2024–5.01.2025, wynik tydzień do tygodnia.</p>
+    <div class="gal">
+      <a class="shot glass rv " href="dowody/hotel_raport1.jpg"><img src="dowody/hotel_raport1.jpg" alt="Raport social mediów" loading="lazy"><span class="cap"><b>Raport social mediów</b><i>zasięg Facebook i Instagram, tydzień 30.12–5.01</i><em>Powiększ</em></span></a>
+      <a class="shot glass rv " href="dowody/hotel_raport2.jpg"><img src="dowody/hotel_raport2.jpg" alt="Wzrost obserwujących" loading="lazy"><span class="cap"><b>Wzrost obserwujących</b><i>wejścia na profile i nowi obserwujący</i><em>Powiększ</em></span></a>
+      <a class="shot glass rv " href="dowody/hotel_www.jpg"><img src="dowody/hotel_www.jpg" alt="Nowa strona i marka" loading="lazy"><span class="cap"><b>Nowa strona i marka</b><i>sekcja strony z nowym logo Dosłońce, 12.2024</i><em>Powiększ</em></span></a>
+      <a class="shot glass rv " href="dowody/hotel_oznakowanie.jpg"><img src="dowody/hotel_oznakowanie.jpg" alt="Oznakowanie nowej marki" loading="lazy"><span class="cap"><b>Oznakowanie nowej marki</b><i>projekty tablic przy wejściu, 01.2025</i><em>Powiększ</em></span></a>
+      <a class="shot glass rv " href="dowody/hotel_ulotka.jpg"><img src="dowody/hotel_ulotka.jpg" alt="Ulotka pakietu „Zimowy Chillout”" loading="lazy"><span class="cap"><b>Ulotka pakietu „Zimowy Chillout”</b><i>oferta pakietowa w nowej identyfikacji, 01.2025</i><em>Powiększ</em></span></a>
+      <a class="shot glass rv " href="dowody/hotel_animacje.jpg"><img src="dowody/hotel_animacje.jpg" alt="Program animacji, styczeń 2025" loading="lazy"><span class="cap"><b>Program animacji, styczeń 2025</b><i>plan atrakcji dla rodzin na ferie</i><em>Powiększ</em></span></a>
+    </div>
+    <div class="duo" style="margin-top:16px">
+      <div class="glass rv txt">
+        <span class="tag real">Rebranding w liczbach</span>
+        <p><b>73 zadania w 9 obszarach</b> przejścia na nową markę: identyfikacja, druki, materiały cyfrowe, szablony Canva, informacje w pokojach, gastronomia, oznakowanie zewnętrzne i wewnętrzne, internet.</p>
+        <p>Do 19.01.2025 zamkniętych było <b>42 z 73</b>, reszta miała termin na styczeń i luty. Całość szła w jednym arkuszu ze statusem i osobą odpowiedzialną przy każdym zadaniu.</p>
+      </div>
+      <div class="glass rv txt">
+        <span class="tag real">AI w zespole hotelu</span>
+        <p><b>Baza wiedzy o hotelu dla ChatGPT</b> (12.2024): wizja, 67 pokoi, strefa wellness i SPA, farma, gastronomia i atrakcje opisane w jednym dokumencie.</p>
+        <p>Dzięki temu zespół pisał oferty, opisy pakietów i posty spójnym językiem nowej marki, bez tłumaczenia ChatGPT od zera, czym jest hotel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2 class="rv">Filmy, które robiłam dla hotelu</h2>
     <p class="intro rv">Po 3 miesiącach przerwy kanał YouTube hotelu znów zaczął regularnie publikować: <b>27 krótkich filmów</b> w czasie mojego kontraktu, łącznie <b>45 639 wyświetleń</b>. Sezon świąteczny, ferie i pierwszy film pod nową marką Dosłońce.</p>
     <div class="shots six">
@@ -696,7 +731,7 @@ agenci kontroli jakości (17)
   </section>
 </div>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Podgląd"><div class="box" id="mbox"><button class="x" id="mx">Zamknij ✕</button><iframe id="mframe" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Podgląd"></iframe><a class="out" id="mout" target="_blank" rel="noopener noreferrer">Otwórz w nowej karcie ↗</a></div></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Podgląd"><div class="box" id="mbox"><button class="x" id="mx">Zamknij ✕</button><img class="big" id="mimg" alt="" hidden><iframe id="mframe" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Podgląd"></iframe><a class="out" id="mout" target="_blank" rel="noopener noreferrer">Otwórz w nowej karcie ↗</a></div></div>
 
 <footer>Strona prywatna, tylko dla osób z linkiem. Dane kanałów z 16.11.2026.</footer>
 </div>
@@ -736,7 +771,8 @@ agenci kontroli jakości (17)
 
   // filmy i posty otwierane na stronie
   var modal = document.getElementById('modal'), mframe = document.getElementById('mframe'), mbox = document.getElementById('mbox'), mout = document.getElementById('mout');
-  function closeModal() { modal.classList.remove('open'); mframe.src = 'about:blank'; }
+  var mimg = document.getElementById('mimg');
+  function closeModal() { modal.classList.remove('open'); mframe.src = 'about:blank'; mimg.hidden = true; mframe.hidden = false; mout.hidden = false; }
   document.getElementById('mx').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
@@ -746,8 +782,9 @@ agenci kontroli jakości (17)
     if ((m = h.match(/youtube\.com\/watch\?v=([\w-]+)/))) src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
     else if ((m = h.match(/youtube\.com\/shorts\/([\w-]+)/))) { src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0'; cls = 'box tall'; }
     else if ((m = h.match(/instagram\.com\/(p|reel)\/([\w-]+)/))) { src = 'https://www.instagram.com/' + m[1] + '/' + m[2] + '/embed/'; cls = 'box tall ig'; }
+    if (/\.jpg$/.test(h)) { e.preventDefault(); mbox.className = 'box'; mframe.hidden = true; mout.hidden = true; mimg.src = h; mimg.hidden = false; modal.classList.add('open'); return; }
     if (!src) return;
-    e.preventDefault(); mbox.className = cls; mframe.src = src; mout.href = h; modal.classList.add('open');
+    e.preventDefault(); mimg.hidden = true; mframe.hidden = false; mout.hidden = false; mbox.className = cls; mframe.src = src; mout.href = h; modal.classList.add('open');
   });
 
   document.addEventListener('click', function (e) {
