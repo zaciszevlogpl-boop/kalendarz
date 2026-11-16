@@ -176,7 +176,7 @@
   .modal .box.ig iframe { aspect-ratio:auto; height:min(82vh, 760px); background:#fff; }
   .modal .x { position:absolute; top:-44px; right:0; font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:rgba(255,255,255,.1); border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer; }
   .modal .out { display:block; text-align:center; margin-top:10px; font-size:13px; color:var(--soft); }
-  .igframe { width:100%; height:640px; border:0; border-radius:14px; background:#fff; }
+  .igframe { width:100%; max-width:360px; height:500px; border:0; border-radius:14px; background:#fff; overflow:hidden; }
 
   .gal { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
   .gal .shot img { aspect-ratio:4/3; object-fit:cover; object-position:top; background:#fff; }
@@ -227,10 +227,10 @@
     <a class="brand" href="#start" data-go="start">G. Wywrocka</a>
     <div class="tabs" role="tablist" aria-label="Zakładki portfolio">
       <a class="tab" role="tab" href="#start" data-go="start">Start</a>
+      <a class="tab" role="tab" href="#marketing" data-go="marketing">Marketing i reklamy</a>
       <a class="tab" role="tab" href="#system" data-go="system">System</a>
       <a class="tab" role="tab" href="#montaz" data-go="montaz">Montaż</a>
       <a class="tab" role="tab" href="#projekty" data-go="projekty">Projekty</a>
-      <a class="tab" role="tab" href="#marketing" data-go="marketing">Marketing i reklamy</a>
       <a class="tab" role="tab" href="#it" data-go="it">IT i bezpieczeństwo</a>
       <a class="tab" role="tab" href="#kontakt" data-go="kontakt">Kontakt</a>
     </div>
@@ -247,8 +247,8 @@
       <p class="role rv">AI Operations w marketingu i treściach · systemy agentów AI od planu do pomiaru</p>
       <p class="lead rv">Buduję i prowadzę systemy agentów AI, które robią marketing i treści od analizy rynku po gotowy materiał. Wcześniej prowadziłam marketing hotelu, treści w e-commerce i kampanie z twórcami. Każda zakładka pokazuje dowody.</p>
       <div class="btns rv">
-        <a class="btn main" href="#system" data-go="system">Zobacz, jak działa system</a>
-        <a class="btn" href="cv.pdf" download>Pobierz CV (PDF)</a>
+        <a class="btn main" href="#marketing" data-go="marketing">Marketing i wyniki</a>
+        <a class="btn" href="#system" data-go="system">Jak działa mój system AI</a>
       </div>
     </div>
     <div class="photo rv"><img src="foto.jpg" alt="Gabriela Wywrocka"></div>
@@ -277,10 +277,10 @@
   <section>
     <h2 class="rv">Co znajdziesz w zakładkach</h2>
     <div class="go-cards">
+      <button class="go-card glass rv" data-go="marketing"><b>Marketing i reklamy</b><span>Hotel Dosłońce: kampanie od badania gości po sprzedaż pokoi. Klinika HOLI: blog, filmy i plan treści.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="system"><b>Jak działa system</b><span>Prosty schemat od analizy rynku po gotowy materiał, plus jeden prawdziwy film krok po kroku.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="montaz"><b>Montaż wideo z AI</b><span>Od surowego nagrania do gotowego filmu z rozdziałami, muzyką i napisami.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="projekty"><b>Projekty</b><span>4 marki: muzyka z afirmacjami, kanał o finansach, vlog i rynki zagraniczne.</span><em>Otwórz →</em></button>
-      <button class="go-card glass rv" data-go="marketing"><b>Marketing i reklamy</b><span>Hotel Dosłońce: kampanie od badania gości po sprzedaż pokoi. Klinika HOLI: blog, filmy i plan treści.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="it"><b>IT i bezpieczeństwo</b><span>Chmura Azure i AWS oraz to, jak zabezpieczam swój system.</span><em>Otwórz →</em></button>
     </div>
   </section>
@@ -491,7 +491,7 @@ agenci kontroli jakości (17)
       </div>
       <p class="note rv">Tę stronę też zaprojektowałam jako próbkę: animacje i światło są zrobione w czystym kodzie, bez szablonu.</p>
     </div>
-    <div class="next"><button class="btn" data-go="marketing">Dalej: Marketing i reklamy →</button></div>
+    <div class="next"><button class="btn" data-go="it">Dalej: IT i bezpieczeństwo →</button></div>
   </section>
 </div>
 
@@ -624,7 +624,7 @@ agenci kontroli jakości (17)
         
         <p>Wcześniej przez 2 lata prowadziłam kampanie z twórcami w agencji Stars Impresariat / Tears of Joy.</p>
       </div>
-      <div class="glass rv" style="padding:10px"><iframe class="igframe" src="https://www.instagram.com/p/DDkx_rvIHCE/embed/" loading="lazy" title="Post z pobytu w Dosłońce" allowtransparency="true"></iframe></div>
+      <div class="rv" style="display:flex;justify-content:center;align-items:flex-start"><iframe class="igframe" src="https://www.instagram.com/p/DDkx_rvIHCE/embed/" loading="lazy" scrolling="no" title="Post z pobytu w Dosłońce" allowtransparency="true"></iframe></div>
     </div>
   </section>
 
@@ -665,8 +665,19 @@ agenci kontroli jakości (17)
       <div class="step glass"><span class="n">5</span><b>Montaż</b>filmy z napisami, gotowe do publikacji</div>
       <div class="step glass"><span class="n">6</span><b>Publikacja i wyniki</b>posty planowane z wyprzedzeniem, poprawki na podstawie danych</div>
     </div>
+    <div class="stats-line rv" style="margin-top:18px"><span>114 postów w 7 miesięcy</span><span>62 rolki</span><span>1 373 polubienia</span></div>
+    <div class="shots six">
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C_kRUSqBqQo/"><img src="dowody/holi_C_kRUSqBqQo.jpg" alt="Otyłość to choroba" loading="lazy"><span class="cap"><b>Otyłość to choroba</b><i>06.09.2024 · 61 polubień</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C7R_VYAI-xS/"><img src="dowody/holi_C7R_VYAI-xS.jpg" alt="Od czego zacząć odchudzanie?" loading="lazy"><span class="cap"><b>Od czego zacząć odchudzanie?</b><i>22.05.2024 · 49</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C7kAjf1odTJ/"><img src="dowody/holi_C7kAjf1odTJ.jpg" alt="Mózg przed analogami GLP-1" loading="lazy"><span class="cap"><b>Mózg przed analogami GLP-1</b><i>29.05.2024 · 34</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C8W5Cg8onxA/"><img src="dowody/holi_C8W5Cg8onxA.jpg" alt="5 oznak jedzenia emocjonalnego" loading="lazy"><span class="cap"><b>5 oznak jedzenia emocjonalnego</b><i>18.06.2024 · 29</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C6ZMVsFIyh3/"><img src="dowody/holi_C6ZMVsFIyh3.jpg" alt="Rozmowa z ekspertką" loading="lazy"><span class="cap"><b>Rozmowa z ekspertką</b><i>30.04.2024 · 25</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.instagram.com/reel/C_K1id_opTz/"><img src="dowody/holi_C_K1id_opTz.jpg" alt="Małe sukcesy" loading="lazy"><span class="cap"><b>Małe sukcesy</b><i>27.08.2024 · 23</i><em>Odtwórz ▶</em></span></a>
+    </div>
+    <p class="note rv">Instagram kliniki (@klinikaholi) w czasie mojej współpracy, 03–09.2024. Dane z Instagram API, 16.11.2026.</p>
     <div class="links rv" style="margin-top:16px">
       <a class="btn" href="https://klinikaholi.pl/blog" target="_blank" rel="noopener noreferrer">Blog kliniki HOLI ↗</a>
+      <a class="btn" href="https://www.instagram.com/klinikaholi/" target="_blank" rel="noopener noreferrer">Instagram kliniki ↗</a>
     </div>
     <div class="duo" style="margin-top:16px">
       <div class="glass rv txt">
@@ -691,7 +702,7 @@ agenci kontroli jakości (17)
       <div class="sec glass rv"><span class="n">06.2020–05.2022</span><b>Stars Impresariat / Tears of Joy · Influencer PM</b>Kampanie z twórcami beauty i tech na YouTube, Instagramie i TikToku, od wyboru twórców po raport dla agencji.</div>
       
     </div>
-    <div class="next"><button class="btn" data-go="it">Dalej: IT i bezpieczeństwo →</button></div>
+    <div class="next"><button class="btn" data-go="system">Dalej: System →</button></div>
   </section>
 </div>
 
@@ -749,7 +760,7 @@ agenci kontroli jakości (17)
 <script>
 (function () {
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var ids = ['start', 'system', 'montaz', 'projekty', 'marketing', 'it', 'kontakt'];
+  var ids = ['start', 'marketing', 'system', 'montaz', 'projekty', 'it', 'kontakt'];
   var kpDone = false;
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) {
