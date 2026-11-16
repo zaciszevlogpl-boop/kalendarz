@@ -54,6 +54,7 @@
   section { padding:30px 0; }
   h2 { font-size:13px; letter-spacing:.2em; text-transform:uppercase; margin:0 0 18px; color:var(--soft); display:flex; align-items:center; gap:12px; }
   h2::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, var(--line), transparent); }
+  #m-holi, #m-wcz, #m-hotel { scroll-margin-top:80px; }
   h3.big { font-family:var(--serif); font-weight:400; font-size:clamp(26px, 4vw, 36px); margin:0 0 8px; color:#f6f1e7; }
   .intro { font-size:17px; color:var(--body); max-width:800px; margin:0 0 20px; }
   .intro b, .txt b { color:var(--gold); }
@@ -146,6 +147,8 @@
   .chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
   .chip { font-size:12.5px; padding:5px 10px; border-radius:999px; border:1px solid var(--line); color:var(--body); }
   .chip.g { border-color:rgba(126,224,176,.4); color:var(--ok); }
+  a.chip { text-decoration:none; font-weight:600; border-color:rgba(216,180,122,.5); color:var(--gold); padding:7px 14px; font-size:13.5px; }
+  a.chip:hover { background:rgba(216,180,122,.14); }
 
   .duo { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch; }
   .txt { padding:22px; font-size:16px; color:var(--body); }
@@ -259,7 +262,7 @@
       <button class="go-card glass rv" data-go="system"><b>Jak działa system</b><span>Prosty schemat od analizy rynku po gotowy materiał, plus jeden prawdziwy film krok po kroku.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="montaz"><b>Montaż wideo z AI</b><span>Od surowego nagrania do gotowego filmu z rozdziałami, muzyką i napisami.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="projekty"><b>Projekty</b><span>4 marki: muzyka z afirmacjami, kanał o finansach, vlog i rynki zagraniczne.</span><em>Otwórz →</em></button>
-      <button class="go-card glass rv" data-go="marketing"><b>Marketing i reklamy</b><span>Hotel Dosłońce: kampanie od badania gości po sprzedaż pokoi. Klinika HOLI: treści od analizy po publikację.</span><em>Otwórz →</em></button>
+      <button class="go-card glass rv" data-go="marketing"><b>Marketing i reklamy</b><span>Hotel Dosłońce: kampanie od badania gości po sprzedaż pokoi. Klinika HOLI: blog, filmy i plan treści.</span><em>Otwórz →</em></button>
       <button class="go-card glass rv" data-go="it"><b>IT i bezpieczeństwo</b><span>Chmura Azure i AWS oraz to, jak zabezpieczam swój system.</span><em>Otwórz →</em></button>
     </div>
   </section>
@@ -476,7 +479,8 @@ agenci kontroli jakości (17)
 
 <div class="panel" id="p-marketing" role="tabpanel">
   <section>
-    <h3 class="big rv">Marketing i reklamy: Dosłońce Resort Wellness &amp; Farm</h3>
+    <div class="chips rv"><a class="chip" href="#" data-jump="m-hotel">Hotel Dosłońce</a><a class="chip" href="#" data-jump="m-holi">Klinika HOLI</a><a class="chip" href="#" data-jump="m-wcz">Zinzino i agencja</a></div>
+    <h3 class="big rv" id="m-hotel">Marketing i reklamy: Dosłońce Resort Wellness &amp; Farm</h3>
     <p class="intro rv">Head of Marketing / Digital Project Manager · 10.2024–03.2025 · kontrakt projektowy. Hotel przygotowywał się do wyjścia z sieci i przejścia z marki <b>Mercure Racławice Dosłońce</b> na własną markę <b>Dosłońce</b>. Prowadziłam cały marketing: od badania gości, przez nagrania i reklamy, po wynik w sprzedaży pokoi.</p>
     <div class="kpis">
       <div class="kpi glass rv"><b>+25%</b><span>sprzedaży w okresie andrzejek, wigilii i sylwestra, rok do roku</span></div>
@@ -586,31 +590,37 @@ agenci kontroli jakości (17)
     <p class="note rv">Tak działa już mój system dla kanałów YouTube. W hotelu zmienia się cel: zamiast wyświetleń liczy się sprzedaż pokoi.</p>
   </section>
 
-  <section>
-    <h2 class="rv">HOLI Klinika Odchudzania: treści od analizy do publikacji</h2>
-    <div class="duo">
-      <div class="glass rv txt">
-        <span class="tag real">Zrobione · 03.2024–09.2024</span>
-        <ul>
-          <li>Analiza rynku i tematów, których szukają pacjenci.</li>
-          <li>Kalendarz publikacji dopasowany do grupy docelowej.</li>
-          <li>Opracowanie treści i materiałów na blog.</li>
-          <li>Scenariusze, nagrania i montaż filmów z napisami i narracją.</li>
-          <li>Publikacje zaplanowane z wyprzedzeniem i optymalizacja na podstawie wyników.</li>
-        </ul>
-      </div>
+  <section id="m-holi">
+    <h3 class="big rv">Klinika HOLI: treści od analizy do publikacji</h3>
+    <p class="intro rv">Social Media &amp; Content Coordinator · 03.2024–09.2024 · kontrakt projektowy. HOLI to klinika leczenia otyłości działająca online. Odpowiadałam za plan treści i jego wykonanie: od tematów, przez teksty na blog i filmy, po publikację.</p>
+    <div class="flow eight rv" style="grid-template-columns:repeat(6, 1fr)">
+      <div class="step glass"><span class="n">1</span><b>Analiza rynku</b>czego szukają pacjenci i o czym pisze konkurencja</div>
+      <div class="step glass"><span class="n">2</span><b>Plan treści</b>kalendarz publikacji dopasowany do grupy docelowej</div>
+      <div class="step glass"><span class="n">3</span><b>Teksty na blog</b>opracowanie artykułów i materiałów</div>
+      <div class="step glass"><span class="n">4</span><b>Nagrania</b>scenariusze i filmy z narracją</div>
+      <div class="step glass"><span class="n">5</span><b>Montaż</b>filmy z napisami, gotowe do publikacji</div>
+      <div class="step glass"><span class="n">6</span><b>Publikacja i wyniki</b>posty planowane z wyprzedzeniem, poprawki na podstawie danych</div>
+    </div>
+    <div class="links rv" style="margin-top:16px">
+      <a class="btn" href="https://klinikaholi.pl/blog" target="_blank" rel="noopener noreferrer">Blog kliniki HOLI ↗</a>
+    </div>
+    <div class="duo" style="margin-top:16px">
       <div class="glass rv txt">
         <span class="tag model">Ten sam zakres na moim systemie dziś</span>
         <ul>
           <li>Analizę rynku i propozycję kalendarza przygotowuje agent, ja wybieram tematy.</li>
           <li>Artykuły i scenariusze przechodzą przez krytyka i kontrolę faktów. W tematach zdrowia każde twierdzenie ma źródło.</li>
+        </ul>
+      </div>
+      <div class="glass rv txt">
+        <ul>
           <li>Montaż, napisy i wersje pionowe robi agent, ja akceptuję.</li>
           <li>Publikacja idzie z kalendarza, a wyniki wracają do planu.</li>
         </ul>
       </div>
     </div>
   </section>
-  <section>
+  <section id="m-wcz">
     <h2 class="rv">Wcześniej w marketingu</h2>
     <div class="sec-grid">
       <div class="sec glass rv"><span class="n">06.2022–02.2024</span><b>Zinzino · Content &amp; Platform Manager</b>Treści na zinzino.com, SEO (Senuto, Ahrefs, Surfer), e-mail marketing w GetResponse, analiza CTR, konwersji i CPA.</div>
@@ -719,6 +729,11 @@ agenci kontroli jakości (17)
     else if ((m = h.match(/instagram\.com\/(p|reel)\/([\w-]+)/))) { src = 'https://www.instagram.com/' + m[1] + '/' + m[2] + '/embed/'; cls = 'box tall ig'; }
     if (!src) return;
     e.preventDefault(); mbox.className = cls; mframe.src = src; mout.href = h; modal.classList.add('open');
+  });
+
+  document.addEventListener('click', function (e) {
+    var j = e.target.closest('[data-jump]'); if (!j) return;
+    e.preventDefault(); var t = document.getElementById(j.dataset.jump); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
   });
 
   window.addEventListener('pointermove', function (e) {
