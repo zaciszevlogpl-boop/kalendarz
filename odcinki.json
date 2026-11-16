@@ -1,5 +1,13 @@
 [
  {
+  "id": "vhXqVzNkiF0",
+  "tytul": "Odgracanie bez sentymentów?",
+  "pod": "pamiątki z dzieciństwa, Hannah Montana, Witch i krem z dyni",
+  "typ": "Vlog",
+  "data": "15.11",
+  "img": "https://i.ytimg.com/vi/vhXqVzNkiF0/maxresdefault.jpg"
+ },
+ {
   "id": "-XfZUo-gZJo",
   "tytul": "O której ostatnia kawa, żeby spać?",
   "pod": "ile kofeiny naprawdę jest w kubku",
@@ -38,13 +46,5 @@
   "typ": "Pogadanka",
   "data": "25.10",
   "img": "https://i.ytimg.com/vi/GSjpCvix1Rw/maxresdefault.jpg"
- },
- {
-  "id": "yivyFdawClg",
-  "tytul": "Zrób to wieczorem, żeby rano było łatwiej",
-  "pod": "9 ciekawostek o nawykach i motywacji z badań",
-  "typ": "Pogadanka",
-  "data": "23.10",
-  "img": "https://i.ytimg.com/vi/yivyFdawClg/maxresdefault.jpg"
  }
 ]
