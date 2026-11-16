@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="origin">
+<script>document.documentElement.className="js"</script>
+<title>Gabriela Wywrocka · portfolio</title>
+<style>
+  :root {
+    --bg:#07090f; --card:rgba(255,255,255,.055); --ink:#f2efe9; --body:#d9d6cf; --soft:#9aa2b4; --line:rgba(255,255,255,.1);
+    --gold:#d8b47a; --ok:#7ee0b0; --ai:#8fb4ff;
+    --serif:"Didot", "Bodoni 72", "Palatino Linotype", Georgia, serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; line-height:1.55; font-size:16px; overflow-x:hidden; }
+  a { color:var(--gold); }
+  .lights { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .blob { position:absolute; width:55vmax; height:55vmax; border-radius:50%; filter:blur(90px); opacity:.17; }
+  .b1 { background:#8a6a3a; top:-20vmax; left:-15vmax; animation:f1 24s ease-in-out infinite alternate; }
+  .b2 { background:#1f3a6e; bottom:-25vmax; right:-15vmax; animation:f2 29s ease-in-out infinite alternate; }
+  @keyframes f1 { to { transform:translate(22vmax, 14vmax) scale(1.15); } }
+  @keyframes f2 { to { transform:translate(-20vmax, -16vmax) scale(1.2); } }
+  .wrap { position:relative; z-index:2; max-width:1040px; margin:0 auto; padding:0 16px; }
+
+  .top { position:sticky; top:0; z-index:10; background:rgba(7,9,15,.9); border-bottom:1px solid var(--line); }
+  .top .wrap { display:flex; align-items:center; gap:18px; min-height:60px; }
+  .brand { font-family:var(--serif); font-size:20px; white-space:nowrap; color:var(--ink); text-decoration:none; }
+  .tabs { display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; flex:1; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { font-size:14px; font-weight:600; color:var(--soft); border-bottom:2px solid transparent; padding:18px 10px 16px; cursor:pointer; white-space:nowrap; text-decoration:none; }
+  .tab:hover { color:var(--ink); }
+  .tab[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--gold); }
+  .top .cv { font-size:13px; font-weight:700; color:#07090f; background:var(--gold); text-decoration:none; padding:9px 14px; border-radius:999px; white-space:nowrap; }
+
+  .js .panel { display:none; }
+  .js .panel.active { display:block; animation:fade .5s ease; }
+  @keyframes fade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  .panel { padding:8px 0 40px; }
+
+  header.hero { padding:56px 0 30px; display:grid; grid-template-columns:1fr 200px; gap:40px; align-items:center; }
+  .hero h1 { font-family:var(--serif); font-weight:400; font-size:clamp(36px, 6.4vw, 64px); margin:0 0 10px; line-height:1.05; color:#f6f1e7; }
+  .hero .role { color:var(--ink); font-weight:500; letter-spacing:.02em; margin:0 0 16px; font-size:18px; }
+  .hero p.lead { font-size:19px; margin:0 0 24px; max-width:620px; color:var(--body); }
+  .photo img { width:200px; height:250px; object-fit:cover; border-radius:22px; display:block; border:1px solid rgba(216,180,122,.5); box-shadow:0 24px 70px rgba(0,0,0,.55), 0 0 60px rgba(216,180,122,.14); }
+  .btns { display:flex; flex-wrap:wrap; gap:12px; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; font-size:15px; border:1.5px solid rgba(216,180,122,.6); color:var(--gold); transition:background .2s; cursor:pointer; background:none; font-family:inherit; }
+  .btn:hover { background:rgba(216,180,122,.14); }
+  .btn.main { background:var(--gold); color:#07090f; border-color:transparent; }
+  .btn.main:hover { background:#e6c690; }
+
+  section { padding:30px 0; }
+  h2 { font-size:13px; letter-spacing:.2em; text-transform:uppercase; margin:0 0 18px; color:var(--soft); display:flex; align-items:center; gap:12px; }
+  h2::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, var(--line), transparent); }
+  h3.big { font-family:var(--serif); font-weight:400; font-size:clamp(26px, 4vw, 36px); margin:0 0 8px; color:#f6f1e7; }
+  .intro { font-size:17px; color:var(--body); max-width:800px; margin:0 0 20px; }
+  .intro b, .txt b { color:var(--gold); }
+  .note { font-size:13px; color:var(--soft); margin-top:12px; }
+
+  .rv { transition:opacity .5s ease, transform .5s ease; }
+  .js .rv { opacity:0; transform:translateY(12px); }
+  .js .rv.on { opacity:1; transform:none; }
+
+  .glass { position:relative; background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+  .glass::before { content:""; position:absolute; inset:0; background:radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(216,180,122,.09), transparent 65%); opacity:0; transition:opacity .3s; pointer-events:none; }
+  .glass:hover::before { opacity:1; }
+
+  .kpis { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+  .kpi { padding:20px 18px; }
+  .kpi b { display:block; font-size:clamp(28px, 4vw, 42px); line-height:1.05; font-variant-numeric:tabular-nums; color:var(--gold); }
+  .kpi span { font-size:14px; display:block; margin-top:8px; color:var(--body); }
+
+  .go-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:14px; }
+  .go-card { padding:18px; text-align:left; font:inherit; color:var(--ink); cursor:pointer; transition:border-color .25s, transform .25s; }
+  .go-card:hover { border-color:rgba(216,180,122,.55); transform:translateY(-3px); }
+  .go-card b { display:block; font-size:16px; margin-bottom:4px; }
+  .go-card span { display:block; font-size:14px; color:var(--body); }
+  .go-card em { display:block; font-style:normal; font-weight:700; font-size:13px; color:var(--gold); margin-top:10px; }
+
+  .flow { display:grid; grid-template-columns:repeat(7, 1fr); gap:10px; }
+  .step { padding:16px 12px 14px; font-size:13.5px; color:var(--body); transition:box-shadow .35s, border-color .35s, transform .35s; }
+  .step .n { display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:rgba(216,180,122,.16); color:var(--gold); font-weight:700; font-size:13px; margin-bottom:8px; }
+  .step b { display:block; color:var(--ink); font-size:14.5px; margin-bottom:4px; }
+  .who { display:inline-block; margin-top:8px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 8px; border-radius:999px; }
+  .who.ai { color:var(--ai); background:rgba(143,180,255,.12); }
+  .who.both { color:var(--ok); background:rgba(126,224,176,.12); }
+  .who.me { color:var(--gold); background:rgba(216,180,122,.14); }
+  .flow.eight { grid-template-columns:repeat(4, 1fr); }
+  .hub { display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:center; }
+  .hub .col { display:grid; gap:12px; }
+  .hub .node { padding:14px 16px; font-size:14px; color:var(--body); }
+  .hub .node b { display:block; color:var(--ink); font-size:15px; margin-bottom:2px; }
+  .hub .core { padding:26px 22px; text-align:center; border-color:rgba(216,180,122,.6); max-width:230px; }
+  .hub .core b { display:block; font-family:var(--serif); font-weight:400; font-size:22px; color:#f6f1e7; margin-bottom:6px; }
+  .hub .core span { font-size:13.5px; color:var(--body); }
+  .tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:12px; }
+  .tag.real { color:var(--ok); background:rgba(126,224,176,.12); }
+  .tag.model { color:var(--ai); background:rgba(143,180,255,.12); }
+  .day { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; }
+  .day li { padding:16px; font-size:14px; color:var(--body); }
+  .day .t { display:block; color:var(--gold); font-weight:700; font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+  .day b { display:block; color:var(--ink); font-size:15px; margin-bottom:4px; }
+  .use { display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; }
+  .use div { padding:16px; font-size:14px; color:var(--body); }
+  .use b { display:block; color:var(--ink); margin-bottom:4px; font-size:15px; }
+  .step.gate { border-color:rgba(126,224,176,.35); }
+  .step.gate .n { background:rgba(126,224,176,.16); color:var(--ok); }
+  .step:hover { border-color:rgba(216,180,122,.55); }
+  .loop { margin-top:12px; padding:12px 16px; border:1px dashed rgba(216,180,122,.45); border-radius:14px; text-align:center; color:var(--body); font-size:14px; }
+  .loop b { color:var(--gold); }
+  .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:14px; font-size:13px; color:var(--soft); }
+
+  .chain { list-style:none; margin:0; padding:0; position:relative; }
+  .chain::before { content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px; background:linear-gradient(var(--gold), rgba(216,180,122,.1)); }
+  .chain > li { position:relative; padding:0 0 18px 56px; }
+  .chain .dot { position:absolute; left:6px; top:2px; width:28px; height:28px; border-radius:50%; background:#141821; border:2px solid var(--gold); color:var(--gold); display:grid; place-items:center; font-size:13px; font-weight:700; }
+  .chain h4 { margin:0 0 6px; font-size:16px; }
+  .chain p { margin:0 0 8px; color:var(--body); font-size:15px; }
+  .doc { font:13px/1.6 "SF Mono", Menlo, Consolas, monospace; color:#cfd5e2; background:rgba(0,0,0,.35); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:6px 0 4px; white-space:pre-wrap; }
+  .doc .src { display:block; color:var(--soft); font-size:11.5px; margin-bottom:6px; }
+  .doc .pass { color:var(--ok); } .doc .fail { color:#ff9b8a; }
+  .ex-row { display:grid; grid-template-columns:260px 1fr; gap:22px; align-items:start; }
+  .ex-row > .shot { position:sticky; top:80px; }
+
+  .shots { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+  .shots.three { grid-template-columns:repeat(3, 1fr); }
+  .shots.six { grid-template-columns:repeat(6, 1fr); }
+  .shot { display:block; text-decoration:none; color:var(--ink); transition:transform .25s, border-color .25s; }
+  .shot:hover { transform:translateY(-4px); border-color:rgba(216,180,122,.55); }
+  .shot img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top; }
+  .shot.v img { aspect-ratio:9/16; }
+  .shot.sq img { aspect-ratio:1/1; }
+  .shot .cap { display:block; padding:12px 14px 14px; }
+  .shot .cap b { display:block; color:var(--gold); font-size:16px; }
+  .shot .cap i { display:block; font-style:normal; font-size:13px; color:var(--body); margin:2px 0 8px; }
+  .shot .cap em { font-style:normal; font-size:13px; font-weight:700; color:var(--gold); }
+  .janusz-grid { display:grid; grid-template-columns:1fr 1fr .56fr .56fr; gap:14px; align-items:start; }
+
+  .project { margin-bottom:34px; }
+  .project .head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; margin-bottom:10px; }
+  .project .head h3 { font-family:var(--serif); font-weight:400; font-size:28px; margin:0; color:#f6f1e7; }
+  .project .head .stats { color:var(--soft); font-size:14px; }
+  .project .head .stats b { color:var(--gold); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
+  .chip { font-size:12.5px; padding:5px 10px; border-radius:999px; border:1px solid var(--line); color:var(--body); }
+  .chip.g { border-color:rgba(126,224,176,.4); color:var(--ok); }
+
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch; }
+  .txt { padding:22px; font-size:16px; color:var(--body); }
+  .txt p { margin:0 0 12px; } .txt p:last-child { margin:0; }
+  .txt ul { margin:0; padding-left:18px; } .txt li { margin-bottom:8px; }
+  .links { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+
+  .sec-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+  .sec { padding:18px; font-size:15px; color:var(--body); }
+  .sec b { display:block; color:var(--ink); font-size:15.5px; margin-bottom:6px; }
+  .sec .n { color:var(--gold); font-weight:700; font-size:12px; letter-spacing:.1em; display:block; margin-bottom:6px; }
+
+  .term .bar { display:flex; align-items:center; gap:6px; padding:10px 14px; border-bottom:1px solid var(--line); font-size:12px; color:var(--soft); }
+  .term .bar i { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.18); }
+  .term .bar span { margin-left:8px; }
+  .term pre { margin:0; padding:14px 16px 16px; font:12.5px/1.6 "SF Mono", Menlo, Consolas, monospace; color:#cfd5e2; overflow-x:auto; white-space:pre; }
+
+
+  .modal { position:fixed; inset:0; z-index:50; background:rgba(4,6,10,.92); display:none; place-items:center; padding:16px; }
+  .modal.open { display:grid; }
+  .modal .box { position:relative; width:min(960px, 100%); }
+  .modal .box.tall { width:min(420px, 100%); }
+  .modal iframe { display:block; width:100%; aspect-ratio:16/9; border:0; border-radius:14px; background:#000; }
+  .modal .box.tall iframe { aspect-ratio:9/16; max-height:82vh; }
+  .modal .box.ig iframe { aspect-ratio:auto; height:min(82vh, 760px); background:#fff; }
+  .modal .x { position:absolute; top:-44px; right:0; font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:rgba(255,255,255,.1); border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer; }
+  .modal .out { display:block; text-align:center; margin-top:10px; font-size:13px; color:var(--soft); }
+  .igframe { width:100%; height:640px; border:0; border-radius:14px; background:#fff; }
+  .next { margin-top:26px; text-align:right; }
+  .cta { text-align:center; padding:44px 22px; }
+  .cta h3 { font-family:var(--serif); font-weight:400; font-size:clamp(26px, 4vw, 40px); margin:0 0 10px; }
+  .cta p { color:var(--body); max-width:600px; margin:0 auto 24px; }
+  .cta .btns { justify-content:center; }
+  footer { padding:10px 0 50px; font-size:13px; color:var(--soft); text-align:center; }
+
+  @media (max-width:1120px) { .brand { display:none; } }
+  @media (max-width:900px) {
+    .flow, .flow.eight { grid-template-columns:repeat(2, 1fr); }
+    .use, .day { grid-template-columns:1fr 1fr; }
+    .go-cards, .kpis { grid-template-columns:repeat(2, 1fr); }
+    .janusz-grid { grid-template-columns:1fr 1fr; }
+    .sec-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:700px) {
+    header.hero { grid-template-columns:1fr; padding-top:30px; gap:22px; }
+    .photo { order:-1; } .photo img { width:140px; height:175px; }
+    .shots, .shots.three { grid-template-columns:1fr 1fr; }
+    .shots.six { grid-template-columns:repeat(3, 1fr); }
+    .duo, .ex-row, .sec-grid, .hub { grid-template-columns:1fr; }
+    .hub .core { max-width:none; }
+    .ex-row > .shot { position:static; }
+    .top .cv, .brand { display:none; }
+    .cta .btn { font-size:14px; padding:12px 16px; max-width:100%; overflow-wrap:anywhere; }
+  }
+  @media (max-width:440px) { .shots, .shots.three, .go-cards { grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; }
+    .js .rv { opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+<div class="lights"><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#start" data-go="start">G. Wywrocka</a>
+    <div class="tabs" role="tablist" aria-label="Zakładki portfolio">
+      <a class="tab" role="tab" href="#start" data-go="start">Start</a>
+      <a class="tab" role="tab" href="#system" data-go="system">System</a>
+      <a class="tab" role="tab" href="#montaz" data-go="montaz">Montaż</a>
+      <a class="tab" role="tab" href="#projekty" data-go="projekty">Projekty</a>
+      <a class="tab" role="tab" href="#marketing" data-go="marketing">Marketing i reklamy</a>
+      <a class="tab" role="tab" href="#it" data-go="it">IT i bezpieczeństwo</a>
+      <a class="tab" role="tab" href="#kontakt" data-go="kontakt">Kontakt</a>
+    </div>
+    <a class="cv" href="cv.pdf" download>CV (PDF)</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<div class="panel" id="p-start" role="tabpanel">
+  <header class="hero">
+    <div>
+      <h1 class="rv">Gabriela Wywrocka</h1>
+      <p class="role rv">AI Operations w marketingu i treściach · systemy agentów AI od planu do pomiaru</p>
+      <p class="lead rv">Buduję i prowadzę systemy agentów AI, które robią marketing i treści od analizy rynku po gotowy materiał. Wcześniej prowadziłam marketing hotelu, treści w e-commerce i kampanie z twórcami. Każda zakładka pokazuje dowody.</p>
+      <div class="btns rv">
+        <a class="btn main" href="#system" data-go="system">Zobacz, jak działa system</a>
+        <a class="btn" href="cv.pdf" download>Pobierz CV (PDF)</a>
+      </div>
+    </div>
+    <div class="photo rv"><img src="foto.jpg" alt="Gabriela Wywrocka"></div>
+  </header>
+
+  <section>
+    <h2 class="rv">W skrócie</h2>
+    <div class="kpis" id="kpis">
+      <div class="kpi glass rv"><b data-to="411" data-suf=" tys.">411 tys.</b><span>wyświetleń kanału zbudowanego od zera w 7 miesięcy</span></div>
+      <div class="kpi glass rv"><b data-to="25" data-pre="+" data-suf="%">+25%</b><span>sprzedaży hotelu w sezonie świątecznym, rok do roku</span></div>
+      <div class="kpi glass rv"><b data-to="4">4</b><span>marki prowadzone na jednym systemie AI, w 3 językach</span></div>
+      <div class="kpi glass rv"><b data-to="17">17</b><span>agentów kontroli jakości, którzy sprawdzają pracę AI przed publikacją</span></div>
+    </div>
+    <p class="note rv">Statystyki kanałów z publicznego YouTube Data API, stan na 16.11.2026. Wyniki hotelu: te same weekendy rok do roku.</p>
+  </section>
+
+  <section>
+    <h2 class="rv">Co znajdziesz w zakładkach</h2>
+    <div class="go-cards">
+      <button class="go-card glass rv" data-go="system"><b>Jak działa system</b><span>Prosty schemat od analizy rynku po gotowy materiał, plus jeden prawdziwy film krok po kroku.</span><em>Otwórz →</em></button>
+      <button class="go-card glass rv" data-go="montaz"><b>Montaż wideo z AI</b><span>Od surowego nagrania do gotowego filmu z rozdziałami, muzyką i napisami.</span><em>Otwórz →</em></button>
+      <button class="go-card glass rv" data-go="projekty"><b>Projekty</b><span>4 marki: muzyka z afirmacjami, kanał o finansach, vlog i rynki zagraniczne.</span><em>Otwórz →</em></button>
+      <button class="go-card glass rv" data-go="marketing"><b>Marketing i reklamy</b><span>Hotel Dosłońce: kampanie od badania gości po sprzedaż pokoi. Klinika HOLI: treści od analizy po publikację.</span><em>Otwórz →</em></button>
+      <button class="go-card glass rv" data-go="it"><b>IT i bezpieczeństwo</b><span>Chmura Azure i AWS oraz to, jak zabezpieczam swój system.</span><em>Otwórz →</em></button>
+    </div>
+  </section>
+</div>
+
+<div class="panel" id="p-system" role="tabpanel">
+  <section>
+    <h3 class="big rv">Jak działa mój system</h3>
+    <p class="intro rv">Jeden proces, który powtarza się dla każdego materiału. Agenci AI wykonują pracę, ja ustalam kierunek, zatwierdzam i odpowiadam za wynik. Bramki jakości zatrzymują błędy, zanim trafią do ludzi.</p>
+    <div class="flow rv" id="flow">
+      <div class="step glass"><span class="n">1</span><b>Analiza rynku</b>dane z YouTube Studio, konkurencja, czego ludzie szukają<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">2</span><b>Plan</b>temat, tytuł, okładka, termin w kalendarzu<br><span class="who both">agent + ja</span></div>
+      <div class="step glass"><span class="n">3</span><b>Teksty</b>scenariusze, teksty piosenek, opisy<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">4</span><b>Produkcja</b>muzyka, grafiki, animacje, lektor, montaż<br><span class="who ai">agent AI</span></div>
+      <div class="step glass gate"><span class="n">5</span><b>Bramki jakości</b>niezależni krytycy, liczby w 2 źródłach, mój akcept<br><span class="who both">agenci + ja</span></div>
+      <div class="step glass"><span class="n">6</span><b>Publikacja</b>termin, test A/B okładek, reklamy włączone<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">7</span><b>Pomiar</b>CTR, oglądalność, przychód, poprawki tytułów<br><span class="who both">agent + ja</span></div>
+    </div>
+    <div class="loop rv">↻ Wnioski z <b>pomiaru</b> wracają do <b>analizy rynku</b>, więc każdy kolejny materiał jest lepszy od poprzedniego.</div>
+    <div class="legend rv"><span><span class="who ai">agent AI</span> robi sam</span><span><span class="who both">agent + ja</span> agent przygotowuje, ja decyduję</span></div>
+  </section>
+
+  <section>
+    <h2 class="rv">Przykład: jeden film od analizy do wyniku</h2>
+    <div class="ex-row">
+      <a class="shot glass rv" href="https://www.youtube.com/watch?v=DLDtpfTmlmA" target="_blank" rel="noopener noreferrer">
+        <img src="dowody/DLDtpfTmlmA.jpg" alt="Jeśli to słyszysz, pozwól sobie zwolnić" loading="lazy">
+        <span class="cap"><b>„Jeśli to słyszysz, pozwól sobie zwolnić”</b><i>Afirmacje na Dobry Dzień · 07.09.2026</i><em>Odtwórz ▶</em></span>
+      </a>
+      <ol class="chain">
+        <li class="rv"><span class="dot">1</span><h4>Analiza rynku</h4><p>Agent zebrał dane kanału i konkurencji i wyciągnął wnioski, które przeczytałam przed decyzją.</p>
+          <div class="doc"><span class="src">fragment raportu z 04.09.2026</span>Hak drugoosobowy wygrywa. Trzy najlepsze tytuły to
+„JEŚLI TO CZYTASZ…”, „POSŁUCHAJ TEGO, ZANIM…”, „WŁĄCZ TO, GDY…”.
+Lo-fi do pracy zarabia prawie 3× więcej na widza.</div></li>
+        <li class="rv"><span class="dot">2</span><h4>Plan</h4><p>18 piosenek rozpisanych na różne obszary życia. Pierwszy tytuł od agenta był płaską etykietą, więc bramka go odrzuciła, a ja zatwierdziłam wersję z hakiem.</p>
+          <div class="doc"><span class="src">plan produkcji</span>bramka różnorodności: 16 z 18 obszarów życia (min. 10)  <span class="pass">PASS</span>
+tytuł „DZIĘKUJĘ SOBIE DZISIAJ”, bramka haka  <span class="fail">ODRZUCONY</span>
+tytuł „JEŚLI TO SŁYSZYSZ, POZWÓL SOBIE ZWOLNIĆ”  <span class="pass">ZATWIERDZONY 05.09</span></div></li>
+        <li class="rv"><span class="dot">3</span><h4>Teksty</h4><p>Agenci napisali 18 tekstów, a krytycy sprawdzili język, rymy i ton.</p>
+          <div class="doc"><span class="src">piosenka 1 z 18, refren</span>Dziękuję za to, co dziś czuję,
+za zwykły dzień, w którym się raduję.</div></li>
+        <li class="rv"><span class="dot">4</span><h4>Produkcja</h4><p>Muzyka, okładka i montaż powstały w nocy. Rano czekał gotowy film do akceptacji.</p></li>
+        <li class="rv"><span class="dot">5</span><h4>Bramka jakości</h4><p>Automatyczny odsłuch przepisał każdą piosenkę na tekst i porównał z oryginałem. Dwie poszły do mojego odsłuchu.</p>
+          <div class="doc"><span class="src">raport odsłuchu QA, 05.09.2026</span>plików: 18   czyste: 16  <span class="pass">PASS</span>
+do odsłuchu: 2 (głośniejsze zakończenie utworu)  <span class="fail">FLAGA</span></div></li>
+        <li class="rv"><span class="dot">6</span><h4>Publikacja</h4><p>Film wszedł w zaplanowanym terminie, z włączonymi reklamami.</p></li>
+        <li class="rv"><span class="dot">7</span><h4>Pomiar</h4><p><b style="color:var(--gold)">1 254 wyświetlenia</b> i wnioski do kolejnych odcinków serii lo-fi.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="rv">Jak powstaje scenariusz</h2>
+    <p class="intro rv">Scenariusz nie wychodzi z jednego polecenia. Przechodzi przez kilku agentów, z których każdy ma jedną rolę, a na końcu przeze mnie.</p>
+    <div class="flow eight rv">
+      <div class="step glass"><span class="n">1</span><b>Temat z danych</b>wybrany z raportu rynku i wyników poprzednich materiałów<br><span class="who both">agent + ja</span></div>
+      <div class="step glass"><span class="n">2</span><b>Szkic</b>agent autor pisze tekst głosem marki, na podstawie wcześniejszych nagrań<br><span class="who ai">agent AI</span></div>
+      <div class="step glass gate"><span class="n">3</span><b>Fakty</b>każdy konkret i każda liczba potwierdzone w 2 źródłach albo przeliczone<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">4</span><b>Dramaturgia</b>mocne otwarcie, haki, które trzymają widza, domknięcie<br><span class="who ai">agent AI</span></div>
+      <div class="step glass gate"><span class="n">5</span><b>Redaktor</b>niezależny krytyk punktuje braki, nie poprawia sam<br><span class="who ai">agent AI</span></div>
+      <div class="step glass gate"><span class="n">6</span><b>Widz testowy</b>agent czyta jak odbiorca: gdzie się nudzę, co zapamiętam<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">7</span><b>Mój akcept</b>czytam, zmieniam, zatwierdzam<br><span class="who me">ja</span></div>
+      <div class="step glass"><span class="n">8</span><b>Lista ujęć</b>scenariusz zamieniony na plan nagrania albo zamówienie scen<br><span class="who ai">agent AI</span></div>
+    </div>
+    <p class="note rv">Autor i krytyk to zawsze różni agenci. Krytyk nie zna zamiarów autora, więc ocenia tekst tak, jak zobaczy go odbiorca.</p>
+  </section>
+
+  <section>
+    <h2 class="rv">Jak wygląda moja praca z systemem</h2>
+    <ol class="day">
+      <li class="glass rv"><span class="t">Noc</span><b>Agenci produkują</b>Teksty, muzyka, grafiki i montaż powstają według planu z kalendarza. Nikt mnie nie budzi.</li>
+      <li class="glass rv"><span class="t">Rano</span><b>Raport stanu</b>Jedna strona: co gotowe, co czeka na decyzję, co się nie udało i dlaczego.</li>
+      <li class="glass rv"><span class="t">Przed południem</span><b>Akcepty z telefonu</b>Odsłuchuję i oglądam propozycje, klikam tak albo nie w Telegramie.</li>
+      <li class="glass rv"><span class="t">W dzień</span><b>Moja część</b>Nagrania, uwagi do montażu, decyzje o kierunku. Uwagi zamieniam w reguły.</li>
+      <li class="glass rv"><span class="t">Co tydzień</span><b>Pomiar</b>Wyniki testów okładek i tytułów, przychód, plan na kolejny tydzień.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="rv">Zasady, którymi zarządzam AI</h2>
+    <div class="sec-grid">
+      <div class="sec glass rv"><span class="n">ODPOWIEDZIALNOŚĆ</span><b>AI wykonuje, człowiek odpowiada.</b>Ustalam standard i progi, agenci pracują w ich granicach.</div>
+      <div class="sec glass rv"><span class="n">PROGI</span><b>Progi decyzyjne na piśmie.</b>Agent sam decyduje w ustalonych granicach kosztu i ryzyka, resztę zgłasza mnie.</div>
+      <div class="sec glass rv"><span class="n">LOG</span><b>Każda decyzja automatu w logu.</b>143 decyzje podjęte samodzielnie przez agentów, każda z uzasadnieniem.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="duo">
+      <div class="term glass rv" aria-label="Fragment mojego systemu">
+        <div class="bar"><i></i><i></i><i></i><span>mój system · wybrane procedury i agenci</span></div>
+<pre>procedury (36)
+  /raport              analiza kanału i konkurencji
+  /produkcja           nocna produkcja filmów
+  /afirmacjePLrano     film od danych do montażu
+  /afirmacjeESrano     to samo po hiszpańsku
+  /afirmacjeDErano     to samo po niemiecku
+  /janusz              kanał finansowy od tematu do publikacji
+  /miniatury           okładki do testu A/B
+  /publikacja          tytuł, opis, tagi, termin
+
+agenci kontroli jakości (17)
+  lyrics-critic        korektor tekstów PL, ES, DE
+  critic-verify3       3 krytyków, błąd = zgoda 2 z 3
+  janusz-liczby-critic każda liczba w 2 źródłach
+  janusz-anatomy-qa    kontrola rąk i twarzy postaci
+  shorts-framing-qa    kontrola kadru</pre>
+      </div>
+      <div class="glass rv txt">
+        <p><b>Tak wygląda system od środka.</b> To fragment prawdziwej listy. Każda procedura to opisany proces, który agent wykonuje krok po kroku, a każdy agent kontroli ma jedno zadanie: znaleźć błąd.</p>
+        <p>Buduję to z Claude Code: projektuję proces, piszę wymagania, testuję i odbieram. Po każdym błędzie powstaje reguła, a z reguły automatyczna bramka.</p>
+        <p>Całość pokażę na żywo na rozmowie.</p>
+      </div>
+    </div>
+    <div class="next"><button class="btn" data-go="montaz">Dalej: Montaż wideo →</button></div>
+  </section>
+</div>
+
+<div class="panel" id="p-montaz" role="tabpanel">
+  <section>
+    <h3 class="big rv">Montaż wideo z AI</h3>
+    <p class="intro rv">Z surowego materiału (aparat, telefon, dron) system przygotowuje gotową propozycję filmu. Ja oglądam, daję uwagi, zmieniam czcionki i rytm, a system nanosi poprawki. Tak powstają vlogi Zacisza: 40 do 60 minut, z rozdziałami, muzyką i napisami.</p>
+    <div class="flow eight rv">
+      <div class="step glass"><span class="n">1</span><b>Zgranie i katalog</b>każde ujęcie trafia do biblioteki z opisem, co na nim jest<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">2</span><b>Transkrypcja</b>cała mowa zamieniona na tekst co do sekundy<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">3</span><b>Skreślenia</b>powtórki, przejęzyczenia i przestoje wypadają<br><span class="who both">agent + ja</span></div>
+      <div class="step glass"><span class="n">4</span><b>Struktura</b>rozdziały tematyczne, mocne otwarcie i domknięcie<br><span class="who both">agent + ja</span></div>
+      <div class="step glass"><span class="n">5</span><b>Obraz i dźwięk</b>przebitki, muzyka ściszana pod głosem, napisy w stylu marki<br><span class="who ai">agent AI</span></div>
+      <div class="step glass gate"><span class="n">6</span><b>Bramki jakości</b>urwane słowa, kadr twarzy, napis na twarzy, płynność ujęć z drona<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">7</span><b>Render</b>montaż w ffmpeg etapami, z wznowieniem po przerwie<br><span class="who ai">agent AI</span></div>
+      <div class="step glass"><span class="n">8</span><b>Moje uwagi</b>oglądam, poprawiam, akceptuję, a uwagi stają się regułami<br><span class="who me">ja</span></div>
+    </div>
+    <div class="loop rv">↻ Każda moja uwaga zamienia się w <b>regułę w kodzie</b>, więc ten sam błąd nie wraca w kolejnym filmie.</div>
+  </section>
+
+  <section>
+    <h2 class="rv">Dowody</h2>
+    <div class="kpis">
+      <div class="kpi glass rv"><b>1 706</b><span>ujęć w bibliotece przebitek, każde opisane i do znalezienia w kilka sekund</span></div>
+      <div class="kpi glass rv"><b>17</b><span>wersji pierwszego odcinka, z których powstał przepis na kolejne</span></div>
+      <div class="kpi glass rv"><b>55</b><span>moich uwag do jednego odcinka, każda zamieniona w regułę</span></div>
+      <div class="kpi glass rv"><b>40–60</b><span>minut ma gotowy odcinek z rozdziałami, muzyką i napisami</span></div>
+    </div>
+    <div class="shots three" style="margin-top:14px">
+      <a class="shot glass rv" href="https://www.youtube.com/watch?v=kc-8wldayYY" target="_blank" rel="noopener noreferrer"><img src="dowody/kc-8wldayYY.jpg" alt="Jesienne dekoracje w domu" loading="lazy"><span class="cap"><b>Vlog · 40 minut</b><i>Jesienne dekoracje w domu, 9 709 wyświetleń</i><em>Odtwórz ▶</em></span></a>
+      <a class="shot glass rv" href="https://www.youtube.com/watch?v=VggWUVACgOk" target="_blank" rel="noopener noreferrer"><img src="dowody/VggWUVACgOk.jpg" alt="Koniec lata i start jesieni" loading="lazy"><span class="cap"><b>Vlog · 42 minuty</b><i>Koniec lata i start jesieni, z ujęciami z drona</i><em>Odtwórz ▶</em></span></a>
+      <a class="shot glass rv" href="https://www.youtube.com/watch?v=EYuEWAJMx1E" target="_blank" rel="noopener noreferrer"><img src="dowody/EYuEWAJMx1E.jpg" alt="Janusz Biznesu" loading="lazy"><span class="cap"><b>Animacja z lektorem</b><i>Janusz Biznesu, montaż scen, lektora, muzyki i efektów</i><em>Odtwórz ▶</em></span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="rv">Co zrobię z nagraniem wykładu albo eventu</h2>
+    <div class="use">
+      <div class="glass rv"><b>Pełne nagranie</b>z rozdziałami i planszami z nazwiskami prelegentów</div>
+      <div class="glass rv"><b>Napisy</b>do oglądania bez dźwięku i dla osób niesłyszących</div>
+      <div class="glass rv"><b>Skrót</b>najważniejsze momenty w 3 do 5 minutach</div>
+      <div class="glass rv"><b>Klipy pionowe</b>krótkie fragmenty na Instagram, TikTok i LinkedIn</div>
+      <div class="glass rv"><b>Styl marki</b>czcionki, kolory i muzyka według wytycznych firmy</div>
+    </div>
+    <p class="note rv">Ten sam proces przenoszę na wykłady, konferencje, webinary i eventy firmowe. Pierwszą wersję dostajesz szybko, a poprawki idą w rundach.</p>
+    <div class="next"><button class="btn" data-go="projekty">Dalej: Projekty →</button></div>
+  </section>
+</div>
+<div class="panel" id="p-projekty" role="tabpanel">
+  <section>
+    <h3 class="big rv">Projekty</h3>
+    <p class="intro rv">Cztery marki na jednym systemie. Każdą okładkę możesz kliknąć i sprawdzić licznik na YouTube.</p>
+
+    <div class="project">
+      <div class="head rv"><h3>Afirmacje na Dobry Dzień</h3><span class="stats">muzyka z afirmacjami · start 04.2026 · <b>2 680</b> subskrypcji · <b>411 349</b> wyświetleń · <b>167</b> filmów · zarabia na reklamach</span></div>
+      <div class="shots">
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=dHTF7maMuVg" target="_blank" rel="noopener noreferrer"><img src="dowody/dHTF7maMuVg.jpg" alt="To zmieni Twój dzień" loading="lazy"><span class="cap"><b>49 614 wyświetleń</b><i>To zmieni Twój dzień</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=K5d_sVdpwkw" target="_blank" rel="noopener noreferrer"><img src="dowody/K5d_sVdpwkw.jpg" alt="Co się stanie, gdy zaczniesz tak dzień?" loading="lazy"><span class="cap"><b>33 056 wyświetleń</b><i>Co się stanie, gdy zaczniesz tak dzień?</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=T-9lFKnoHL0" target="_blank" rel="noopener noreferrer"><img src="dowody/T-9lFKnoHL0.jpg" alt="To da Ci siłę" loading="lazy"><span class="cap"><b>24 236 wyświetleń</b><i>To da Ci siłę</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=9Pxd9Y00WBE" target="_blank" rel="noopener noreferrer"><img src="dowody/9Pxd9Y00WBE.jpg" alt="To da Ci poczucie wartości" loading="lazy"><span class="cap"><b>22 348 wyświetleń</b><i>To da Ci poczucie wartości</i><em>Odtwórz ▶</em></span></a>
+      </div>
+      <p class="links rv"><a href="https://www.youtube.com/@afirmacjenadobrydzienpewnosc" target="_blank" rel="noopener noreferrer">Cały kanał ↗</a></p>
+    </div>
+
+    <div class="project">
+      <div class="head rv"><h3>Janusz Biznesu</h3><span class="stats">finanse osobiste z ironicznym, animowanym narratorem · start 07.2026 · <b>84</b> filmy · <b>47 105</b> wyświetleń</span></div>
+      <div class="chips rv"><span class="chip">scenariusz</span><span class="chip">krytyk tekstu</span><span class="chip g">bramka liczb: każda w Pythonie albo w 2 źródłach</span><span class="chip">lektor</span><span class="chip">sceny w pełnych lokacjach</span><span class="chip g">kontrola rąk i twarzy postaci</span><span class="chip">muzyka i efekty</span><span class="chip">montaż</span></div>
+      <div class="janusz-grid">
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=EYuEWAJMx1E" target="_blank" rel="noopener noreferrer"><img src="dowody/EYuEWAJMx1E.jpg" alt="Z kredytem przegrywasz" loading="lazy"><span class="cap"><b>3 877 wyświetleń</b><i>Z kredytem przegrywasz, nawet gdy dajesz więcej</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=PPNJ7NH9n6k" target="_blank" rel="noopener noreferrer"><img src="dowody/PPNJ7NH9n6k.jpg" alt="Pierwsze 20 000 zł" loading="lazy"><span class="cap"><b>2 009 wyświetleń</b><i>Pierwsze 20 000 zł nie zmieni Ci życia</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/ct9wB077lQE" target="_blank" rel="noopener noreferrer"><img src="dowody/ct9wB077lQE_v.jpg" alt="4 nawyki" loading="lazy"><span class="cap"><b>1 404</b><i>Short</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/9phma6yzvD4" target="_blank" rel="noopener noreferrer"><img src="dowody/9phma6yzvD4_v.jpg" alt="Ta wiertarka płaci Ci czynsz?" loading="lazy"><span class="cap"><b>1 343</b><i>Short</i><em>Odtwórz ▶</em></span></a>
+      </div>
+      <p class="links rv"><a href="https://www.youtube.com/@januszbiznesujakwfinanse" target="_blank" rel="noopener noreferrer">Cały kanał ↗</a></p>
+    </div>
+
+    <div class="project">
+      <div class="head rv"><h3>Zacisze</h3><span class="stats">vlog z moją twarzą i głosem · <b>7 430</b> subskrypcji · <b>211 051</b> wyświetleń · program wspierających</span></div>
+      <div class="shots">
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=kc-8wldayYY" target="_blank" rel="noopener noreferrer"><img src="dowody/kc-8wldayYY.jpg" alt="Jesienne dekoracje w domu" loading="lazy"><span class="cap"><b>9 709 wyświetleń</b><i>Jesienne dekoracje w domu</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=yivyFdawClg" target="_blank" rel="noopener noreferrer"><img src="dowody/yivyFdawClg.jpg" alt="Zrób to wieczorem" loading="lazy"><span class="cap"><b>8 162 wyświetlenia</b><i>Zrób to wieczorem, żeby rano było łatwiej</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=VggWUVACgOk" target="_blank" rel="noopener noreferrer"><img src="dowody/VggWUVACgOk.jpg" alt="Koniec lata i start jesieni" loading="lazy"><span class="cap"><b>7 051 wyświetleń</b><i>Koniec lata i start jesieni</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.zaciszevlog.pl" target="_blank" rel="noopener noreferrer"><img src="dowody/strona.jpg" alt="Strona zaciszevlog.pl" loading="lazy"><span class="cap"><b>zaciszevlog.pl</b><i>Strona vloga: kalendarz adwentowy, przepisy, polecane</i><em>Otwórz stronę ↗</em></span></a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="head rv"><h3>Kierunek artystyczny i 3 rynki</h3><span class="stats">jedna bohaterka · własny kolor dla każdego rynku · okładki zmieniane z sezonem i testowane A/B</span></div>
+      <div class="shots three">
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=aomCsPsTGN4" target="_blank" rel="noopener noreferrer"><img src="dowody/art_pl.jpg" alt="Okładka PL" loading="lazy"><span class="cap"><b>Polska · złota jesień</b><i>Ciepłe światło i sezonowa sceneria</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=lMmVqNS1pTE" target="_blank" rel="noopener noreferrer"><img src="dowody/art_es.jpg" alt="Okładka ES" loading="lazy"><span class="cap"><b>Hiszpania · róż</b><i>Teksty pisane od razu po hiszpańsku</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot glass rv" href="https://www.youtube.com/watch?v=jhgU-zOuxDI" target="_blank" rel="noopener noreferrer"><img src="dowody/art_de.jpg" alt="Okładka DE" loading="lazy"><span class="cap"><b>Niemcy · szałwia</b><i>Teksty pisane od razu po niemiecku</i><em>Odtwórz ▶</em></span></a>
+      </div>
+      <p class="note rv">Tę stronę też zaprojektowałam jako próbkę: animacje i światło są zrobione w czystym kodzie, bez szablonu.</p>
+    </div>
+    <div class="next"><button class="btn" data-go="marketing">Dalej: Marketing i reklamy →</button></div>
+  </section>
+</div>
+
+<div class="panel" id="p-marketing" role="tabpanel">
+  <section>
+    <h3 class="big rv">Marketing i reklamy: Dosłońce Resort Wellness &amp; Farm</h3>
+    <p class="intro rv">Head of Marketing / Digital Project Manager · 10.2024–03.2025 · kontrakt projektowy. Hotel przygotowywał się do wyjścia z sieci i przejścia z marki <b>Mercure Racławice Dosłońce</b> na własną markę <b>Dosłońce</b>. Prowadziłam cały marketing: od badania gości, przez nagrania i reklamy, po wynik w sprzedaży pokoi.</p>
+    <div class="kpis">
+      <div class="kpi glass rv"><b>+25%</b><span>sprzedaży w okresie andrzejek, wigilii i sylwestra, rok do roku</span></div>
+      <div class="kpi glass rv"><b>+30%</b><span>sprzedaży mikołajek dla dzieci po włączeniu płatnych materiałów na Facebooku</span></div>
+      <div class="kpi glass rv"><b>27</b><span>krótkich filmów na kanał hotelu, 45 639 wyświetleń</span></div>
+      <div class="kpi glass rv"><b>5</b><span>osób w zespole wdrożonym w nowy plan marketingowy</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="rv">Jak prowadziłam kampanie hotelu</h2>
+    <div class="flow eight rv">
+      <div class="step glass"><span class="n">1</span><b>Rynek i gość</b>oferty konkurencji, opinie gości, czego ludzie szukają przed świętami i feriami</div>
+      <div class="step glass"><span class="n">2</span><b>Oferta i przekaz</b>pakiet, cena, termin i jedno zdanie, które ma sprzedać pobyt</div>
+      <div class="step glass"><span class="n">3</span><b>Nagrania</b>materiał z hotelu: pokoje, spa, farma, wydarzenia</div>
+      <div class="step glass"><span class="n">4</span><b>Filmy i grafiki</b>montaż krótkich filmów i materiałów do reklam</div>
+      <div class="step glass"><span class="n">5</span><b>Publikacja</b>YouTube, Instagram i Facebook według kalendarza</div>
+      <div class="step glass"><span class="n">6</span><b>Reklamy płatne</b>Meta i Google Ads kierowane na konkretną ofertę w Profitroom</div>
+      <div class="step glass"><span class="n">7</span><b>Pomiar w Google</b>skąd przychodzi ruch na stronę i która platforma go daje</div>
+      <div class="step glass gate"><span class="n">8</span><b>Sprzedaż pokoi</b>główny miernik: rezerwacje, a nie polubienia</div>
+    </div>
+    <div class="loop rv">↻ Wyniki sprzedaży decydowały, na co idzie budżet w kolejnej kampanii.</div>
+  </section>
+
+  <section>
+    <h2 class="rv">Filmy, które robiłam dla hotelu</h2>
+    <p class="intro rv">Po 3 miesiącach przerwy kanał YouTube hotelu znów zaczął regularnie publikować: <b>27 krótkich filmów</b> w czasie mojego kontraktu, łącznie <b>45 639 wyświetleń</b>. Sezon świąteczny, ferie i pierwszy film pod nową marką Dosłońce.</p>
+    <div class="shots six">
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/u2Ak0jTPGkA" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_u2Ak0jTPGkA_v.jpg" alt="Andrzejki" loading="lazy"><span class="cap"><b>Andrzejki</b><i>05.11.2024 · 197 wyśw.</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/fwntePWb5-I" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_fwntePWb5-I_v.jpg" alt="Mikołajki" loading="lazy"><span class="cap"><b>Mikołajki</b><i>19.11.2024 · 188 wyśw.</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/Mo0Zg30cRq4" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_Mo0Zg30cRq4_v.jpg" alt="Święta, żywa szopka" loading="lazy"><span class="cap"><b>Święta, żywa szopka</b><i>05.12.2024 · 1 790 wyśw.</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/1ehodPeq8R4" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_1ehodPeq8R4_v.jpg" alt="Sylwester 2024/2025" loading="lazy"><span class="cap"><b>Sylwester 2024/2025</b><i>27.11.2024 · 3 003 wyśw.</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/NPMEUqLPDR4" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_NPMEUqLPDR4_v.jpg" alt="Ferie zimowe" loading="lazy"><span class="cap"><b>Ferie zimowe</b><i>27.11.2024 · 14 321 wyśw.</i><em>Odtwórz ▶</em></span></a>
+        <a class="shot v glass rv" href="https://www.youtube.com/shorts/AZET7eYkXXY" target="_blank" rel="noopener noreferrer"><img src="dowody/hot_AZET7eYkXXY_v.jpg" alt="Nowa marka Dosłońce" loading="lazy"><span class="cap"><b>Nowa marka Dosłońce</b><i>21.03.2025 · 1 067 wyśw.</i><em>Odtwórz ▶</em></span></a>
+    </div>
+    <p class="links rv"><a href="https://www.youtube.com/@Doslonce" target="_blank" rel="noopener noreferrer">Kanał YouTube hotelu ↗</a></p>
+  </section>
+
+  <section>
+    <h2 class="rv">Instagram hotelu w czasie mojego kontraktu</h2>
+    <p class="intro rv"><b>65 postów</b> i rolek, <b>1 532 polubienia</b>. Poniżej cztery z najlepszym wynikiem.</p>
+    <div class="shots">
+        <a class="shot sq glass rv" href="https://www.instagram.com/p/DG5tYCkoJWP/" target="_blank" rel="noopener noreferrer"><img src="dowody/ig_marka.jpg" alt="Nowa marka Dosłońce" loading="lazy"><span class="cap"><b>Nowa marka Dosłońce</b><i>07.03.2025 · 95 polubień</i><em>Pokaż post</em></span></a>
+        <a class="shot sq glass rv" href="https://www.instagram.com/reel/DC39dxbo0BS/" target="_blank" rel="noopener noreferrer"><img src="dowody/ig_sylwester.jpg" alt="Sylwester w Dosłońce" loading="lazy"><span class="cap"><b>Sylwester w Dosłońce</b><i>27.11.2024 · 84 polubienia</i><em>Pokaż post</em></span></a>
+        <a class="shot sq glass rv" href="https://www.instagram.com/reel/DCkBnqgIXdg/" target="_blank" rel="noopener noreferrer"><img src="dowody/ig_mikolajki.jpg" alt="Mikołajkowy weekend" loading="lazy"><span class="cap"><b>Mikołajkowy weekend</b><i>19.11.2024 · 80 polubień</i><em>Pokaż post</em></span></a>
+        <a class="shot sq glass rv" href="https://www.instagram.com/p/DDAlsmUCMoN/" target="_blank" rel="noopener noreferrer"><img src="dowody/ig_grudzien.jpg" alt="Rodzinny grudzień" loading="lazy"><span class="cap"><b>Rodzinny grudzień</b><i>30.11.2024 · 62 polubienia</i><em>Pokaż post</em></span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="rv">Jak to się łączyło</h2>
+    <div class="hub rv">
+      <div class="col">
+        <div class="node glass"><b>Strona hotelu i rezerwacje</b>pakiety i ceny w Profitroom, każda reklama prowadzi do konkretnej oferty</div>
+        <div class="node glass"><b>Reklamy płatne</b>Meta i Google Ads, SEO</div>
+      </div>
+      <div class="core glass"><b>Sprzedaż pokoi</b><span>jeden miernik dla wszystkich działań, ruch mierzony w Google</span></div>
+      <div class="col">
+        <div class="node glass"><b>Instagram, Facebook, YouTube</b>krótkie filmy i posty według kalendarza</div>
+        <div class="node glass"><b>Twórcy internetowi</b>zaproszenia do hotelu i posty z pobytu</div>
+      </div>
+    </div>
+    <div class="links rv" style="margin-top:16px">
+      <a class="btn" href="https://dosloncespa.pl" target="_blank" rel="noopener noreferrer">Strona hotelu ↗</a>
+      <a class="btn" href="https://www.instagram.com/doslonce_resort/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <a class="btn" href="https://www.facebook.com/doslonceresort/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+      <a class="btn" href="https://www.youtube.com/@Doslonce" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="rv">Twórcy: to już robiłam</h2>
+    <div class="duo">
+      <div class="glass rv txt">
+        <span class="tag real">Zrobione</span>
+        <p><b>Zaproszenie przez wiadomość na Instagramie.</b> W ten sposób zaprosiłam do hotelu Justynę z profilu „Normalni ludzie”. Z jej pobytu powstały posty, które dały hotelowi zasięg wśród rodzin z dziećmi.</p>
+        
+        <p>Wcześniej przez 2 lata prowadziłam kampanie z twórcami w agencji Stars Impresariat / Tears of Joy.</p>
+      </div>
+      <div class="glass rv" style="padding:10px"><iframe class="igframe" src="https://www.instagram.com/p/DDkx_rvIHCE/embed/" loading="lazy" title="Post z pobytu w Dosłońce" allowtransparency="true"></iframe></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="glass rv txt" style="max-width:640px">
+        <span class="tag model">Jak robi to system</span>
+        <ul>
+          <li>Agent szuka twórców pasujących do gości hotelu i sprawdza ich odbiorców.</li>
+          <li>Przygotowuje osobistą wiadomość do każdej osoby, bez kopiuj-wklej.</li>
+          <li>Wiadomość wysyłam ja, po przeczytaniu. Automat nie pisze do ludzi w moim imieniu.</li>
+          <li>Po pobycie agent zbiera wyniki postów i dopisuje je do raportu kampanii.</li>
+        </ul>
+      </div>
+  </section>
+
+  <section>
+    <h2 class="rv">To samo dziś, na systemie AI</h2>
+    <span class="tag model rv">Model: tak poprowadziłabym hotel teraz</span>
+    <div class="sec-grid">
+      <div class="sec glass rv"><span class="n">BADANIE I PLAN</span><b>Agent bada rynek i gości.</b>Dostaję raport i propozycję kalendarza kampanii, wybieram oferty i przekaz.</div>
+      <div class="sec glass rv"><span class="n">FILMY</span><b>Montaż w Claude Code i Codex.</b>Z nagrań hotelu agent robi filmy z lektorem AI, muzyką i napisami, w kilku wersjach do testu.</div>
+      <div class="sec glass rv"><span class="n">BRAMKI</span><b>Ceny i terminy zgodne z ofertą.</b>Agent kontroli sprawdza każdy materiał, a publikacja czeka na mój akcept.</div>
+      <div class="sec glass rv"><span class="n">PUBLIKACJA</span><b>Kalendarz publikuje sam.</b>Filmy wychodzą w zaplanowanych terminach na wszystkich kanałach.</div>
+      <div class="sec glass rv"><span class="n">WYNIK</span><b>Raport: ruch i sprzedaż pokoi.</b>Agent zbiera dane z Google i rezerwacji, ja decyduję o budżecie.</div>
+      <div class="sec glass rv"><span class="n">BUDŻET</span><b>Narzędzia około 400 zł miesięcznie.</b>Lektor, muzyka i grafiki z abonamentów. Budżet reklam ustala hotel, a agent go nie przekroczy.</div>
+    </div>
+    <p class="note rv">Tak działa już mój system dla kanałów YouTube. W hotelu zmienia się cel: zamiast wyświetleń liczy się sprzedaż pokoi.</p>
+  </section>
+
+  <section>
+    <h2 class="rv">HOLI Klinika Odchudzania: treści od analizy do publikacji</h2>
+    <div class="duo">
+      <div class="glass rv txt">
+        <span class="tag real">Zrobione · 03.2024–09.2024</span>
+        <ul>
+          <li>Analiza rynku i tematów, których szukają pacjenci.</li>
+          <li>Kalendarz publikacji dopasowany do grupy docelowej.</li>
+          <li>Opracowanie treści i materiałów na blog.</li>
+          <li>Scenariusze, nagrania i montaż filmów z napisami i narracją.</li>
+          <li>Publikacje zaplanowane z wyprzedzeniem i optymalizacja na podstawie wyników.</li>
+        </ul>
+      </div>
+      <div class="glass rv txt">
+        <span class="tag model">Ten sam zakres na moim systemie dziś</span>
+        <ul>
+          <li>Analizę rynku i propozycję kalendarza przygotowuje agent, ja wybieram tematy.</li>
+          <li>Artykuły i scenariusze przechodzą przez krytyka i kontrolę faktów. W tematach zdrowia każde twierdzenie ma źródło.</li>
+          <li>Montaż, napisy i wersje pionowe robi agent, ja akceptuję.</li>
+          <li>Publikacja idzie z kalendarza, a wyniki wracają do planu.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="rv">Wcześniej w marketingu</h2>
+    <div class="sec-grid">
+      <div class="sec glass rv"><span class="n">06.2022–02.2024</span><b>Zinzino · Content &amp; Platform Manager</b>Treści na zinzino.com, SEO (Senuto, Ahrefs, Surfer), e-mail marketing w GetResponse, analiza CTR, konwersji i CPA.</div>
+      <div class="sec glass rv"><span class="n">06.2020–05.2022</span><b>Stars Impresariat / Tears of Joy · Influencer PM</b>Kampanie z twórcami beauty i tech na YouTube, Instagramie i TikToku, od wyboru twórców po raport dla agencji.</div>
+      
+    </div>
+    <div class="next"><button class="btn" data-go="it">Dalej: IT i bezpieczeństwo →</button></div>
+  </section>
+</div>
+
+<div class="panel" id="p-it" role="tabpanel">
+  <section>
+    <h3 class="big rv">IT i bezpieczeństwo</h3>
+    <div class="duo">
+      <div class="glass rv txt">
+        <p><b>LTIMindtree · Engineer, Cloud &amp; Infrastructure Management</b><br><span style="color:var(--soft);font-size:14px">03.2024–12.2024 · kontrakt projektowy</span></p>
+        <ul>
+          <li>Wsparcie i monitoring infrastruktury chmurowej Microsoft Azure i AWS.</li>
+          <li>Praca z zespołami IT i klientami korporacyjnymi w środowisku międzynarodowym.</li>
+          <li>Dokumentacja procesów IT i udział w projektach automatyzacji środowisk chmurowych.</li>
+        </ul>
+      </div>
+      <div class="glass rv txt">
+        <p><b>Co z tego wynika dla marketingu z AI</b></p>
+        <p>Rozumiem, jak działa chmura, dostęp i monitoring. Dlatego mój system od początku ma zasady bezpieczeństwa, a nie tylko agentów, którzy produkują treści.</p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="rv">Jak zabezpieczam swój system AI</h2>
+    <div class="sec-grid">
+      <div class="sec glass rv"><span class="n">SEKRETY</span><b>Hasła i tokeny poza kodem.</b>Dostępy trzymam w sejfie systemu (macOS Keychain), z osobnymi tokenami OAuth dla kont.</div>
+      <div class="sec glass rv"><span class="n">BLOKADY</span><b>Agent nie skasuje tego, czego nie powinien.</b>Automatyczne blokady zatrzymują niebezpieczne operacje na plikach i chronionych zasobach, a każda blokada trafia do logu.</div>
+      <div class="sec glass rv"><span class="n">KOPIE</span><b>Kopie zapasowe w 3 miejscach.</b>Chmura Backblaze B2, GitHub i osobna kopia pamięci systemu, robione automatycznie.</div>
+      <div class="sec glass rv"><span class="n">MONITORING</span><b>Codzienny raport stanu.</b>Strażnicy pilnują nocnej produkcji i limitów narzędzi, a alerty przychodzą na Telegram.</div>
+      <div class="sec glass rv"><span class="n">FAIL-CLOSED</span><b>Awaria nigdy nie udaje sukcesu.</b>Brak danych albo błąd sprawdzenia oznacza alarm, a nie zielone światło.</div>
+      <div class="sec glass rv"><span class="n">CZŁOWIEK</span><b>Nieodwracalne decyzje podejmuję ja.</b>Płatności, kasowanie i wiadomości do ludzi zawsze czekają na moją akceptację. Prywatne nagrania nie trafiają do chmury.</div>
+    </div>
+    <p class="note rv">Konfiguracji nie publikuję. Szczegóły pokażę na rozmowie.</p>
+    <div class="next"><button class="btn" data-go="kontakt">Dalej: Kontakt →</button></div>
+  </section>
+</div>
+
+<div class="panel" id="p-kontakt" role="tabpanel">
+  <section>
+    <div class="cta glass rv">
+      <h3>Pokażę ten system na żywo</h3>
+      <p>Szukam roli zdalnej na B2B (albo hybrydowej w Krakowie), w której zbuduję i poprowadzę system AI dla zespołu marketingu albo treści. Chętnie poprowadzę też marketing hotelu albo resortu, od nagrań po promocję. W 20 minut pokażę, jak system działa od środka.</p>
+      <div class="btns">
+        <a class="btn main" href="mailto:gabrielawywrocka.kontakt@gmail.com?subject=Rozmowa%20rekrutacyjna">gabrielawywrocka.kontakt@gmail.com</a>
+        <a class="btn" href="cv.pdf" download>CV (PDF)</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Podgląd"><div class="box" id="mbox"><button class="x" id="mx">Zamknij ✕</button><iframe id="mframe" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Podgląd"></iframe><a class="out" id="mout" target="_blank" rel="noopener noreferrer">Otwórz w nowej karcie ↗</a></div></div>
+
+<footer>Strona prywatna, tylko dla osób z linkiem. Dane kanałów z 16.11.2026.</footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ids = ['start', 'system', 'montaz', 'projekty', 'marketing', 'it', 'kontakt'];
+  var kpDone = false;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target; io.unobserve(el);
+      var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.transitionDelay = Math.min(idx, 6) * 70 + 'ms'; el.classList.add('on');
+      if (!kpDone && el.closest('#kpis')) { kpDone = true; document.querySelectorAll('#kpis b').forEach(countUp); }
+    });
+  }, { threshold: 0.12 });
+
+  function show(id, push) {
+    if (ids.indexOf(id) < 0) id = 'start';
+    ids.forEach(function (k) {
+      var p = document.getElementById('p-' + k), on = k === id;
+      p.classList.toggle('active', on);
+      if (on) p.querySelectorAll('.rv:not(.on)').forEach(function (el) { io.observe(el); });
+    });
+    document.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', t.dataset.go === id ? 'true' : 'false'); });
+    if (push) { history.replaceState(null, '', '#' + id); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go]'); if (!t) return;
+    e.preventDefault(); show(t.dataset.go, true);
+  });
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1), false); });
+  show(location.hash.slice(1), false);
+
+
+  // filmy i posty otwierane na stronie
+  var modal = document.getElementById('modal'), mframe = document.getElementById('mframe'), mbox = document.getElementById('mbox'), mout = document.getElementById('mout');
+  function closeModal() { modal.classList.remove('open'); mframe.src = 'about:blank'; }
+  document.getElementById('mx').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a.shot'); if (!a) return;
+    var h = a.getAttribute('href'), m, src = null, cls = 'box';
+    if ((m = h.match(/youtube\.com\/watch\?v=([\w-]+)/))) src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    else if ((m = h.match(/youtube\.com\/shorts\/([\w-]+)/))) { src = 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0'; cls = 'box tall'; }
+    else if ((m = h.match(/instagram\.com\/(p|reel)\/([\w-]+)/))) { src = 'https://www.instagram.com/' + m[1] + '/' + m[2] + '/embed/'; cls = 'box tall ig'; }
+    if (!src) return;
+    e.preventDefault(); mbox.className = cls; mframe.src = src; mout.href = h; modal.classList.add('open');
+  });
+
+  window.addEventListener('pointermove', function (e) {
+    var g = e.target.closest && e.target.closest('.glass');
+    if (g) { var r = g.getBoundingClientRect(); g.style.setProperty('--mx', (e.clientX - r.left) + 'px'); g.style.setProperty('--my', (e.clientY - r.top) + 'px'); }
+  });
+
+  function countUp(el, i) {
+    var to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', t0 = null, dur = 1300;
+    if (reduce) return;
+    function step(ts) {
+      if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(to * e) + suf;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = pre + to + suf;
+    }
+    setTimeout(function () { requestAnimationFrame(step); }, i * 180);
+    setTimeout(function () { el.textContent = pre + to + suf; }, i * 180 + dur + 600);
+  }
+})();
+</script>
+</body>
+</html>
