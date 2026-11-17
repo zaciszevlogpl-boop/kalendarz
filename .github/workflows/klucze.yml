@@ -1,5 +1,6 @@
 # Robot kalendarza: po północy czasu polskiego wystawia klucz nowego okienka i publikuje stronę.
 # 13.11: przy okazji odświeża odcinki.json (sekcja „Ostatnio na Zaciszu”), publikuje tylko gdy coś się zmieniło.
+# 17.11: tak samo kanaly.json (zakładka „Inne kanały”: Janusz Biznesu i afirmacje).
 # Polska zimą = UTC+1, więc północ = 23:00 UTC. Sprawdza co 10 min w tej godzinie (minuty 3, 13, …, bo pełne godziny GitHub opóźnia) i raz na godzinę w ciągu dnia.
 name: Klucze okienek
 on:
@@ -21,6 +22,7 @@ jobs:
     outputs:
       zmiana: ${{ steps.k.outputs.zmiana }}
       odcinki: ${{ steps.o.outputs.odcinki }}
+      kanaly: ${{ steps.kn.outputs.kanaly }}
     steps:
       - uses: actions/checkout@v7
       - id: k
@@ -31,9 +33,12 @@ jobs:
       - id: o
         name: Czy są nowe odcinki na kanale
         run: python3 .github/odcinki.py --sprawdz
+      - id: kn
+        name: Czy są nowe filmy na innych kanałach
+        run: python3 .github/kanaly.py --sprawdz
   publikuj:
     needs: sprawdz
-    if: needs.sprawdz.outputs.zmiana == 'true' || needs.sprawdz.outputs.odcinki == 'true' || github.event_name != 'schedule'
+    if: needs.sprawdz.outputs.zmiana == 'true' || needs.sprawdz.outputs.odcinki == 'true' || needs.sprawdz.outputs.kanaly == 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -50,6 +55,8 @@ jobs:
         run: python3 .github/klucze.py
       - name: Najnowsze odcinki
         run: python3 .github/odcinki.py
+      - name: Filmy z innych kanałów
+        run: python3 .github/kanaly.py
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
