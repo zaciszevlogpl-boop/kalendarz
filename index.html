@@ -428,7 +428,7 @@ footer{text-align:center;justify-items:center;font-weight:500}
   --blue:#f6e7d1; --blue-dk:#a3713d; --blush:#f6ddd2; --sage:#e4ebd8; --cream:#f6ead5;
   --tlo-mgla:.15;
 }
-html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11191745);background-size:auto,560px 560px;background-repeat:repeat}
+html{background-color:var(--bg);background-image:linear-gradient(rgba(251,243,230,var(--tlo-mgla)),rgba(251,243,230,var(--tlo-mgla))),url(img/tlo_wzor.jpg?v=11201326);background-size:auto,560px 560px;background-repeat:repeat}
 body{background:transparent}
 body::before{display:none}
 .hero{background:rgba(255,250,243,.98);border-radius:28px;padding:22px 18px 20px;box-shadow:0 8px 24px rgba(120,85,45,.1)}
@@ -846,6 +846,15 @@ body:not([data-widok="ksiazki"]) .v-ks{display:none!important}
 .kolo-lista form{display:flex;flex-wrap:wrap;gap:8px}
 .kolo-lista form input{flex:1 1 200px;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border:1px solid #e3cfae;border-radius:12px;background:#fffaf3;color:var(--ink)}
 .kolo-usun{background:none;border:0;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:0 6px}
+/* kolo dzwiek 19.11: przełącznik dźwięku i wskakująca karta wyniku */
+.kolo-dzw{display:inline-flex;align-items:center;gap:6px;background:none;border:0;border-radius:999px;padding:6px 12px;min-height:40px;font:inherit;font-size:14.5px;color:var(--muted);cursor:pointer;margin-top:-6px}
+.kolo-dzw:hover{color:var(--pine)}
+.kolo-dzw svg{flex:none}
+.kolo-wynik.pop{animation:kolo-pop .7s cubic-bezier(.2,.9,.3,1.25) both}
+.kolo-wynik.pop h3{animation:kolo-blysk 1.8s ease-out .2s both}
+@keyframes kolo-pop{0%{opacity:0;transform:translateY(16px) scale(.94)}100%{opacity:1;transform:none}}
+@keyframes kolo-blysk{0%{color:var(--gold)}100%{color:var(--ink)}}
+@media (prefers-reduced-motion:reduce){.kolo-wynik.pop,.kolo-wynik.pop h3{animation:none}}
 .ks-wcz{display:grid;gap:10px}
 .ks-wcz h2{margin:0;text-align:left}
 .ks-wcz h2::before,.ks-wcz h2::after{display:none}
@@ -934,12 +943,40 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
 .pryw b{overflow-wrap:anywhere}
 .pryw-data{font-size:14.5px;color:var(--muted);margin-top:8px!important}
 @media (min-width:900px){.nl-box,.pryw{grid-column:1/-1}}
+
+/* ===== strefa wspierających 20.11: logowanie kodem z maila ===== */
+.strefa-konto{max-width:520px;margin:8px auto 18px;background:var(--glass,#fffaf3);border-radius:20px;padding:20px 18px;text-align:center;box-shadow:0 4px 14px rgba(120,85,45,.08)}
+.strefa-konto h3{margin:0 0 8px}
+.strefa .strefa-konto p{margin:0 auto 10px;max-width:42ch}
+.sk-form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:6px 0 8px}
+.sk-lab{flex-basis:100%;font-size:14px;opacity:.85}
+.sk-in{font:inherit;font-size:17px;padding:10px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.18);background:#fff;color:#2b2b2b;min-width:0;flex:1 1 220px;max-width:320px}
+.sk-in-kod{letter-spacing:.4em;text-align:center;flex:0 1 180px}
+.sk-in:focus{outline:3px solid var(--gold);outline-offset:2px}
+.sk-blad{color:#9b2d20;font-weight:700}
+.sk-drobne{font-size:14px;opacity:.85}
+.sk-link{appearance:none;border:0;background:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.sk-link[disabled]{opacity:.5;cursor:default}
+.strefa .sk-kod{font-size:30px;font-weight:700;letter-spacing:.08em;color:var(--pine);margin:4px auto 8px}
+.sk-kroki{text-align:left;max-width:40ch;margin:10px auto 12px;padding-left:1.3em}
+.sk-kroki li{margin:0 0 6px}
+
+/* ===== strefa 20.11: budżetownik na całym ekranie ===== */
+.strefa-apka{position:fixed;inset:0;z-index:1000;background:#fbf3e6;display:flex;flex-direction:column}
+.strefa-apka[hidden]{display:none}
+.sa-pasek{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;padding-top:max(8px,env(safe-area-inset-top));background:#fffaf3;border-bottom:1px solid #ead9bf;font-size:15px;color:#3b2f25}
+.sa-wroc{font-weight:700;text-decoration:none;color:inherit}
+.sa-tyt{font-weight:700;opacity:.8}
+.sa-miejsce{flex:1 1 auto;min-height:0;position:relative}
+.sa-ramka{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#fbf3e6}
+.sa-info{padding:48px 20px;text-align:center;margin:0}
+html.sa-otwarta,html.sa-otwarta body{overflow:hidden}
 </style>
 </head>
 <body>
-<script>document.body.dataset.widok = location.hash === "#prywatnosc" ? "prywatnosc" : location.hash === "#kanaly" ? "kanaly" : location.hash === "#kontakt" ? "kontakt" : /^#(kalendarz|jak-widzki|podglad-gabrysi)$/.test(location.hash) ? "kalendarz" : (location.hash === "#polecane" ? "polecane" : (/^#przepis/.test(location.hash) ? "przepisy" : (/^#ksiazk/.test(location.hash) ? "ksiazki" : (/^#(wspierajacy|meal-prep|styczniowe-wyzwanie|habit-tracker)$/.test(location.hash) ? "strefa" : "start"))));</script>
+<script>document.body.dataset.widok = location.hash === "#prywatnosc" ? "prywatnosc" : location.hash === "#kanaly" ? "kanaly" : location.hash === "#kontakt" ? "kontakt" : /^#(kalendarz|jak-widzki|podglad-gabrysi)$/.test(location.hash) ? "kalendarz" : (location.hash === "#polecane" ? "polecane" : (/^#przepis/.test(location.hash) ? "przepisy" : (/^#ksiazk/.test(location.hash) ? "ksiazki" : (/^#(wspierajacy|meal-prep|styczniowe-wyzwanie|habit-tracker|budzetownik)$/.test(location.hash) ? "strefa" : "start"))));</script>
 <div class="wrap">
-  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 19.11 17:44</div>
+  <div class="preview" id="preview" hidden>Podgląd: wszystkie okienka otwarte. Wersja 20.11 13:26</div>
   <div class="topbar">
   <header class="site">
     <a class="logo" href="#start"><svg class="logo-z" viewBox="-1 195 3286 778" role="img" aria-label="Zacisze" fill="currentColor"><path d="M431 432Q409 467 374.5 493.0Q340 519 289 519Q243 519 214.5 490.5Q186 462 186 413Q186 375 204.5 341.5Q223 308 251.5 283.5Q280 259 314.5 245.0Q349 231 382 231Q427 231 469.0 243.0Q511 255 551 269Q590 283 627.0 295.0Q664 307 699 307Q743 307 768.0 292.5Q793 278 808.5 261.0Q824 244 834.0 229.5Q844 215 859 215Q866 215 872.0 219.5Q878 224 878 233Q878 243 866.5 252.0Q855 261 838.0 271.5Q821 282 800.0 294.5Q779 307 759 325Q605 464 447.0 598.5Q289 733 124 863L126 865Q162 849 198.5 834.0Q235 819 276 819Q310 819 344.0 830.0Q378 841 411 854Q445 867 476.0 879.0Q507 891 536 891Q568 891 592.5 883.0Q617 875 637.5 861.0Q658 847 676.5 828.5Q695 810 716 789Q744 761 766.0 732.0Q788 703 812 674L817 678Q788 717 748.0 764.5Q708 812 661.0 854.0Q614 896 562.5 924.5Q511 953 458 953Q417 953 382.0 938.5Q347 924 315.0 907.0Q283 890 253.0 875.5Q223 861 192 861Q167 861 148.5 866.5Q130 872 115.5 881.5Q101 891 87.5 905.5Q74 920 59 938Q52 944 46.5 948.5Q41 953 33 953Q28 953 23.5 950.5Q19 948 19 942Q19 931 28.0 922.5Q37 914 52.0 904.5Q67 895 86.0 883.0Q105 871 124 853Q198 784 279.0 713.0Q360 642 441.5 573.0Q523 504 603.0 438.0Q683 372 756 313L754 311Q713 334 672.0 349.5Q631 365 583 365Q548 365 515.5 352.5Q483 340 451.0 326.0Q419 312 387.0 300.5Q355 289 320 289Q292 289 269.5 300.0Q247 311 231.0 328.5Q215 346 206.5 368.5Q198 391 198 414Q198 431 204.5 447.5Q211 464 223.0 477.5Q235 491 252.5 499.0Q270 507 292 507Q341 507 370.5 484.0Q400 461 424 428Z M1098 591 1202 585Q1193 603 1176.0 628.5Q1159 654 1139.0 683.5Q1119 713 1098.5 744.5Q1078 776 1061.0 805.5Q1044 835 1033.5 860.5Q1023 886 1023 904Q1023 929 1048 929Q1072 929 1113.0 901.0Q1154 873 1199 827Q1218 808 1237.5 786.0Q1257 764 1275.0 742.5Q1293 721 1308.0 702.5Q1323 684 1332 672L1339 676Q1313 711 1279.0 753.5Q1245 796 1197.0 844.0Q1149 892 1102.5 922.5Q1056 953 1010 953Q978 953 960.5 936.5Q943 920 943 896Q943 888 944.0 881.0Q945 874 947 870H945Q914 905 875.0 929.0Q836 953 791 953Q767 953 750.0 944.0Q733 935 722.5 919.5Q712 904 707.0 884.5Q702 865 702 844Q702 795 729.0 746.0Q756 697 797.0 657.5Q838 618 888.5 593.5Q939 569 985 569Q1020 569 1040.0 584.0Q1060 599 1073 631ZM798 847Q798 876 807.5 897.5Q817 919 848 919Q869 918 892.0 901.5Q915 885 936.5 860.0Q958 835 977.5 804.5Q997 774 1011.5 743.0Q1026 712 1034.5 684.5Q1043 657 1043 638Q1043 611 1033.0 596.0Q1023 581 994 581Q971 581 947.5 595.0Q924 609 902.5 632.0Q881 655 861.5 683.5Q842 712 828.0 742.0Q814 772 806.0 799.5Q798 827 798 847Z M1748 679Q1711 724 1668.0 772.5Q1625 821 1575.5 861.0Q1526 901 1469.5 927.0Q1413 953 1350 953Q1290 953 1258.0 920.5Q1226 888 1226 825Q1226 777 1254.0 731.0Q1282 685 1326.0 649.0Q1370 613 1423.0 591.0Q1476 569 1526 569Q1572 569 1599.0 587.5Q1626 606 1626 633Q1626 652 1618.5 667.5Q1611 683 1599.0 693.5Q1587 704 1572.0 709.5Q1557 715 1542 715Q1529 715 1519 713Q1526 690 1534.0 666.0Q1542 642 1542 618Q1542 601 1534.0 591.0Q1526 581 1512 581Q1486 581 1453.0 601.5Q1420 622 1391.0 656.5Q1362 691 1342.0 735.5Q1322 780 1322 828Q1322 866 1345.0 892.5Q1368 919 1409 919Q1458 919 1506.5 892.0Q1555 865 1598.5 826.5Q1642 788 1678.0 746.5Q1714 705 1739 675Z M1873 585Q1826 659 1792.0 711.5Q1758 764 1736.5 801.0Q1715 838 1704.5 861.5Q1694 885 1694 900Q1694 912 1698.5 919.5Q1703 927 1712 927Q1732 927 1768.5 904.0Q1805 881 1860 825Q1882 802 1903.0 779.5Q1924 757 1942.5 736.0Q1961 715 1975.5 698.0Q1990 681 1999 671L2008 677Q1996 693 1978.5 713.5Q1961 734 1941.0 756.5Q1921 779 1900.0 801.0Q1879 823 1859 843Q1801 901 1759.5 924.0Q1718 947 1683 947Q1650 947 1632.0 929.0Q1614 911 1614 882Q1614 862 1621.5 840.5Q1629 819 1647.0 787.0Q1665 755 1695.0 707.5Q1725 660 1770 590ZM1931 363Q1950 363 1964.5 377.0Q1979 391 1979 410Q1979 430 1963.0 446.5Q1947 463 1927 463Q1905 463 1889.0 451.5Q1873 440 1873 417Q1873 394 1890.5 378.5Q1908 363 1931 363Z M2052 934Q2103 923 2146.5 896.5Q2190 870 2228.0 834.5Q2266 799 2299.5 757.5Q2333 716 2365 674L2373 680Q2333 732 2293.0 781.5Q2253 831 2205.5 869.0Q2158 907 2101.5 930.0Q2045 953 1972 953Q1946 953 1920.5 947.5Q1895 942 1874.5 929.5Q1854 917 1841.5 896.5Q1829 876 1829 846Q1829 830 1833.5 814.0Q1838 798 1847.0 785.0Q1856 772 1869.5 763.5Q1883 755 1901 755Q1924 755 1936.5 768.0Q1949 781 1949 798Q1949 819 1937.0 830.0Q1925 841 1909 841Q1896 841 1887 836Q1882 845 1878.5 855.5Q1875 866 1875 877Q1875 905 1896.5 923.0Q1918 941 1947 941Q1965 941 1983.5 935.0Q2002 929 2016.5 917.5Q2031 906 2040.0 890.0Q2049 874 2049 855Q2049 829 2036.5 807.5Q2024 786 2009.0 766.0Q1994 746 1981.5 725.5Q1969 705 1969 682Q1969 654 1982.0 633.0Q1995 612 2016.0 597.5Q2037 583 2063.0 576.0Q2089 569 2116 569Q2164 569 2196.5 589.5Q2229 610 2229 648Q2229 677 2210.0 695.5Q2191 714 2162 714Q2153 714 2145.5 712.5Q2138 711 2133 709Q2144 689 2148.5 669.5Q2153 650 2153 631Q2153 611 2141.5 596.0Q2130 581 2107 581Q2079 581 2064.0 598.5Q2049 616 2049 642Q2049 670 2061.5 691.5Q2074 713 2089.0 733.0Q2104 753 2116.5 775.0Q2129 797 2129 827Q2129 846 2122.5 864.0Q2116 882 2105.0 896.0Q2094 910 2080.5 919.5Q2067 929 2052 932Z M2393 847Q2398 845 2403 845Q2409 845 2417 845Q2440 845 2461.5 853.0Q2483 861 2503.5 870.0Q2524 879 2543.5 887.0Q2563 895 2581 895Q2616 895 2653.0 870.5Q2690 846 2725.0 811.0Q2760 776 2790.5 738.5Q2821 701 2844 674L2852 680Q2833 704 2809.0 733.5Q2785 763 2757.0 793.0Q2729 823 2698.0 852.0Q2667 881 2634.5 903.5Q2602 926 2569.5 939.5Q2537 953 2505 953Q2484 953 2462.0 944.0Q2440 935 2418.5 924.0Q2397 913 2376.0 904.0Q2355 895 2336 895Q2321 895 2308.5 903.0Q2296 911 2284.5 921.0Q2273 931 2264.0 939.0Q2255 947 2248 947Q2243 947 2239.5 943.5Q2236 940 2236 935Q2236 924 2257.0 914.0Q2278 904 2316 882Q2338 870 2372.5 845.0Q2407 820 2449.0 789.0Q2491 758 2538.5 724.5Q2586 691 2634 663L2632 661Q2621 665 2609.0 666.0Q2597 667 2586 667Q2564 667 2544.5 662.5Q2525 658 2506.5 652.0Q2488 646 2470.5 641.5Q2453 637 2436 637Q2417 637 2401.5 649.0Q2386 661 2370 683L2361 677Q2374 659 2390.0 639.5Q2406 620 2425.0 604.5Q2444 589 2466.5 579.0Q2489 569 2515 569Q2538 569 2559.0 575.0Q2580 581 2601.0 588.5Q2622 596 2642.5 602.5Q2663 609 2684 609Q2705 609 2715.0 602.0Q2725 595 2731.0 586.0Q2737 577 2742.0 570.0Q2747 563 2757 563Q2763 563 2767.0 567.5Q2771 572 2771 577Q2771 583 2765.0 589.0Q2759 595 2750.0 601.0Q2741 607 2730.0 613.0Q2719 619 2709 626Q2630 683 2552.5 739.0Q2475 795 2391 845Z M3265 675Q3234 717 3198.5 758.0Q3163 799 3114 844Q3045 906 2981.5 929.5Q2918 953 2862 953Q2805 953 2772.0 919.0Q2739 885 2739 831Q2739 783 2768.0 736.0Q2797 689 2841.0 652.0Q2885 615 2937.5 592.0Q2990 569 3037 569Q3080 569 3104.0 585.5Q3128 602 3128 632Q3128 656 3111.5 676.0Q3095 696 3069.0 712.0Q3043 728 3010.5 740.0Q2978 752 2946.0 761.0Q2914 770 2886.0 776.0Q2858 782 2840 786Q2835 806 2835 822Q2835 865 2859.0 892.0Q2883 919 2926 919Q2968 919 3018.5 894.0Q3069 869 3120 821Q3159 784 3195.0 743.5Q3231 703 3258 668ZM3048 607Q3048 593 3040.5 587.0Q3033 581 3021 581Q2996 581 2967.0 602.0Q2938 623 2912.5 653.5Q2887 684 2867.5 717.5Q2848 751 2842 776Q2883 768 2920.0 749.5Q2957 731 2985.5 707.5Q3014 684 3031.0 657.5Q3048 631 3048 607Z"/></svg><span class="logo-t">zostań na chwilę</span></a>
@@ -971,19 +1008,20 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
           <li><b>Odcinki wcześniej.</b> Nowe vlogi widzisz kilka dni przed wszystkimi.</li>
           <li><b>Wehikuł czasu.</b> Moje dawne vlogi z archiwum, tylko tutaj.</li>
           <li><b>Wpadki z nagrań.</b> To, co nie weszło do odcinków. Od 20 listopada.</li>
+          <li><b>Budżetownik.</b> Domowy budżet w słoiczkach, z pobieraniem do Excela. <a href="#budzetownik">Otwórz budżetownik</a></li>
         </ul>
       </div>
       <div class="styczen">
-        <div class="st-okl"><img src="img/st_okladka.jpg?v=11191745" alt="Ilustracja: zimowy salon Zacisza i pusty lniany woreczek" width="1200" height="800" loading="lazy"></div>
+        <div class="st-okl"><img src="img/st_okladka.jpg?v=11201326" alt="Ilustracja: zimowy salon Zacisza i pusty lniany woreczek" width="1200" height="800" loading="lazy"></div>
         <div class="st-t">
           <span class="eyebrow">Styczeń 2027 · tylko dla wspierających</span>
           <h3>Pusty woreczek</h3>
           <p>31 dni, codziennie jedna mała rzecz w domu, 5 do 15 minut. Bez postanowień i bez listy zakupów.</p>
           <div class="st-tyg" aria-label="Cztery tygodnie">
-            <img src="img/st_1.jpg?v=11191745" alt="Tydzień 1: Ciepło" width="640" height="640" loading="lazy">
-            <img src="img/st_2.jpg?v=11191745" alt="Tydzień 2: Lżej" width="640" height="640" loading="lazy">
-            <img src="img/st_3.jpg?v=11191745" alt="Tydzień 3: Coś pięknego w zwykły dzień" width="640" height="640" loading="lazy">
-            <img src="img/st_4.jpg?v=11191745" alt="Tydzień 4: Po swojemu" width="640" height="640" loading="lazy">
+            <img src="img/st_1.jpg?v=11201326" alt="Tydzień 1: Ciepło" width="640" height="640" loading="lazy">
+            <img src="img/st_2.jpg?v=11201326" alt="Tydzień 2: Lżej" width="640" height="640" loading="lazy">
+            <img src="img/st_3.jpg?v=11201326" alt="Tydzień 3: Coś pięknego w zwykły dzień" width="640" height="640" loading="lazy">
+            <img src="img/st_4.jpg?v=11201326" alt="Tydzień 4: Po swojemu" width="640" height="640" loading="lazy">
           </div>
           <p class="st-tygodnie">Ciepło · Lżej · Coś pięknego w zwykły dzień · Po swojemu</p>
           <p class="dopisek">start 1 stycznia</p>
@@ -991,6 +1029,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
       </div>
       <p class="st-pozniej">Później w 2027: meal prep i habit tracker.</p>
     </div>
+    <div class="strefa-konto" id="strefa-konto" aria-live="polite"></div>
     <div class="sharerow">
       <a class="btn" id="join-strefa" target="_blank" rel="noopener">Dołącz do wspierających</a>
       <a class="btn ghost" href="#kalendarz" id="strefa-wroc">Wróć do kalendarza</a>
@@ -1004,7 +1043,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
     <p class="prz-wstep">Wszystko, co gotowałam w vlogach, w jednym miejscu. Każdy przepis jest taki, jak na ekranie w odcinku, a przycisk „Zobacz w odcinku” zabiera Cię do momentu, w którym go robię.</p>
     <div class="prz-filtry" role="group" aria-label="Pokaż przepisy"><button class="prz-f" type="button" data-kat="wszystkie" aria-pressed="true">Wszystkie</button><button class="prz-f" type="button" data-kat="zupy" aria-pressed="false">Zupy</button><button class="prz-f" type="button" data-kat="obiady" aria-pressed="false">Obiady</button><button class="prz-f" type="button" data-kat="sniadania" aria-pressed="false">Śniadania</button><button class="prz-f" type="button" data-kat="slodkie" aria-pressed="false">Słodkie</button><button class="prz-f" type="button" data-kat="chleb" aria-pressed="false">Chleb</button><button class="prz-f" type="button" data-kat="kawa" aria-pressed="false">Do kawy</button></div>
   </header>
-  <section class="v-prz prz-lista" aria-label="Przepisy z odcinków"><article class="prz paper" id="przepis-krem-z-dyni" data-kat="zupy" data-od="2026-11-15T16:00:00+01:00"><span class="prz-img"><img src="img/prz_krem-z-dyni.jpg?v=11191745" alt="Krem z dyni w miseczce w kształcie dyni, ze skyrem i pestkami" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 15.11.2026</span><h2>Krem z dyni</h2><ul><li>1800 g dyni</li><li>360 g ziemniaków</li><li>300 g marchewki</li><li>120 g cebuli</li><li>480 g czerwonej fasoli z puszki (2 puszki)</li><li>do podania: skyr i pestki dyni</li></ul><p class="prz-dop">8 minut z nagrywaniem</p><p class="prz-z">Z odcinka „Odgracanie bez sentymentów?”</p><a class="btn" href="https://www.youtube.com/watch?v=vhXqVzNkiF0&amp;t=1586s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-szynka-z-kurczaka" data-kat="sniadania"><span class="prz-img"><img src="img/prz_szynka-z-kurczaka.jpg?v=11191745" alt="Kanapki z domową szynką z kurczaka i pomidorem, obok kubek w kształcie dyni" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 04.11.2026</span><h2>Domowa szynka z kurczaka</h2><ul><li>4 piersi z kurczaka</li><li>200 ml zimnej wody</li><li>15 g soli (3 płaskie łyżeczki)</li><li>24 h w lodówce</li><li>dużo słodkiej papryki i przyprawy, które lubisz</li><li>piekarnik 45 min</li></ul><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=258s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-owsianka-pieczona" data-kat="sniadania"><span class="prz-img"><img src="img/prz_owsianka-pieczona.jpg?v=11191745" alt="Upieczona owsianka bananowo-kakaowa w szklanych naczyniach" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 04.11.2026</span><h2>Owsianka pieczona bananowo-kakaowa</h2><ul><li>300 g płatków owsianych · 3 jajka</li><li>600 ml mleka 1,5% · 300 g skyru</li><li>45 g odżywki białkowej · 30 g kakao</li><li>3 banany · 1,5 łyżeczki proszku do pieczenia</li><li>180 °C, 40–45 min</li></ul><p class="prz-dop">6 porcji</p><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=454s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-wiejska-zupa" data-kat="zupy"><span class="prz-img"><img src="img/prz_wiejska-zupa.jpg?v=11191745" alt="Wiejska zupa z ogrodu w pomarańczowym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 04.11.2026</span><h2>Wiejska zupa z ogrodu</h2><ul><li>kalarepa · ziemniaki · botwinka</li><li>marchewka · czosnek · kapusta</li><li>trochę przecieru pomidorowego</li><li>trochę kiełbaski</li><li>sól, pieprz</li></ul><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=112s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-racuchy-ze-skyrem" data-kat="slodkie"><span class="prz-img"><img src="img/prz_racuchy-ze-skyrem.jpg?v=11191745" alt="Blacha pieczonych racuchów z jabłkami pokrojonych w kawałki" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 20.10.2026</span><h2>Pieczone racuchy ze skyrem</h2><ul><li>400 g mąki pszennej · 400 g skyru</li><li>3 jajka · 50 g odżywki białkowej waniliowej</li><li>200 g mleka 1,5% · 30 g świeżych drożdży</li><li>600 g jabłek · 60 g erytrytolu · 3 łyżeczki cynamonu</li><li>8 g proszku do pieczenia · 2 g soli</li></ul><p class="prz-z">Z odcinka „Nie wierzyłam, że mi wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=t0BNZVug-nQ&amp;t=507s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-rosol" data-kat="zupy"><span class="prz-img"><img src="img/prz_rosol.jpg?v=11191745" alt="Rosół z warzywami i ziołami w czerwonym żeliwnym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 01.10.2026</span><h2>Rosół z kurczaka</h2><ul><li>ćwiartka tylna z kurczaka</li><li>pół selera, cały por, marchew, pietruszka</li><li>cebula i ziemniaki</li><li>liście laurowe, ziele angielskie, lubczyk</li><li>najpierw warzywa i ziemniaki, potem mięso</li><li>2 do 3 godzin na małym ogniu</li></ul><p class="prz-dop">Rosół w słoiku: lodówka do 2 dni, zamrażarka do 3 miesięcy.</p><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=2131s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-podudzia" data-kat="obiady"><span class="prz-img"><img src="img/prz_podudzia.jpg?v=11191745" alt="Podudzia w przyprawach zawieszone na kratce w piekarniku nad garnkiem z chlebem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 01.10.2026</span><h2>Podudzia w przyprawach</h2><ul><li>podudzia z kością</li><li>papryka, tymianek, kurkuma</li><li>majeranek, sól</li><li>na kratce nad garnkiem z chlebem</li><li>180°C, ok. 1 godziny</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=1632s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-chleb-portugalski" data-kat="chleb"><span class="prz-img"><img src="img/prz_chleb-portugalski.jpg?v=11191745" alt="Przekrojony upieczony chleb w pomarańczowym żeliwnym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Chleb · 01.10.2026</span><h2>Chleb portugalski z garnka</h2><ul><li>550 g letniej wody</li><li>250 g mąki chlebowej typ 750</li><li>470 g mąki pszennej typ 405</li><li>wymieszaj, odstaw na 40 minut</li><li>15 g świeżych drożdży, 10 g soli, wyrób</li><li>1,5 godziny, aż podwoi objętość</li><li>do garnka: jeszcze godzina wyrastania</li><li>posyp: mak, słonecznik, sezam albo len</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=855s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-zakwas-zytni" data-kat="chleb"><span class="prz-img"><img src="img/prz_zakwas-zytni.jpg?v=11191745" alt="Słoik z zakwasem żytnim, gumka i napis „1 dzień” na szkle" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Chleb · 01.10.2026</span><h2>Zakwas żytni od zera</h2><h3>Dzień 1</h3><ul><li>50 g mąki żytniej razowej, typ 2000</li><li>50 g ciepłej wody (25 do 30°C)</li><li>wymieszać i przełożyć do słoika</li><li>zaznaczyć poziom</li><li>przykryć luźno, temperatura pokojowa</li></ul><h3>Każdy kolejny dzień</h3><ul><li>50 g mąki + 50 g wody, codziennie tak samo</li><li>mieszam, nowa kreska</li><li>dzień 4: może nic się nie dziać</li><li>po 7 dniach możemy piec</li></ul><h3>Skąd te drożdże?</h3><ul><li>w mące żytniej razowej mieszkają dzikie drożdże i bakterie mlekowe</li><li>karmione wodą i mąką fermentują</li><li>i to one wyrosną ten chleb</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><p class="prz-z">Ciąg dalszy: <a href="https://www.youtube.com/watch?v=j3iArX56wCo&amp;t=284s" target="_blank" rel="noopener">„Czemu nie ma już zdrowych zmian?”</a></p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=1042s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-szarlotka" data-kat="slodkie"><span class="prz-img"><img src="img/prz_szarlotka.jpg?v=11191745" alt="Upieczona szarlotka w białej formie" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 26.09.2026</span><h2>Szarlotka z kruchym spodem i górą</h2><ul><li>450 g mąki, 250 g zimnego masła</li><li>100 g cukru pudru, 3 żółtka</li><li>1 łyżeczka proszku do pieczenia</li><li>2/3 ciasta na spód, reszta na górę</li><li>1,5 kg jabłek z cynamonem</li><li>180°C, ok. 50 minut</li></ul><p class="prz-z">Z odcinka „Sprzątanie szafy na jesień”</p><a class="btn" href="https://www.youtube.com/watch?v=b7hGhcBgIa8&amp;t=98s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-leczo-z-cukinii" data-kat="obiady"><span class="prz-img"><img src="img/prz_leczo-z-cukinii.jpg?v=11191745" alt="Cukinia pokrojona w kostkę na desce" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 26.09.2026</span><h2>Leczo z 1 dużej cukinii</h2><ul><li>1 duża cukinia (ok. 1 kg) w kostkę</li><li>1 cebula, 2 papryki</li><li>4 pomidory albo puszka krojonych</li><li>2 łyżki oleju, słodka papryka, sól, pieprz</li><li>cebula 5 min, potem papryka 5 min</li><li>cukinia i pomidory: dusić ok. 20 min</li></ul><p class="prz-z">Z odcinka „Sprzątanie szafy na jesień”</p><a class="btn" href="https://www.youtube.com/watch?v=b7hGhcBgIa8&amp;t=82s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-spring-rollsy" data-kat="obiady"><span class="prz-img"><img src="img/prz_spring-rollsy.jpg?v=11191745" alt="Spring rollsy na talerzu wokół miseczki z sosem sojowym" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 12.09.2026</span><h2>Spring rollsy z tofu i awokado</h2><ul><li>16 arkuszy papieru ryżowego (2 na sztukę)</li><li>180–200 g tofu (naturalne lub wędzone)</li><li>1 awokado · ½ papryki · ½ ogórka · 1 marchew</li><li>6–8 młodych liści buraka (albo szpinak/sałata)</li><li>1–2 łyżki sosu sojowego</li><li>opcjonalnie: sezam, chili, czosnek</li><li>warzywa zostają surowe, nic nie smażymy</li><li>papier ryżowy: 5–10 s w letniej wodzie</li><li>zawijamy i maczamy w sosie sojowym</li></ul><p class="prz-dop">Na 8 sztuk, jemy na surowo.</p><p class="prz-z">Z odcinka „Co zasadzę jesienią, żeby mieć wiosnę?”</p><a class="btn" href="https://www.youtube.com/watch?v=clrmMpgUi_g&amp;t=1376s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-pancakes-dyniowe" data-kat="sniadania"><span class="prz-img"><img src="img/prz_pancakes-dyniowe.jpg?v=11191745" alt="Dyniowe pancake&#x27;i na talerzu obok patelni" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 10.09.2026</span><h2>Dyniowe pancake&#x27;i</h2><ul><li>500 g purée z pieczonej dyni</li><li>3 jajka</li><li>250 g mąki · 1½ łyżeczki proszku do pieczenia</li><li>1–2 łyżeczki cynamonu · ½ łyżeczki imbiru</li><li>szczypta gałki · szczypta soli · 2–3 łyżki cukru</li><li>opcjonalnie 100–150 ml mleka, jeśli masa za gęsta</li><li>purée wymieszać z jajkami, potem mąka, proszek, przyprawy, cukier</li><li>ciasto jak gęsta śmietana · dobrze rozgrzana patelnia</li></ul><p class="prz-dop">Ok. 10 sztuk.</p><p class="prz-z">Z odcinka „Jesienne dekoracje: ile ich naprawdę potrzeba?”</p><a class="btn" href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=1800s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-syrop-dyniowy" data-kat="kawa"><span class="prz-img"><img src="img/prz_syrop-dyniowy.jpg?v=11191745" alt="Gęsty syrop dyniowy na drewnianej łyżce nad rondlem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Do kawy · 10.09.2026</span><h2>Syrop dyniowy do kawy</h2><ul><li>200 g purée z dyni (ok. 5 łyżek)</li><li>ok. 150 ml wody</li><li>2 duże łyżki miodu</li><li>1 łyżka cynamonu · ½ łyżki imbiru</li><li>¼ łyżeczki gałki · 5–6 goździków</li><li>mały ogień, pod przykryciem, 5–8 min</li><li>do kawy: 1–2 łyżki · lodówka do tygodnia</li></ul><p class="prz-dop">Nadmiar do zamrażarki, po 4–5 łyżek.</p><p class="prz-z">Z odcinka „Jesienne dekoracje: ile ich naprawdę potrzeba?”</p><a class="btn" href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=1584s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-zupa-jarzynowa" data-kat="zupy"><span class="prz-img"><img src="img/prz_zupa-jarzynowa.jpg?v=11191745" alt="Garnek w kwiaty z gotującą się zupą jarzynową z kurczakiem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 05.09.2026</span><h2>Zupa jarzynowa z kurczakiem</h2><ul><li>4–5 udek z kurczaka</li><li>marchew, kalarepa, ziemniaki</li><li>bób, fasolka, groszek</li><li>seler, pietruszka, por, cebula</li><li>liść laurowy, ziele angielskie</li><li>sól i pieprz · ok. 40 minut</li></ul><p class="prz-z">Z odcinka „W końcu przestałam prokrastynować”</p><a class="btn" href="https://www.youtube.com/watch?v=EyaHbt2oVF0&amp;t=1163s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-ciasto-babci" data-kat="slodkie"><span class="prz-img"><img src="img/prz_ciasto-babci.jpg?v=11191745" alt="Upieczone ciasto ze śliwkami w białej formie" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 05.09.2026</span><h2>Ciasto ze śliwkami babci</h2><ul><li>3 jajka</li><li>½ szklanki cukru</li><li>150 g masła (⅔ kostki), roztopione</li><li>1½ szklanki mąki</li><li>⅓ szklanki odżywki białkowej</li><li>½ szklanki mleka</li><li>1½ łyżeczki proszku do pieczenia</li><li>szczypta soli</li><li>500–700 g śliwek (albo zamrożone truskawki)</li><li>opcjonalnie łyżeczka cynamonu</li></ul><h3>Pieczenie</h3><ul><li>góra i dół 180 stopni</li><li>pieczemy około 1 h, do suchego patyczka</li></ul><p class="prz-z">Z odcinka „W końcu przestałam prokrastynować”</p><a class="btn" href="https://www.youtube.com/watch?v=EyaHbt2oVF0&amp;t=664s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-pankejki-ze-skyrem" data-kat="sniadania"><span class="prz-img"><img src="img/prz_pankejki-ze-skyrem.jpg?v=11191745" alt="Pankejki ze skyrem z konfiturą truskawkową na talerzu" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 29.08.2026</span><h2>Puszyste pankejki ze skyrem</h2><ul><li>5 jajek</li><li>500 g skyru</li><li>400 ml mleka</li><li>500 g mąki pszennej</li><li>4 łyżeczki proszku do pieczenia</li><li>3 łyżki cukru lub erytrytolu</li><li>2 łyżki oleju</li><li>szczypta soli</li><li>wanilia (opcjonalnie)</li></ul><h3>Jak</h3><ul><li>wymieszaj tylko do połączenia</li><li>odstaw 5–10 minut</li><li>smaż na średnim ogniu</li></ul><p class="prz-dop">Duża porcja na zapas.</p><p class="prz-z">Z odcinka „Koniec lata i start jesieni”</p><a class="btn" href="https://www.youtube.com/watch?v=VggWUVACgOk&amp;t=1690s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article></section>
+  <section class="v-prz prz-lista" aria-label="Przepisy z odcinków"><article class="prz paper" id="przepis-krem-z-dyni" data-kat="zupy" data-od="2026-11-15T16:00:00+01:00"><span class="prz-img"><img src="img/prz_krem-z-dyni.jpg?v=11201326" alt="Krem z dyni w miseczce w kształcie dyni, ze skyrem i pestkami" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 15.11.2026</span><h2>Krem z dyni</h2><ul><li>1800 g dyni</li><li>360 g ziemniaków</li><li>300 g marchewki</li><li>120 g cebuli</li><li>480 g czerwonej fasoli z puszki (2 puszki)</li><li>do podania: skyr i pestki dyni</li></ul><p class="prz-dop">8 minut z nagrywaniem</p><p class="prz-z">Z odcinka „Odgracanie bez sentymentów?”</p><a class="btn" href="https://www.youtube.com/watch?v=vhXqVzNkiF0&amp;t=1586s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-szynka-z-kurczaka" data-kat="sniadania"><span class="prz-img"><img src="img/prz_szynka-z-kurczaka.jpg?v=11201326" alt="Kanapki z domową szynką z kurczaka i pomidorem, obok kubek w kształcie dyni" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 04.11.2026</span><h2>Domowa szynka z kurczaka</h2><ul><li>4 piersi z kurczaka</li><li>200 ml zimnej wody</li><li>15 g soli (3 płaskie łyżeczki)</li><li>24 h w lodówce</li><li>dużo słodkiej papryki i przyprawy, które lubisz</li><li>piekarnik 45 min</li></ul><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=258s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-owsianka-pieczona" data-kat="sniadania"><span class="prz-img"><img src="img/prz_owsianka-pieczona.jpg?v=11201326" alt="Upieczona owsianka bananowo-kakaowa w szklanych naczyniach" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 04.11.2026</span><h2>Owsianka pieczona bananowo-kakaowa</h2><ul><li>300 g płatków owsianych · 3 jajka</li><li>600 ml mleka 1,5% · 300 g skyru</li><li>45 g odżywki białkowej · 30 g kakao</li><li>3 banany · 1,5 łyżeczki proszku do pieczenia</li><li>180 °C, 40–45 min</li></ul><p class="prz-dop">6 porcji</p><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=454s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-wiejska-zupa" data-kat="zupy"><span class="prz-img"><img src="img/prz_wiejska-zupa.jpg?v=11201326" alt="Wiejska zupa z ogrodu w pomarańczowym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 04.11.2026</span><h2>Wiejska zupa z ogrodu</h2><ul><li>kalarepa · ziemniaki · botwinka</li><li>marchewka · czosnek · kapusta</li><li>trochę przecieru pomidorowego</li><li>trochę kiełbaski</li><li>sól, pieprz</li></ul><p class="prz-z">Z odcinka „Nie leżałam przed telewizorem”</p><a class="btn" href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=112s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-racuchy-ze-skyrem" data-kat="slodkie"><span class="prz-img"><img src="img/prz_racuchy-ze-skyrem.jpg?v=11201326" alt="Blacha pieczonych racuchów z jabłkami pokrojonych w kawałki" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 20.10.2026</span><h2>Pieczone racuchy ze skyrem</h2><ul><li>400 g mąki pszennej · 400 g skyru</li><li>3 jajka · 50 g odżywki białkowej waniliowej</li><li>200 g mleka 1,5% · 30 g świeżych drożdży</li><li>600 g jabłek · 60 g erytrytolu · 3 łyżeczki cynamonu</li><li>8 g proszku do pieczenia · 2 g soli</li></ul><p class="prz-z">Z odcinka „Nie wierzyłam, że mi wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=t0BNZVug-nQ&amp;t=507s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-rosol" data-kat="zupy"><span class="prz-img"><img src="img/prz_rosol.jpg?v=11201326" alt="Rosół z warzywami i ziołami w czerwonym żeliwnym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 01.10.2026</span><h2>Rosół z kurczaka</h2><ul><li>ćwiartka tylna z kurczaka</li><li>pół selera, cały por, marchew, pietruszka</li><li>cebula i ziemniaki</li><li>liście laurowe, ziele angielskie, lubczyk</li><li>najpierw warzywa i ziemniaki, potem mięso</li><li>2 do 3 godzin na małym ogniu</li></ul><p class="prz-dop">Rosół w słoiku: lodówka do 2 dni, zamrażarka do 3 miesięcy.</p><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=2131s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-podudzia" data-kat="obiady"><span class="prz-img"><img src="img/prz_podudzia.jpg?v=11201326" alt="Podudzia w przyprawach zawieszone na kratce w piekarniku nad garnkiem z chlebem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 01.10.2026</span><h2>Podudzia w przyprawach</h2><ul><li>podudzia z kością</li><li>papryka, tymianek, kurkuma</li><li>majeranek, sól</li><li>na kratce nad garnkiem z chlebem</li><li>180°C, ok. 1 godziny</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=1632s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-chleb-portugalski" data-kat="chleb"><span class="prz-img"><img src="img/prz_chleb-portugalski.jpg?v=11201326" alt="Przekrojony upieczony chleb w pomarańczowym żeliwnym garnku" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Chleb · 01.10.2026</span><h2>Chleb portugalski z garnka</h2><ul><li>550 g letniej wody</li><li>250 g mąki chlebowej typ 750</li><li>470 g mąki pszennej typ 405</li><li>wymieszaj, odstaw na 40 minut</li><li>15 g świeżych drożdży, 10 g soli, wyrób</li><li>1,5 godziny, aż podwoi objętość</li><li>do garnka: jeszcze godzina wyrastania</li><li>posyp: mak, słonecznik, sezam albo len</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=855s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-zakwas-zytni" data-kat="chleb"><span class="prz-img"><img src="img/prz_zakwas-zytni.jpg?v=11201326" alt="Słoik z zakwasem żytnim, gumka i napis „1 dzień” na szkle" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Chleb · 01.10.2026</span><h2>Zakwas żytni od zera</h2><h3>Dzień 1</h3><ul><li>50 g mąki żytniej razowej, typ 2000</li><li>50 g ciepłej wody (25 do 30°C)</li><li>wymieszać i przełożyć do słoika</li><li>zaznaczyć poziom</li><li>przykryć luźno, temperatura pokojowa</li></ul><h3>Każdy kolejny dzień</h3><ul><li>50 g mąki + 50 g wody, codziennie tak samo</li><li>mieszam, nowa kreska</li><li>dzień 4: może nic się nie dziać</li><li>po 7 dniach możemy piec</li></ul><h3>Skąd te drożdże?</h3><ul><li>w mące żytniej razowej mieszkają dzikie drożdże i bakterie mlekowe</li><li>karmione wodą i mąką fermentują</li><li>i to one wyrosną ten chleb</li></ul><p class="prz-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”</p><p class="prz-z">Ciąg dalszy: <a href="https://www.youtube.com/watch?v=j3iArX56wCo&amp;t=284s" target="_blank" rel="noopener">„Czemu nie ma już zdrowych zmian?”</a></p><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=1042s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-szarlotka" data-kat="slodkie"><span class="prz-img"><img src="img/prz_szarlotka.jpg?v=11201326" alt="Upieczona szarlotka w białej formie" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 26.09.2026</span><h2>Szarlotka z kruchym spodem i górą</h2><ul><li>450 g mąki, 250 g zimnego masła</li><li>100 g cukru pudru, 3 żółtka</li><li>1 łyżeczka proszku do pieczenia</li><li>2/3 ciasta na spód, reszta na górę</li><li>1,5 kg jabłek z cynamonem</li><li>180°C, ok. 50 minut</li></ul><p class="prz-z">Z odcinka „Sprzątanie szafy na jesień”</p><a class="btn" href="https://www.youtube.com/watch?v=b7hGhcBgIa8&amp;t=98s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-leczo-z-cukinii" data-kat="obiady"><span class="prz-img"><img src="img/prz_leczo-z-cukinii.jpg?v=11201326" alt="Cukinia pokrojona w kostkę na desce" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 26.09.2026</span><h2>Leczo z 1 dużej cukinii</h2><ul><li>1 duża cukinia (ok. 1 kg) w kostkę</li><li>1 cebula, 2 papryki</li><li>4 pomidory albo puszka krojonych</li><li>2 łyżki oleju, słodka papryka, sól, pieprz</li><li>cebula 5 min, potem papryka 5 min</li><li>cukinia i pomidory: dusić ok. 20 min</li></ul><p class="prz-z">Z odcinka „Sprzątanie szafy na jesień”</p><a class="btn" href="https://www.youtube.com/watch?v=b7hGhcBgIa8&amp;t=82s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-spring-rollsy" data-kat="obiady"><span class="prz-img"><img src="img/prz_spring-rollsy.jpg?v=11201326" alt="Spring rollsy na talerzu wokół miseczki z sosem sojowym" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Obiady · 12.09.2026</span><h2>Spring rollsy z tofu i awokado</h2><ul><li>16 arkuszy papieru ryżowego (2 na sztukę)</li><li>180–200 g tofu (naturalne lub wędzone)</li><li>1 awokado · ½ papryki · ½ ogórka · 1 marchew</li><li>6–8 młodych liści buraka (albo szpinak/sałata)</li><li>1–2 łyżki sosu sojowego</li><li>opcjonalnie: sezam, chili, czosnek</li><li>warzywa zostają surowe, nic nie smażymy</li><li>papier ryżowy: 5–10 s w letniej wodzie</li><li>zawijamy i maczamy w sosie sojowym</li></ul><p class="prz-dop">Na 8 sztuk, jemy na surowo.</p><p class="prz-z">Z odcinka „Co zasadzę jesienią, żeby mieć wiosnę?”</p><a class="btn" href="https://www.youtube.com/watch?v=clrmMpgUi_g&amp;t=1376s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-pancakes-dyniowe" data-kat="sniadania"><span class="prz-img"><img src="img/prz_pancakes-dyniowe.jpg?v=11201326" alt="Dyniowe pancake&#x27;i na talerzu obok patelni" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 10.09.2026</span><h2>Dyniowe pancake&#x27;i</h2><ul><li>500 g purée z pieczonej dyni</li><li>3 jajka</li><li>250 g mąki · 1½ łyżeczki proszku do pieczenia</li><li>1–2 łyżeczki cynamonu · ½ łyżeczki imbiru</li><li>szczypta gałki · szczypta soli · 2–3 łyżki cukru</li><li>opcjonalnie 100–150 ml mleka, jeśli masa za gęsta</li><li>purée wymieszać z jajkami, potem mąka, proszek, przyprawy, cukier</li><li>ciasto jak gęsta śmietana · dobrze rozgrzana patelnia</li></ul><p class="prz-dop">Ok. 10 sztuk.</p><p class="prz-z">Z odcinka „Jesienne dekoracje: ile ich naprawdę potrzeba?”</p><a class="btn" href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=1800s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-syrop-dyniowy" data-kat="kawa"><span class="prz-img"><img src="img/prz_syrop-dyniowy.jpg?v=11201326" alt="Gęsty syrop dyniowy na drewnianej łyżce nad rondlem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Do kawy · 10.09.2026</span><h2>Syrop dyniowy do kawy</h2><ul><li>200 g purée z dyni (ok. 5 łyżek)</li><li>ok. 150 ml wody</li><li>2 duże łyżki miodu</li><li>1 łyżka cynamonu · ½ łyżki imbiru</li><li>¼ łyżeczki gałki · 5–6 goździków</li><li>mały ogień, pod przykryciem, 5–8 min</li><li>do kawy: 1–2 łyżki · lodówka do tygodnia</li></ul><p class="prz-dop">Nadmiar do zamrażarki, po 4–5 łyżek.</p><p class="prz-z">Z odcinka „Jesienne dekoracje: ile ich naprawdę potrzeba?”</p><a class="btn" href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=1584s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-zupa-jarzynowa" data-kat="zupy"><span class="prz-img"><img src="img/prz_zupa-jarzynowa.jpg?v=11201326" alt="Garnek w kwiaty z gotującą się zupą jarzynową z kurczakiem" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Zupy · 05.09.2026</span><h2>Zupa jarzynowa z kurczakiem</h2><ul><li>4–5 udek z kurczaka</li><li>marchew, kalarepa, ziemniaki</li><li>bób, fasolka, groszek</li><li>seler, pietruszka, por, cebula</li><li>liść laurowy, ziele angielskie</li><li>sól i pieprz · ok. 40 minut</li></ul><p class="prz-z">Z odcinka „W końcu przestałam prokrastynować”</p><a class="btn" href="https://www.youtube.com/watch?v=EyaHbt2oVF0&amp;t=1163s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-ciasto-babci" data-kat="slodkie"><span class="prz-img"><img src="img/prz_ciasto-babci.jpg?v=11201326" alt="Upieczone ciasto ze śliwkami w białej formie" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Słodkie · 05.09.2026</span><h2>Ciasto ze śliwkami babci</h2><ul><li>3 jajka</li><li>½ szklanki cukru</li><li>150 g masła (⅔ kostki), roztopione</li><li>1½ szklanki mąki</li><li>⅓ szklanki odżywki białkowej</li><li>½ szklanki mleka</li><li>1½ łyżeczki proszku do pieczenia</li><li>szczypta soli</li><li>500–700 g śliwek (albo zamrożone truskawki)</li><li>opcjonalnie łyżeczka cynamonu</li></ul><h3>Pieczenie</h3><ul><li>góra i dół 180 stopni</li><li>pieczemy około 1 h, do suchego patyczka</li></ul><p class="prz-z">Z odcinka „W końcu przestałam prokrastynować”</p><a class="btn" href="https://www.youtube.com/watch?v=EyaHbt2oVF0&amp;t=664s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article><article class="prz paper" id="przepis-pankejki-ze-skyrem" data-kat="sniadania"><span class="prz-img"><img src="img/prz_pankejki-ze-skyrem.jpg?v=11201326" alt="Pankejki ze skyrem z konfiturą truskawkową na talerzu" loading="lazy"></span><div class="prz-t"><span class="prz-kiedy">Śniadania · 29.08.2026</span><h2>Puszyste pankejki ze skyrem</h2><ul><li>5 jajek</li><li>500 g skyru</li><li>400 ml mleka</li><li>500 g mąki pszennej</li><li>4 łyżeczki proszku do pieczenia</li><li>3 łyżki cukru lub erytrytolu</li><li>2 łyżki oleju</li><li>szczypta soli</li><li>wanilia (opcjonalnie)</li></ul><h3>Jak</h3><ul><li>wymieszaj tylko do połączenia</li><li>odstaw 5–10 minut</li><li>smaż na średnim ogniu</li></ul><p class="prz-dop">Duża porcja na zapas.</p><p class="prz-z">Z odcinka „Koniec lata i start jesieni”</p><a class="btn" href="https://www.youtube.com/watch?v=VggWUVACgOk&amp;t=1690s" target="_blank" rel="noopener">Zobacz w odcinku</a></div></article></section>
 
   <!-- ===== KSIĄŻKI (ksiazki 14.11) ===== -->
   <header class="hero ks-top v-ks">
@@ -1014,9 +1053,9 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
     <a class="btn" href="#ksiazka-kolo">Wylosuj książkę od widzek</a>
     <a class="btn ghost" href="https://www.goodreads.com/zacisze" target="_blank" rel="noopener">Moja półka na Goodreads</a>
   </header>
-  <section class="v-ks ks-lista" aria-label="Książki z vlogów"><article class="ks paper" id="ksiazka-sklep-dla-samotnych-serc"><span class="ks-img"><img src="img/ks_sklep-dla-samotnych-serc.jpg?v=11191745" alt="Otwarta książka „Sklep dla samotnych serc” na stoliku obok matchy latte" loading="lazy"></span><div class="ks-t"><span class="ks-stan">Przeczytana</span><h2>Sklep dla samotnych serc</h2><p class="ks-autor">Alison Sherlock</p><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span><blockquote>„Bardzo chillowo, jesienno. Spokojna, taka romantyzowana troszkę książka. Ja lubię.”</blockquote><p class="ks-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”, 01.10.2026</p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=j3iArX56wCo&amp;t=568s" target="_blank" rel="noopener">„Czemu nie ma już zdrowych zmian?”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=t0BNZVug-nQ&amp;t=386s" target="_blank" rel="noopener">„Nie wierzyłam, że mi wyjdzie”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=1733s" target="_blank" rel="noopener">„Nie leżałam przed telewizorem”</a></p><div class="ks-btny"><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=642s" target="_blank" rel="noopener">Zobacz w odcinku</a><a class="btn ghost" href="https://www.goodreads.com/book/show/222128761-sklep-dla-samotnych-serc" target="_blank" rel="noopener">Na Goodreads</a></div></div></article><article class="ks paper" id="ksiazka-niezdobyta"><span class="ks-img"><img src="img/ks_niezdobyta.jpg?v=11191745" alt="Gabrysia czyta „Niezdobytą” na jasnej kanapie" loading="lazy"></span><div class="ks-t"><span class="ks-stan">Przeczytana</span><h2>Niezdobyta</h2><p class="ks-autor">Melissa Darwood</p><span class="ks-gw" aria-label="moja ocena: 3 na 5">★★★<span>★★</span></span><blockquote>„Jak chcesz coś lekkiego, romantycznego, dookoła gór, to myślę, że fajnie i że warto, ale Nobla to na pewno książkowego nie będzie.”</blockquote><p class="ks-z">Z odcinka „Jesienne dekoracje w domu”, 02.09.2026</p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=53s" target="_blank" rel="noopener">„Jesienne dekoracje: ile ich naprawdę potrzeba?”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=qJq9yAeW-QM&amp;t=2163s" target="_blank" rel="noopener">„Nigdy więcej Thermomixa?”</a></p><div class="ks-btny"><a class="btn" href="https://www.youtube.com/watch?v=kc-8wldayYY&amp;t=2034s" target="_blank" rel="noopener">Zobacz w odcinku</a><a class="btn ghost" href="https://www.goodreads.com/book/show/62121659-niezdobyta-tom-1-i-2" target="_blank" rel="noopener">Na Goodreads</a></div></div></article></section>
+  <section class="v-ks ks-lista" aria-label="Książki z vlogów"><article class="ks paper" id="ksiazka-sklep-dla-samotnych-serc"><span class="ks-img"><img src="img/ks_sklep-dla-samotnych-serc.jpg?v=11201326" alt="Otwarta książka „Sklep dla samotnych serc” na stoliku obok matchy latte" loading="lazy"></span><div class="ks-t"><span class="ks-stan">Przeczytana</span><h2>Sklep dla samotnych serc</h2><p class="ks-autor">Alison Sherlock</p><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span><blockquote>„Bardzo chillowo, jesienno. Spokojna, taka romantyzowana troszkę książka. Ja lubię.”</blockquote><p class="ks-z">Z odcinka „Perfekcjonizm i strach, że nie wyjdzie”, 01.10.2026</p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=j3iArX56wCo&amp;t=568s" target="_blank" rel="noopener">„Czemu nie ma już zdrowych zmian?”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=t0BNZVug-nQ&amp;t=386s" target="_blank" rel="noopener">„Nie wierzyłam, że mi wyjdzie”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=qyc7kn2Zj6o&amp;t=1733s" target="_blank" rel="noopener">„Nie leżałam przed telewizorem”</a></p><div class="ks-btny"><a class="btn" href="https://www.youtube.com/watch?v=8J6g_NF6p9w&amp;t=642s" target="_blank" rel="noopener">Zobacz w odcinku</a><a class="btn ghost" href="https://www.goodreads.com/book/show/222128761-sklep-dla-samotnych-serc" target="_blank" rel="noopener">Na Goodreads</a></div></div></article><article class="ks paper" id="ksiazka-niezdobyta"><span class="ks-img"><img src="img/ks_niezdobyta.jpg?v=11201326" alt="Gabrysia czyta „Niezdobytą” na jasnej kanapie" loading="lazy"></span><div class="ks-t"><span class="ks-stan">Przeczytana</span><h2>Niezdobyta</h2><p class="ks-autor">Melissa Darwood</p><span class="ks-gw" aria-label="moja ocena: 3 na 5">★★★<span>★★</span></span><blockquote>„Jak chcesz coś lekkiego, romantycznego, dookoła gór, to myślę, że fajnie i że warto, ale Nobla to na pewno książkowego nie będzie.”</blockquote><p class="ks-z">Z odcinka „Jesienne dekoracje w domu”, 02.09.2026</p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=mWPT1jAqR0Y&amp;t=53s" target="_blank" rel="noopener">„Jesienne dekoracje: ile ich naprawdę potrzeba?”</a></p><p class="ks-z">Też w: <a href="https://www.youtube.com/watch?v=qJq9yAeW-QM&amp;t=2163s" target="_blank" rel="noopener">„Nigdy więcej Thermomixa?”</a></p><div class="ks-btny"><a class="btn" href="https://www.youtube.com/watch?v=kc-8wldayYY&amp;t=2034s" target="_blank" rel="noopener">Zobacz w odcinku</a><a class="btn ghost" href="https://www.goodreads.com/book/show/62121659-niezdobyta-tom-1-i-2" target="_blank" rel="noopener">Na Goodreads</a></div></div></article></section>
   <section class="paper v-ks ks-kolo" id="ksiazka-kolo" aria-labelledby="h-ks-kolo"><h2 id="h-ks-kolo">Koło książek od widzek</h2><p>Wszystkie tytuły na tym kole to Wasze polecenia z komentarzy pod moimi vlogami. Kiedy nie wiem, co czytać dalej, kręcę kołem i biorę to, co wypadnie. Mnie to pomaga, może pomoże i Tobie.</p><div class="kolo-box"><canvas id="kolo-cv" width="1000" height="1000" role="img" aria-label="Koło z tytułami książek poleconych w komentarzach"></canvas><div class="kolo-wsk" aria-hidden="true"></div></div><button class="btn" id="kolo-krec" type="button">Kręć</button><div class="kolo-wynik" id="kolo-wynik" aria-live="polite"><p>Kliknij „Kręć”, a tutaj pokaże się książka i słowa widzki, która ją poleciła.</p></div><details class="kolo-lista"><summary id="kolo-ile">Co jest na kole</summary><ul id="kolo-ul"></ul><p>Odznacz to, co już znasz. Możesz też dopisać tytuły ze swojej półki, zostaną tylko w Twojej przeglądarce.</p><form id="kolo-form"><input id="kolo-nowy" type="text" maxlength="80" placeholder="Tytuł ze swojej półki" autocomplete="off" aria-label="Tytuł do dopisania"><button class="btn ghost" type="submit">Dopisz</button></form></details><script type="application/json" id="kolo-dane">[{"t": "Życie Violette", "a": "Valérie Perrin", "s": "Bardzo polecam!!!", "gr": "https://www.goodreads.com/book/show/60423626-ycie-violette"}, {"t": "Cudowne lata", "a": "Valérie Perrin", "s": "Bardzo polecam!!!", "gr": "https://www.goodreads.com/book/show/75675277-cudowne-lata"}, {"t": "Zadzwoń, jak dojedziesz", "a": "Jakub Bączykowski", "s": "najlepsza jesienna książka, pochłonęłam ją w 2 dni", "gr": "https://www.goodreads.com/book/show/220144243-zadzwo-jak-dojedziesz"}, {"t": "Kiedy zakwitną marzenia", "a": "Anna Szczęsna, seria Chabrowe Ustronie", "s": "Polecam tą opowieść też o zmianie, która staje się nowym początkiem", "gr": "https://www.goodreads.com/book/show/229021609-kiedy-zakwitn-marzenia"}, {"t": "Złota godzina", "a": "Sara Donati", "s": "", "gr": "https://www.goodreads.com/book/show/32936568-z-ota-godzina"}, {"t": "Szczęście", "a": "Niro Feliciano", "s": "", "gr": "https://www.goodreads.com/book/show/157873111-szcz-cie-jak-y-bez-presji-i-dba-o-sw-j-dobrostan"}, {"t": "Katabaza", "a": "R.F. Kuang", "s": "", "gr": "https://www.goodreads.com/book/show/239863619-katabaza"}, {"t": "Rok magicznego myślenia", "a": "Joan Didion", "s": "", "gr": "https://www.goodreads.com/book/show/10419839-rok-magicznego-my-lenia"}, {"t": "Justyna", "a": "Lawrence Durrell", "s": "", "gr": "https://www.goodreads.com/book/show/31544617-justyna"}]</script></section>
-  <section class="paper v-ks ks-wcz" aria-labelledby="h-ks-wcz"><h2 id="h-ks-wcz">Czytałam wcześniej</h2><p>Książki sprzed vlogów, z mojej półki na Goodreads. Gwiazdki są moje.</p><h3>Powieści</h3><ul class="ks-polka"><li><a href="https://www.goodreads.com/book/show/55065431-dziennik-bridget-jones" target="_blank" rel="noopener"><img src="img/ks_gr_07.jpg?v=11191745" alt="" loading="lazy"><b>Dziennik Bridget Jones</b><span>Helen Fielding</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/7662834-tajemna-historia" target="_blank" rel="noopener"><img src="img/ks_gr_14.jpg?v=11191745" alt="" loading="lazy"><b>Tajemna historia</b><span>Donna Tartt</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/59823641-ona-i-jej-kot" target="_blank" rel="noopener"><img src="img/ks_gr_24.jpg?v=11191745" alt="" loading="lazy"><b>Ona i jej kot</b><span>Makoto Shinkai</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/56251717-sen-o-okapi" target="_blank" rel="noopener"><img src="img/ks_gr_25.jpg?v=11191745" alt="" loading="lazy"><b>Sen o okapi</b><span>Mariana Leky</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/72193.Harry_Potter_and_the_Philosopher_s_Stone" target="_blank" rel="noopener"><img src="img/ks_gr_26.jpg?v=11191745" alt="" loading="lazy"><b>Harry Potter and the Philosopher’s Stone</b><span>J.K. Rowling</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/58978920-ksi-ka-o-przyja-ni" target="_blank" rel="noopener"><img src="img/ks_gr_17.jpg?v=11191745" alt="" loading="lazy"><b>Książka o przyjaźni</b><span>Maciej Marcisz</span><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span></a></li><li><a href="https://www.goodreads.com/book/show/55852985-der-buchspazierer" target="_blank" rel="noopener"><img src="img/ks_gr_23.jpg?v=11191745" alt="" loading="lazy"><b>Der Buchspazierer</b><span>Carsten Henn</span><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span></a></li></ul><h3>O prostszym życiu</h3><ul class="ks-polka"><li><a href="https://www.goodreads.com/book/show/33787559-fenomen-poranka-jak-zmieni-swoje-ycie" target="_blank" rel="noopener"><img src="img/ks_gr_09.jpg?v=11191745" alt="" loading="lazy"><b>Fenomen poranka</b><span>Hal Elrod</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/54272782-ma-e-szcz-cie-w-asnor-cznie-zbudowana-historia" target="_blank" rel="noopener"><img src="img/ks_gr_12.jpg?v=11191745" alt="" loading="lazy"><b>Małe szczęście. Własnoręcznie zbudowana historia</b><span>Dee Williams</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/56557662-zero-waste-nowa-jakosc-zycia-w-30-dni" target="_blank" rel="noopener"><img src="img/ks_gr_15.jpg?v=11191745" alt="" loading="lazy"><b>Zero waste. Nowa jakość życia w 30 dni</b><span>Anita Vandyke</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/36202604-rzeczozm-czenie-jak-y-pe-niej-maj-c-mniej" target="_blank" rel="noopener"><img src="img/ks_gr_16.jpg?v=11191745" alt="" loading="lazy"><b>Rzeczozmęczenie. Jak żyć pełniej, mając mniej</b><span>James Wallman</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/27154129-wielka-magia" target="_blank" rel="noopener"><img src="img/ks_gr_18.jpg?v=11191745" alt="" loading="lazy"><b>Wielka Magia</b><span>Elizabeth Gilbert</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/35383607-po-egnanie-z-nadmiarem-minimalizm-japo-ski" target="_blank" rel="noopener"><img src="img/ks_gr_20.jpg?v=11191745" alt="" loading="lazy"><b>Pożegnanie z nadmiarem. Minimalizm japoński</b><span>Fumio Sasaki</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/49237415-minimalizm-kr-tki-przewodnik-po-minimalizmie" target="_blank" rel="noopener"><img src="img/ks_gr_04.jpg?v=11191745" alt="" loading="lazy"><b>Minimalizm. Krótki przewodnik po minimalizmie</b><span>Natalia Coleman</span></a></li><li><a href="https://www.goodreads.com/book/show/54509816-cyfrowy-minimalizm-jak-zachowa-skupienie-w-ha-liwym" target="_blank" rel="noopener"><img src="img/ks_gr_19.jpg?v=11191745" alt="" loading="lazy"><b>Cyfrowy minimalizm</b><span>Cal Newport</span></a></li></ul></section>
+  <section class="paper v-ks ks-wcz" aria-labelledby="h-ks-wcz"><h2 id="h-ks-wcz">Czytałam wcześniej</h2><p>Książki sprzed vlogów, z mojej półki na Goodreads. Gwiazdki są moje.</p><h3>Powieści</h3><ul class="ks-polka"><li><a href="https://www.goodreads.com/book/show/55065431-dziennik-bridget-jones" target="_blank" rel="noopener"><img src="img/ks_gr_07.jpg?v=11201326" alt="" loading="lazy"><b>Dziennik Bridget Jones</b><span>Helen Fielding</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/7662834-tajemna-historia" target="_blank" rel="noopener"><img src="img/ks_gr_14.jpg?v=11201326" alt="" loading="lazy"><b>Tajemna historia</b><span>Donna Tartt</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/59823641-ona-i-jej-kot" target="_blank" rel="noopener"><img src="img/ks_gr_24.jpg?v=11201326" alt="" loading="lazy"><b>Ona i jej kot</b><span>Makoto Shinkai</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/56251717-sen-o-okapi" target="_blank" rel="noopener"><img src="img/ks_gr_25.jpg?v=11201326" alt="" loading="lazy"><b>Sen o okapi</b><span>Mariana Leky</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/72193.Harry_Potter_and_the_Philosopher_s_Stone" target="_blank" rel="noopener"><img src="img/ks_gr_26.jpg?v=11201326" alt="" loading="lazy"><b>Harry Potter and the Philosopher’s Stone</b><span>J.K. Rowling</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/58978920-ksi-ka-o-przyja-ni" target="_blank" rel="noopener"><img src="img/ks_gr_17.jpg?v=11201326" alt="" loading="lazy"><b>Książka o przyjaźni</b><span>Maciej Marcisz</span><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span></a></li><li><a href="https://www.goodreads.com/book/show/55852985-der-buchspazierer" target="_blank" rel="noopener"><img src="img/ks_gr_23.jpg?v=11201326" alt="" loading="lazy"><b>Der Buchspazierer</b><span>Carsten Henn</span><span class="ks-gw" aria-label="moja ocena: 4 na 5">★★★★<span>★</span></span></a></li></ul><h3>O prostszym życiu</h3><ul class="ks-polka"><li><a href="https://www.goodreads.com/book/show/33787559-fenomen-poranka-jak-zmieni-swoje-ycie" target="_blank" rel="noopener"><img src="img/ks_gr_09.jpg?v=11201326" alt="" loading="lazy"><b>Fenomen poranka</b><span>Hal Elrod</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/54272782-ma-e-szcz-cie-w-asnor-cznie-zbudowana-historia" target="_blank" rel="noopener"><img src="img/ks_gr_12.jpg?v=11201326" alt="" loading="lazy"><b>Małe szczęście. Własnoręcznie zbudowana historia</b><span>Dee Williams</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/56557662-zero-waste-nowa-jakosc-zycia-w-30-dni" target="_blank" rel="noopener"><img src="img/ks_gr_15.jpg?v=11201326" alt="" loading="lazy"><b>Zero waste. Nowa jakość życia w 30 dni</b><span>Anita Vandyke</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/36202604-rzeczozm-czenie-jak-y-pe-niej-maj-c-mniej" target="_blank" rel="noopener"><img src="img/ks_gr_16.jpg?v=11201326" alt="" loading="lazy"><b>Rzeczozmęczenie. Jak żyć pełniej, mając mniej</b><span>James Wallman</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/27154129-wielka-magia" target="_blank" rel="noopener"><img src="img/ks_gr_18.jpg?v=11201326" alt="" loading="lazy"><b>Wielka Magia</b><span>Elizabeth Gilbert</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/35383607-po-egnanie-z-nadmiarem-minimalizm-japo-ski" target="_blank" rel="noopener"><img src="img/ks_gr_20.jpg?v=11201326" alt="" loading="lazy"><b>Pożegnanie z nadmiarem. Minimalizm japoński</b><span>Fumio Sasaki</span><span class="ks-gw" aria-label="moja ocena: 5 na 5">★★★★★<span></span></span></a></li><li><a href="https://www.goodreads.com/book/show/49237415-minimalizm-kr-tki-przewodnik-po-minimalizmie" target="_blank" rel="noopener"><img src="img/ks_gr_04.jpg?v=11201326" alt="" loading="lazy"><b>Minimalizm. Krótki przewodnik po minimalizmie</b><span>Natalia Coleman</span></a></li><li><a href="https://www.goodreads.com/book/show/54509816-cyfrowy-minimalizm-jak-zachowa-skupienie-w-ha-liwym" target="_blank" rel="noopener"><img src="img/ks_gr_19.jpg?v=11201326" alt="" loading="lazy"><b>Cyfrowy minimalizm</b><span>Cal Newport</span></a></li></ul></section>
   <section class="paper v-ks ks-widzki" aria-labelledby="h-ks-widzki"><h2 id="h-ks-widzki">Co czytają widzki</h2><p>Tytuły z Waszych komentarzy pod vlogami: część polecacie, resztę właśnie czytacie. Napisz pod odcinkiem, co czytasz, a dopiszę.</p><ul><li><b><a href="https://www.goodreads.com/book/show/60423626-ycie-violette" target="_blank" rel="noopener">Życie Violette</a></b><span>Valérie Perrin</span><span><q>Bardzo polecam!!!</q></span></li><li><b><a href="https://www.goodreads.com/book/show/75675277-cudowne-lata" target="_blank" rel="noopener">Cudowne lata</a></b><span>Valérie Perrin</span><span><q>Bardzo polecam!!!</q></span></li><li><b><a href="https://www.goodreads.com/book/show/220144243-zadzwo-jak-dojedziesz" target="_blank" rel="noopener">Zadzwoń, jak dojedziesz</a></b><span>Jakub Bączykowski</span><span><q>najlepsza jesienna książka, pochłonęłam ją w 2 dni</q></span></li><li><b><a href="https://www.goodreads.com/book/show/257567398-jestem-jesieniar" target="_blank" rel="noopener">Jestem jesieniarą</a></b><span>Karolina Wilczyńska</span><span><q>bardzo polecam tak w klimacie jesieni</q></span></li><li><b><a href="https://www.goodreads.com/book/show/229021609-kiedy-zakwitn-marzenia" target="_blank" rel="noopener">Kiedy zakwitną marzenia</a></b><span>Anna Szczęsna, seria Chabrowe Ustronie</span><span><q>Polecam tą opowieść też o zmianie, która staje się nowym początkiem</q></span></li><li><b><a href="https://www.goodreads.com/book/show/258508277-cynamonowy-smak-jesiennych-dni" target="_blank" rel="noopener">Cynamonowy smak jesiennych dni</a></b><span>Gabriela Gargaś</span></li><li><b><a href="https://www.goodreads.com/book/show/32936568-z-ota-godzina" target="_blank" rel="noopener">Złota godzina</a></b><span>Sara Donati</span></li><li><b><a href="https://www.goodreads.com/book/show/240351028-je-li-to-ci-uszcz-liwia" target="_blank" rel="noopener">Jeśli to cię uszczęśliwia</a></b><span>Julie Olivia</span></li><li><b><a href="https://www.goodreads.com/book/show/157873111-szcz-cie-jak-y-bez-presji-i-dba-o-sw-j-dobrostan" target="_blank" rel="noopener">Szczęście</a></b><span>Niro Feliciano</span></li><li><b><a href="https://www.goodreads.com/book/show/239863619-katabaza" target="_blank" rel="noopener">Katabaza</a></b><span>R.F. Kuang</span></li><li><b><a href="https://www.goodreads.com/book/show/10419839-rok-magicznego-my-lenia" target="_blank" rel="noopener">Rok magicznego myślenia</a></b><span>Joan Didion</span></li><li><b><a href="https://www.goodreads.com/book/show/31544617-justyna" target="_blank" rel="noopener">Justyna</a></b><span>Lawrence Durrell</span></li></ul></section>
 
   <!-- ===== INNE KANAŁY (kanaly 17.11) ===== -->
@@ -1027,7 +1066,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
   </header>
   <section class="paper v-kan kan" data-kanal="janusz" aria-labelledby="h-kan-janusz">
     <div class="kan-gl">
-      <img class="kan-av" src="img/kan_janusz.jpg?v=11191745" alt="" width="240" height="240" loading="lazy">
+      <img class="kan-av" src="img/kan_janusz.jpg?v=11201326" alt="" width="240" height="240" loading="lazy">
       <div class="kan-opis"><h2 id="h-kan-janusz">Janusz Biznesu</h2><p>Kreskówki o pieniądzach, z przymrużeniem oka. Janusz liczy, ile naprawdę kosztuje kawa na wynos, rata i podwyżka, która znika z konta.</p></div>
     </div>
     <div class="odc-lista kan-lista" hidden></div>
@@ -1038,7 +1077,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
   </section>
   <section class="paper v-kan kan" data-kanal="afirmacje" aria-labelledby="h-kan-afirmacje">
     <div class="kan-gl">
-      <img class="kan-av" src="img/kan_afirmacje.jpg?v=11191745" alt="" width="240" height="240" loading="lazy">
+      <img class="kan-av" src="img/kan_afirmacje.jpg?v=11201326" alt="" width="240" height="240" loading="lazy">
       <div class="kan-opis"><h2 id="h-kan-afirmacje">Afirmacje na Dobry Dzień</h2><p>Śpiewane afirmacje na spokojny poranek. Muzyka, przy której łatwiej zacząć dzień z wiarą w siebie.</p></div>
     </div>
     <div class="odc-lista kan-lista" hidden></div>
@@ -1063,6 +1102,11 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
     <p>Jeśli zapiszesz się na maile, przechowuję Twój adres e-mail (i imię, jeśli je podasz). Wysyłam kartkę świąteczną, materiały do druku, wiadomości o nowych odcinkach i oferty, także produktów moich partnerów. Robię to na podstawie Twojej zgody (art. 6 ust. 1 lit. a RODO). Zgodę cofasz w każdej chwili linkiem „wypisz się” w każdym mailu albo pisząc do mnie. Cofnięcie zgody nie zmienia tego, co zostało wysłane wcześniej. Twój adres trzymam, dopóki się nie wypiszesz.</p>
     <p>Maile wysyłam przez Sender (UAB Sender.lt, Litwa). Twój adres jest przechowywany na serwerach w Europejskim Obszarze Gospodarczym.</p>
 
+    <h2>Strefa wspierających</h2>
+    <p>Jeśli zalogujesz się do strefy wspierających, przechowuję Twój adres e-mail, Twój osobisty kod (np. ZOSTAN-12345) oraz identyfikator i nazwę kanału YouTube, z którego wpiszesz ten kod pod postem dla wspierających. Raz dziennie sprawdzam, czy ten kanał jest na liście wspierających Zacisza, i według tego włączam albo wyłączam dostęp. Robię to, żeby dać Ci materiały, które należą Ci się jako osobie wspierającej (art. 6 ust. 1 lit. b RODO).</p>
+    <p>Konto bez potwierdzonego kodu usuwam po 90 dniach. Gdy przestaniesz wspierać kanał, dane konta zostają jeszcze 12 miesięcy, żeby dostęp wrócił sam, jeśli dołączysz ponownie. Potem je usuwam. Konto usunę też wcześniej, gdy do mnie napiszesz.</p>
+    <p>Konta i logowanie obsługuje Supabase (Supabase Pte. Ltd., Singapur). Dane leżą na serwerze we Frankfurcie (Niemcy). Jeśli zespół Supabase z USA albo z Singapuru musi do nich zajrzeć, na przykład przy awarii, chronią je standardowe klauzule umowne zatwierdzone przez Komisję Europejską. Kod do logowania wysyłam mailem przez Sender. Po zalogowaniu Twoja przeglądarka pamięta, że jesteś zalogowana (w pamięci przeglądarki, bez ciasteczek). Przycisk „Wyloguj” to kasuje.</p>
+
     <h2>Statystyki strony</h2>
     <p>Liczę wejścia na stronę narzędziem GoatCounter, bez ciasteczek i bez danych, po których można Cię rozpoznać. Widzę na przykład, ile osób otworzyło kalendarz i skąd przyszły (YouTube, Instagram). Podstawą jest mój prawnie uzasadniony interes (art. 6 ust. 1 lit. f RODO): wiedza, co na stronie się przydaje.</p>
 
@@ -1078,7 +1122,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
 
     <h2>Twoje prawa</h2>
     <p>Masz prawo do dostępu do swoich danych, ich poprawienia, usunięcia, ograniczenia przetwarzania i przeniesienia, a także do sprzeciwu i do cofnięcia zgody. Wystarczy mail na <b>zaciszevlog.pl@gmail.com</b>. Możesz też złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa).</p>
-    <p class="pryw-data">Ostatnia zmiana: 19.11.2026</p>
+    <p class="pryw-data">Ostatnia zmiana: 20.11.2026</p>
   </section>
 
   <!-- ===== KONTAKT (kontakt 15.11) ===== -->
@@ -1121,11 +1165,11 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
     <p class="pol-zasada">Polecam tylko rzeczy, które kupiłam sama, używam na co dzień i kupiłabym drugi raz. Przy każdej piszę, od kiedy jej używam.</p>
     <p class="pol-ujawnienie">Linki do Allegro są linkami afiliacyjnymi, a ściereczki są z mojego sklepu Raypath. Jeśli coś kupisz, dostanę małą prowizję, a Ty nie płacisz więcej. Dziękuję, to też wspiera Zacisze.</p>
   </header>
-  <section class="v-pol pol-lista" aria-label="Polecane rzeczy"><article class="pol paper"><span class="pol-img"><img src="img/pol_sciereczki_jej.jpg?v=11191745" alt="Ściereczki Raypath" loading="lazy"></span><div class="pol-t"><h2>Ściereczki Raypath</h2><span class="pol-od">Używam od lat</span><p>Ciągle do nich wracam.</p><a class="btn" href="https://zdrowezmiany.raypath.info/" target="_blank" rel="sponsored noopener">Zobacz w moim sklepie Raypath</a><span class="pol-af">mój sklep</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_odkurzacz.jpg?v=11191745" alt="Odkurzacz bezprzewodowy pionowy" loading="lazy"></span><div class="pol-t"><h2>Odkurzacz bezprzewodowy pionowy</h2><span class="pol-od">Używam od 2025 roku</span><p>Bez kabla, z filtrem HEPA i końcówkami w zestawie.</p><a class="btn" href="https://allegro.pl/oferta/odkurzacz-bezprzewodowy-pionowy-mocny-obrotowy-filtr-hepa-x3-akcesoria-17870712031?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=87c81f281b92" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_robot_4.jpg?v=11191745" alt="Robot kuchenny Lidlomix (Monsieur Cuisine Smart)" loading="lazy"></span><div class="pol-t"><h2>Robot kuchenny Lidlomix (Monsieur Cuisine Smart)</h2><span class="pol-od">Używam od września 2026</span><p>Mój robot kuchenny. Dlaczego wybrałam go zamiast Thermomixa, opowiadam w odcinku.</p><a class="pol-odc" href="https://www.youtube.com/watch?v=qJq9yAeW-QM" target="_blank" rel="noopener">Odcinek: Nigdy więcej Thermomixa?</a><a class="btn" href="https://allegro.pl/oferta/najnowszy-robot-kuchenny-lidlomix-2025-monsieur-cuisine-smart-8-cali-czarny-19113137259?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=425a9586af0f" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_biezna.jpg?v=11191745" alt="Bieżnia pod biurko" loading="lazy"></span><div class="pol-t"><h2>Bieżnia pod biurko</h2><span class="pol-od">Używam od maja 2026</span><p>Kompaktowa mata do chodzenia, mieści się pod biurkiem.</p><a class="btn" href="https://allegro.pl/oferta/bieznia-pod-biurkiem-home-2-5hp-1-6km-h-kompaktowa-podkladka-do-chodzenia-18187222065?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=ae9de4d17101" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_butelka.jpg?v=11191745" alt="Butelka termiczna MiiR Wide Mouth 590 ml" loading="lazy"></span><div class="pol-t"><h2>Butelka termiczna MiiR Wide Mouth 590 ml</h2><span class="pol-od">Używam od lat</span><p>Mój termos na herbatę. W góry jedzie ze mną, ale zostaje w samochodzie: po zejściu czeka na mnie ciepła herbata na powrót. Naprawdę dobrze trzyma ciepło.</p><a class="btn" href="https://allegro.pl/oferta/butelka-termiczna-stalowa-zamykana-miir-wide-mouth-590-ml-black-czarny-15933358741?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=aa9c46dcecee" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_mikrofala.jpg?v=11191745" alt="Kuchenka mikrofalowa Amica AMGF17M2B" loading="lazy"></span><div class="pol-t"><h2>Kuchenka mikrofalowa Amica AMGF17M2B</h2><span class="pol-od">Używam od września 2026</span><p>Najtańsza Amica, jaką znalazłam, i nic więcej mi nie trzeba. Wieczorem robię śniadanie na zapas, a rano tylko je w niej odgrzewam. Pudełka z zamrażarki też.</p><a class="btn" href="https://allegro.pl/oferta/kuchenka-mikrofalowa-amica-amgf17m2b-600w-17l-timer-czarna-do-podgrzewania-15159176044?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=c6294abc5403" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_saturator.jpg?v=11191745" alt="Saturator SodaStream Terra" loading="lazy"></span><div class="pol-t"><h2>Saturator SodaStream Terra</h2><span class="pol-od">Używam od 2024 roku</span><p>Robię w nim wodę gazowaną, a jak mam ochotę, to też colę.</p><a class="btn" href="https://allegro.pl/oferta/saturator-do-wody-gazowanej-sodastream-terra-czarny-naboj-z-gazem-butelka-18874842115?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=5cd6f00e13ab" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article></section>
+  <section class="v-pol pol-lista" aria-label="Polecane rzeczy"><article class="pol paper"><span class="pol-img"><img src="img/pol_sciereczki_jej.jpg?v=11201326" alt="Ściereczki Raypath" loading="lazy"></span><div class="pol-t"><h2>Ściereczki Raypath</h2><span class="pol-od">Używam od lat</span><p>Ciągle do nich wracam.</p><a class="btn" href="https://zdrowezmiany.raypath.info/" target="_blank" rel="sponsored noopener">Zobacz w moim sklepie Raypath</a><span class="pol-af">mój sklep</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_odkurzacz.jpg?v=11201326" alt="Odkurzacz bezprzewodowy pionowy" loading="lazy"></span><div class="pol-t"><h2>Odkurzacz bezprzewodowy pionowy</h2><span class="pol-od">Używam od 2025 roku</span><p>Bez kabla, z filtrem HEPA i końcówkami w zestawie.</p><a class="btn" href="https://allegro.pl/oferta/odkurzacz-bezprzewodowy-pionowy-mocny-obrotowy-filtr-hepa-x3-akcesoria-17870712031?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=87c81f281b92" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_robot_4.jpg?v=11201326" alt="Robot kuchenny Lidlomix (Monsieur Cuisine Smart)" loading="lazy"></span><div class="pol-t"><h2>Robot kuchenny Lidlomix (Monsieur Cuisine Smart)</h2><span class="pol-od">Używam od września 2026</span><p>Mój robot kuchenny. Dlaczego wybrałam go zamiast Thermomixa, opowiadam w odcinku.</p><a class="pol-odc" href="https://www.youtube.com/watch?v=qJq9yAeW-QM" target="_blank" rel="noopener">Odcinek: Nigdy więcej Thermomixa?</a><a class="btn" href="https://allegro.pl/oferta/najnowszy-robot-kuchenny-lidlomix-2025-monsieur-cuisine-smart-8-cali-czarny-19113137259?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=425a9586af0f" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_biezna.jpg?v=11201326" alt="Bieżnia pod biurko" loading="lazy"></span><div class="pol-t"><h2>Bieżnia pod biurko</h2><span class="pol-od">Używam od maja 2026</span><p>Kompaktowa mata do chodzenia, mieści się pod biurkiem.</p><a class="btn" href="https://allegro.pl/oferta/bieznia-pod-biurkiem-home-2-5hp-1-6km-h-kompaktowa-podkladka-do-chodzenia-18187222065?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=ae9de4d17101" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_butelka.jpg?v=11201326" alt="Butelka termiczna MiiR Wide Mouth 590 ml" loading="lazy"></span><div class="pol-t"><h2>Butelka termiczna MiiR Wide Mouth 590 ml</h2><span class="pol-od">Używam od lat</span><p>Mój termos na herbatę. W góry jedzie ze mną, ale zostaje w samochodzie: po zejściu czeka na mnie ciepła herbata na powrót. Naprawdę dobrze trzyma ciepło.</p><a class="btn" href="https://allegro.pl/oferta/butelka-termiczna-stalowa-zamykana-miir-wide-mouth-590-ml-black-czarny-15933358741?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=aa9c46dcecee" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_mikrofala.jpg?v=11201326" alt="Kuchenka mikrofalowa Amica AMGF17M2B" loading="lazy"></span><div class="pol-t"><h2>Kuchenka mikrofalowa Amica AMGF17M2B</h2><span class="pol-od">Używam od września 2026</span><p>Najtańsza Amica, jaką znalazłam, i nic więcej mi nie trzeba. Wieczorem robię śniadanie na zapas, a rano tylko je w niej odgrzewam. Pudełka z zamrażarki też.</p><a class="btn" href="https://allegro.pl/oferta/kuchenka-mikrofalowa-amica-amgf17m2b-600w-17l-timer-czarna-do-podgrzewania-15159176044?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=c6294abc5403" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article><article class="pol paper"><span class="pol-img"><img src="img/pol_saturator.jpg?v=11201326" alt="Saturator SodaStream Terra" loading="lazy"></span><div class="pol-t"><h2>Saturator SodaStream Terra</h2><span class="pol-od">Używam od 2024 roku</span><p>Robię w nim wodę gazowaną, a jak mam ochotę, to też colę.</p><a class="btn" href="https://allegro.pl/oferta/saturator-do-wody-gazowanej-sodastream-terra-czarny-naboj-z-gazem-butelka-18874842115?utm_medium=afiliacja&amp;utm_source=ctr_2&amp;utm_campaign=7c854954-6f01-4359-8b11-0f56afd4046a&amp;utm_content=5cd6f00e13ab" target="_blank" rel="sponsored noopener">Zobacz na Allegro</a><span class="pol-af">link afiliacyjny</span></div></article></section>
 
   <!-- ===== START ===== -->
   <section class="paper v-start home-hero" aria-labelledby="h-start">
-    <div class="foto"><img src="img/g_kot.jpg?v=11191745" alt="Gabrysia przytula swoją kotkę" width="1000" height="1250"><span class="dopisek d-hero" aria-hidden="true">to ja i moja kotka</span></div>
+    <div class="foto"><img src="img/g_kot.jpg?v=11201326" alt="Gabrysia przytula swoją kotkę" width="1000" height="1250"><span class="dopisek d-hero" aria-hidden="true">to ja i moja kotka</span></div>
     <div class="tekst">
       <div class="eyebrow">Zacisze · spokojny vlog</div>
       <h1 id="h-start">Zostań <span>na chwilę</span></h1>
@@ -1139,7 +1183,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
   </section>
 
   <section class="paper v-start home-kal" aria-labelledby="h-home-kal">
-    <a class="kal-ilu" href="#kalendarz"><img src="img/00_salon_zima.jpg?v=11191745" alt="Malowany zimowy salon z 24 woreczkami kalendarza nad kanapą" width="1600" height="1067"></a>
+    <a class="kal-ilu" href="#kalendarz"><img src="img/00_salon_zima.jpg?v=11201326" alt="Malowany zimowy salon z 24 woreczkami kalendarza nad kanapą" width="1600" height="1067"></a>
     <div class="tekst">
       <h2 id="h-home-kal">Kalendarz adwentowy</h2>
       <p>24 okienka, jedno na każdy dzień grudnia. W każdym mała przyjemność, którą zrobisz w domu, z tego, co zwykle jest w kuchni i w szufladzie.</p>
@@ -1166,7 +1210,7 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
   </section>
 
   <section class="paper zostan v-start" aria-labelledby="h-zostan">
-    <div class="zf"><img src="img/g_portret.jpg?v=11191745" alt="Gabrysia uśmiechnięta, patrzy w bok" width="1000" height="1250" loading="lazy"></div>
+    <div class="zf"><img src="img/g_portret.jpg?v=11201326" alt="Gabrysia uśmiechnięta, patrzy w bok" width="1000" height="1250" loading="lazy"></div>
     <div class="zt">
     <h2 id="h-zostan">Dlaczego „zostań na chwilę”?</h2>
     <p>Tak nazywa się mój kanał na YouTube. Wiesz, jak to jest, kiedy przyjaciółka wpada do Ciebie w biegu, tylko na moment? Mówisz jej: poczekaj, zostań na chwilę. Wypij herbatę, tu są pierniki. Co u Ciebie?</p>
@@ -1179,20 +1223,20 @@ body:not([data-widok="prywatnosc"]) .v-pryw{display:none!important}
   <section class="v-start galeria" aria-labelledby="h-galeria">
     <h2 id="h-galeria">Z mojego Zacisza</h2>
     <div class="gal">
-      <img src="img/g_1.jpg?v=11191745" alt="Gabrysia w kuchni z durszlakiem pełnym liści" width="900" height="900" loading="lazy">
-      <img src="img/g_2.jpg?v=11191745" alt="Gabrysia w swojej kuchni" width="900" height="900" loading="lazy">
-      <img src="img/g_3.jpg?v=11191745" alt="Gabrysia z książką przy oknie" width="900" height="900" loading="lazy">
-      <img src="img/g_4.jpg?v=11191745" alt="Gabrysia w domu, uśmiechnięta" width="900" height="900" loading="lazy">
+      <img src="img/g_1.jpg?v=11201326" alt="Gabrysia w kuchni z durszlakiem pełnym liści" width="900" height="900" loading="lazy">
+      <img src="img/g_2.jpg?v=11201326" alt="Gabrysia w swojej kuchni" width="900" height="900" loading="lazy">
+      <img src="img/g_3.jpg?v=11201326" alt="Gabrysia z książką przy oknie" width="900" height="900" loading="lazy">
+      <img src="img/g_4.jpg?v=11201326" alt="Gabrysia w domu, uśmiechnięta" width="900" height="900" loading="lazy">
     </div>
   </section>
 
   <section class="v-start kafle" aria-label="Więcej na stronie">
     <a class="kafel paper" href="#przepisy">
-      <span class="kafel-img"><img src="img/prz_chleb-portugalski.jpg?v=11191745" alt="" width="640" height="400" loading="lazy"></span>
+      <span class="kafel-img"><img src="img/prz_chleb-portugalski.jpg?v=11201326" alt="" width="640" height="400" loading="lazy"></span>
       <span class="kafel-t"><span class="eyebrow">Przepisy</span><b>Przepisy z odcinków</b><span class="kafel-p">Dokładnie tak, jak na planszach w vlogach. Z linkiem do minuty, w której gotuję.</span></span>
     </a>
     <a class="kafel paper" href="#polecane">
-      <span class="kafel-img"><img src="img/pol_sciereczki_jej.jpg?v=11191745" alt="" width="640" height="400" loading="lazy"></span>
+      <span class="kafel-img"><img src="img/pol_sciereczki_jej.jpg?v=11201326" alt="" width="640" height="400" loading="lazy"></span>
       <span class="kafel-t"><span class="eyebrow">Polecane</span><b>Rzeczy, których używam</b><span class="kafel-p">Kupiłam sama, używam na co dzień i kupiłabym drugi raz.</span></span>
     </a>
     <a class="kafel paper kafel-wsp" href="#wspierajacy">
@@ -1330,7 +1374,7 @@ function isOpen(n){
 }
 function todayN(){ return (!PREVIEW && !TEST && T.y === D.rok && T.m === 12 && T.d <= 24) ? T.d : null; }
 function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-const IMGV = "11191745";
+const IMGV = "11201354";
 function img(n){ if (SEJF) return OBRAZ[n] || ""; return `img/${String(n).padStart(2,"0")}.jpg?v=${IMGV}`; }
 function bagImg(n){ return `img/worek_${"abc"[n % 3]}.jpg`; }
 
@@ -1887,7 +1931,7 @@ dlg.addEventListener("close", () => {
 /* widoki strony: Start, Kalendarz i zakładki z kłódką; adres po # (np. zaciszevlog.pl/#kalendarz) */
 {
   const zak = [...document.querySelectorAll(".zak")], strefa = document.getElementById("strefa");
-  const STREFY = {"#wspierajacy": "Dla wspierających", "#meal-prep": "Meal prep", "#styczniowe-wyzwanie": "Styczniowe wyzwanie", "#habit-tracker": "Habit tracker"};
+  const STREFY = {"#wspierajacy": "Dla wspierających", "#meal-prep": "Meal prep", "#styczniowe-wyzwanie": "Styczniowe wyzwanie", "#habit-tracker": "Habit tracker", "#budzetownik": "Budżetownik"};
   const TRYBY = ["#jak-widzki", "#podglad-gabrysi"];
   document.getElementById("join-strefa").href = D.wspieraj;
   document.querySelectorAll(".join-wsp").forEach(a => { a.href = D.wspieraj; });
@@ -1904,6 +1948,7 @@ dlg.addEventListener("close", () => {
       document.getElementById("strefa-lista").hidden = !zb;
       var _st = document.getElementById("setka"); if (_st) _st.hidden = !zb;
       var _so = document.getElementById("strefa-opis"); _so.hidden = zb; document.getElementById("strefa-wkrotce").hidden = zb; _so.textContent = "Ta zakładka będzie dostępna tylko dla wspierających kanał.";
+      if (h === "#budzetownik"){ document.getElementById("strefa-wkrotce").hidden = true; _so.textContent = "Twój domowy budżet w słoiczkach: plan na miesiąc, rachunki stałe, skarbonki na marzenia i wszystko do pobrania w Excelu. Tylko dla wspierających kanał."; }
     }
     document.title = z === "kalendarz" ? "Kalendarz adwentowy Zacisza" : (z === "strefa" ? STREFY[h] + " · Zacisze" : "Zacisze · zostań na chwilę");
     if (z === "polecane") document.title = "Polecane · Zacisze";
@@ -1972,7 +2017,7 @@ try{
 }catch(e){}
 /* kanaly 17.11: „Inne kanały”, filmy osadzone przy budowaniu, świeższe dociąga z kanaly.json (robot co godzinę);
    sekcja z data-ukryty pokazuje się dopiero, gdy ma filmy; kan-mini = same okładki (tytuł w aria-label) */
-const KAN0 = {"janusz": [{"id": "3H7nJanutBI", "tytul": "Gdzie zniknęła moja podwyżka!? Zarabiasz więcej, a konto dalej puste", "img": "https://i.ytimg.com/vi/3H7nJanutBI/maxresdefault.jpg"}, {"id": "Q4hTyC6d12U", "tytul": "8 progów wypłaty. Zero spokoju", "img": "https://i.ytimg.com/vi/Q4hTyC6d12U/maxresdefault.jpg"}, {"id": "84v02FKzgpE", "tytul": "Dług 18% zjada twoją inwestycję", "img": "https://i.ytimg.com/vi/84v02FKzgpE/maxresdefault.jpg"}], "afirmacje": [{"id": "FSrF4BoQxHs", "tytul": "Co się stanie, gdy odpuścisz?", "img": "https://i.ytimg.com/vi/FSrF4BoQxHs/maxresdefault.jpg"}, {"id": "39McsBVObYw", "tytul": "Od dziś jesteś po swojej stronie", "img": "https://i.ytimg.com/vi/39McsBVObYw/maxresdefault.jpg"}, {"id": "uioe5-fppBA", "tytul": "Gdy budzisz się już zmęczona", "img": "https://i.ytimg.com/vi/uioe5-fppBA/maxresdefault.jpg"}]};
+const KAN0 = {"janusz": [{"id": "3H7nJanutBI", "tytul": "Gdzie zniknęła moja podwyżka!? Zarabiasz więcej, a konto dalej puste", "img": "https://i.ytimg.com/vi/3H7nJanutBI/maxresdefault.jpg"}, {"id": "Q4hTyC6d12U", "tytul": "8 progów wypłaty. Zero spokoju", "img": "https://i.ytimg.com/vi/Q4hTyC6d12U/maxresdefault.jpg"}, {"id": "84v02FKzgpE", "tytul": "Dług 18% zjada twoją inwestycję", "img": "https://i.ytimg.com/vi/84v02FKzgpE/maxresdefault.jpg"}], "afirmacje": [{"id": "FzIcIUX38Oo", "tytul": "Włącz to, gdy czujesz się słabsza", "img": "https://i.ytimg.com/vi/FzIcIUX38Oo/maxresdefault.jpg"}, {"id": "FSrF4BoQxHs", "tytul": "Co się stanie, gdy odpuścisz?", "img": "https://i.ytimg.com/vi/FSrF4BoQxHs/maxresdefault.jpg"}, {"id": "39McsBVObYw", "tytul": "Od dziś jesteś po swojej stronie", "img": "https://i.ytimg.com/vi/39McsBVObYw/maxresdefault.jpg"}]};
 function pokazKanaly(d){
   if (!d || typeof d !== "object") return;
   document.querySelectorAll(".kan[data-kanal]").forEach(s => {
@@ -2024,6 +2069,150 @@ pobierzKlucze();
 <!-- kolo 19.11: koło do losowania książki z poleceń widzek (#ksiazka-kolo) -->
 <script>
 (function(){
+  /* kolo dzwiek 19.11 */
+  function koloSzum(a){
+    var len = Math.floor(a.sampleRate * 0.035), b = a.createBuffer(1, len, a.sampleRate), d = b.getChannelData(0);
+    for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 4);
+    return b;
+  }
+  function koloTik(a, dest, t, szum){
+    var s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+    s.buffer = szum; s.playbackRate.value = 0.85 + Math.random() * 0.3;
+    f.type = "bandpass"; f.frequency.value = 2400; f.Q.value = 1.4; g.gain.value = 1.1;
+    s.connect(f); f.connect(g); g.connect(dest); s.start(t);
+    var o = a.createOscillator(), og = a.createGain();
+    o.type = "triangle"; o.frequency.setValueAtTime(1300, t); o.frequency.exponentialRampToValueAtTime(420, t + 0.03);
+    og.gain.setValueAtTime(0.0001, t); og.gain.exponentialRampToValueAtTime(0.14, t + 0.002); og.gain.exponentialRampToValueAtTime(0.0001, t + 0.04);
+    o.connect(og); og.connect(dest); o.start(t); o.stop(t + 0.05);
+  }
+  function koloDzwonek(a, dest, t){
+    function nuta(fr, s, gl, dl){
+      [[1, 1, 1], [2.76, 0.3, 0.38], [5.4, 0.12, 0.2]].forEach(function(p){
+        var f = fr * p[0]; if (f > 12000) return;
+        var o = a.createOscillator(), g = a.createGain();
+        o.type = "sine"; o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, s); g.gain.exponentialRampToValueAtTime(gl * p[1], s + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, s + dl * p[2]);
+        o.connect(g); g.connect(dest); o.start(s); o.stop(s + dl * p[2] + 0.05);
+      });
+    }
+    [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ nuta(f, t + i * 0.12, 0.22, i === 3 ? 2.8 : 1.5); });
+    [2093, 2637.02, 3135.96, 3520, 4186.01].forEach(function(f, i){ nuta(f, t + 0.52 + i * 0.075, 0.05, 0.9); });
+  }
+  function koloEfekty(o){
+    var TWO = Math.PI * 2, reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    var dzw = true; try{ dzw = localStorage.getItem(o.klucz) !== "0"; }catch(e){}
+    var AC = null, MG = null, SZ = null;
+    function audio(){
+      if (!dzw) return null;
+      try{ if (navigator.audioSession && navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; }catch(e){}
+      try{
+        if (!AC){
+          var C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+          AC = new C(); MG = AC.createGain(); MG.gain.value = 0.85;
+          var kp = AC.createDynamicsCompressor(); MG.connect(kp); kp.connect(AC.destination);
+          SZ = koloSzum(AC);
+        }
+        if (AC.state === "suspended") AC.resume();
+      }catch(e){ return null; }
+      return AC;
+    }
+    function tik(){ if (dzw && AC && AC.state === "running") try{ koloTik(AC, MG, AC.currentTime, SZ); }catch(e){} }
+    function dzwonek(){ if (dzw && AC) try{ koloDzwonek(AC, MG, AC.currentTime + 0.03); }catch(e){} }
+    /* wskazówka odskakuje na każdym kołeczku i wraca */
+    var wsk = o.wsk, wD = 0, wB = false;
+    if (wsk){ wsk.style.transformOrigin = "50% 0"; wsk.style.zIndex = "3"; }
+    function wUst(){ wsk.style.transform = "translateX(-50%) rotate(" + wD.toFixed(2) + "deg)"; }
+    function wKl(){ wD *= 0.78; if (Math.abs(wD) < 0.4){ wD = 0; wUst(); wB = false; return; } wUst(); requestAnimationFrame(wKl); }
+    function wTik(){ if (reduce || !wsk) return; wD = -26; wUst(); if (!wB){ wB = true; requestAnimationFrame(wKl); } }
+    /* złote gwiazdki ze środka koła */
+    var fx = document.createElement("canvas"); fx.setAttribute("aria-hidden", "true");
+    fx.style.cssText = "position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2";
+    o.box.appendChild(fx);
+    var fc = fx.getContext("2d"), cz = [], fB = false, fL = 0;
+    function gw(x, y, r, rot){
+      fc.save(); fc.translate(x, y); fc.rotate(rot); fc.beginPath();
+      for (var i = 0; i < 10; i++){ var q = i % 2 ? r * 0.45 : r, a = i * Math.PI / 5 - Math.PI / 2; fc.lineTo(Math.cos(a) * q, Math.sin(a) * q); }
+      fc.closePath(); fc.fill(); fc.restore();
+    }
+    function fKl(ts){
+      var dt = fL ? Math.min(3, (ts - fL) / 16.7) : 1; fL = ts;
+      var w = o.box.clientWidth, h = o.box.clientHeight;
+      fc.clearRect(0, 0, w, h);
+      cz = cz.filter(function(p){ return p.z < p.zyc; });
+      cz.forEach(function(p){
+        var op = Math.pow(0.965, dt);
+        p.vx *= op; p.vy = p.vy * op + 0.11 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt; p.z += dt;
+        fc.globalAlpha = Math.max(0, Math.min(1, (p.zyc - p.z) / 35)); fc.fillStyle = p.k;
+        if (p.gw) gw(p.x, p.y, p.r, p.rot); else { fc.beginPath(); fc.arc(p.x, p.y, p.r * 0.45, 0, TWO); fc.fill(); }
+      });
+      fc.globalAlpha = 1;
+      if (cz.length) requestAnimationFrame(fKl); else { fB = false; fL = 0; fc.clearRect(0, 0, w, h); }
+    }
+    function konfetti(){
+      if (reduce) return;
+      var w = o.box.clientWidth, h = o.box.clientHeight, d = Math.min(window.devicePixelRatio || 1, 2), s = Math.max(0.72, w / 520);
+      fx.width = Math.round(w * d); fx.height = Math.round(h * d); fc.setTransform(d, 0, 0, d, 0, 0);
+      for (var i = 0; i < 64; i++){
+        var a = Math.random() * TWO, v = (2.2 + Math.random() * 5.2) * s;
+        cz.push({x: w / 2, y: h / 2, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 2.2, r: (5 + Math.random() * 7) * s, rot: Math.random() * TWO,
+                 vr: (Math.random() - 0.5) * 0.25, k: o.kolory[i % o.kolory.length], z: 0, zyc: 80 + Math.random() * 60, gw: i % 3 !== 2});
+      }
+      if (!fB){ fB = true; requestAnimationFrame(fKl); }
+    }
+    /* kręcenie: wynik losowany z góry (każdy tytuł ma równą szansę), koło staje w środkowej części pola,
+       nigdy na kresce; na końcu lekko cofa się na kołeczku. rysuj(kat, puls), koniec(kat) dostarcza strona. */
+    var seria = 0;
+    function krec(n, katStart, rysuj, koniec){
+      audio();
+      var moja = ++seria, step = TWO / n, cel = Math.floor(Math.random() * n), frac = 0.22 + Math.random() * 0.56;
+      var katCel = -Math.PI / 2 - (cel + frac) * step, d0 = ((katCel - katStart) % TWO + TWO) % TWO;
+      var delta = TWO * (6 + Math.floor(Math.random() * 3)) + d0;
+      var ov = reduce ? 0 : Math.min(step * 0.18, 0.08), dur = reduce ? 700 : 5600, wr = reduce ? 0 : 520, t0 = null;
+      var licz = Math.floor((katStart + Math.PI / 2) / step), ost = -1e9;
+      function kl(ts){
+        if (moja !== seria) return;
+        if (t0 === null) t0 = ts;
+        var e = ts - t0, k;
+        if (e < dur) k = katStart + (delta + ov) * (1 - Math.pow(1 - e / dur, 4));
+        else if (e < dur + wr){ var q = (e - dur) / wr; k = katStart + delta + ov * (1 - (q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2)); }
+        else k = katStart + delta;
+        var c = Math.floor((k + Math.PI / 2) / step);
+        if (c !== licz){ licz = c; if (ts - ost > 34){ ost = ts; tik(); wTik(); } }
+        rysuj(k, 0);
+        if (e < dur + wr){ requestAnimationFrame(kl); return; }
+        var kk = ((k % TWO) + TWO) % TWO;
+        koniec(kk); dzwonek(); konfetti();
+        if (reduce) return;
+        var t1 = null;
+        requestAnimationFrame(function pk(ts2){
+          if (moja !== seria) return;
+          if (t1 === null) t1 = ts2;
+          var p = Math.min(1, (ts2 - t1) / 1900);
+          rysuj(kk, p < 1 ? Math.abs(Math.sin(p * Math.PI * 3)) * (1 - p * 0.5) : 0);
+          if (p < 1) requestAnimationFrame(pk);
+        });
+      }
+      requestAnimationFrame(kl);
+    }
+    /* przełącznik dźwięku pod przyciskiem Kręć (pamiętany w tej przeglądarce) */
+    var IK = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>';
+    var IK_ON = IK + '<path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    var IK_OFF = IK + '<path d="M16.5 9.5l5 5M21.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    var pb = document.createElement("button"); pb.type = "button"; pb.className = o.klasaPrzel || "kolo-dzw";
+    function pEt(){ pb.innerHTML = (dzw ? IK_ON : IK_OFF) + "<span>" + (dzw ? "Dźwięk włączony" : "Dźwięk wyłączony") + "</span>"; }
+    pb.addEventListener("click", function(){
+      dzw = !dzw; try{ localStorage.setItem(o.klucz, dzw ? "1" : "0"); }catch(e){}
+      pEt(); if (dzw){ audio(); setTimeout(tik, 30); }
+    });
+    pEt(); o.przyc.insertAdjacentElement("afterend", pb);
+    return {krec: krec, reduce: reduce};
+  }
+  function koloMix(c1, c2, t){
+    function p(c){ var m = /^#?([0-9a-f]{6})$/i.exec(String(c).trim()); if (!m) return null; var v = parseInt(m[1], 16); return [v >> 16, (v >> 8) & 255, v & 255]; }
+    var a = p(c1), b = p(c2); if (!a || !b) return c1;
+    return "rgb(" + a.map(function(x, i){ return Math.round(x + (b[i] - x) * t); }).join(",") + ")";
+  }
+
   var cv = document.getElementById("kolo-cv"), daneEl = document.getElementById("kolo-dane");
   if (!cv || !daneEl || !cv.getContext) return;
   var KS = [];
@@ -2063,24 +2252,45 @@ pobierzKlucze();
     var t = txt; while (t.length > 4 && ctx.measureText(t + "…").width > maxW) t = t.slice(0, -1);
     return {fs: 24, lines: [t === txt ? t : t + "…"]};
   }
-  function rysuj(){
-    var l = naKole(), n = Math.max(l.length, 1), W = cv.width, r = W / 2, R = r - 12, step = TWO / n, hub = 64;
+  function rysuj(puls){
+    puls = puls || 0;
+    var l = naKole(), n = Math.max(l.length, 1), W = cv.width, r = W / 2, R = r - 22, step = TWO / n, hub = 64;
     var kol = [tok("--kraft", "#f6ead8"), tok("--sage", "#e4ebd8"), tok("--blush", "#f6ddd2"), "#fffaf3"];
     var ink = tok("--ink", "#4c5b66"), pine = tok("--pine", "#6d8a5b"), gold = tok("--gold", "#c4924f");
-    ctx.clearRect(0, 0, W, W); ctx.save(); ctx.translate(r, r); ctx.rotate(kat);
-    for (var i = 0; i < n; i++){
-      var a0 = i * step, f = kol[i % 4];
-      if (n > 1 && i === n - 1 && i % 4 === 0) f = kol[1];
-      var win = i === wyg && !kreci;
+    var wi = (!kreci && wyg > -1 && wyg < n) ? wyg : -1;
+    function klin(i, f, kt){
+      var a0 = i * step;
       ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, a0, a0 + step); ctx.closePath();
-      ctx.fillStyle = win ? pine : f; ctx.fill(); ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 5; ctx.stroke();
+      ctx.fillStyle = f; ctx.fill(); ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 5; ctx.stroke();
       ctx.save(); ctx.rotate(a0 + step / 2); ctx.textAlign = "right"; ctx.textBaseline = "middle";
       var u = uklad(l[i] ? l[i].t : "Dopisz tytuł", step, R - 30, hub), lh = u.fs * 1.12, y0 = -(u.lines.length - 1) * lh / 2;
-      ctx.font = czc(u.fs); ctx.fillStyle = win ? "#ffffff" : ink;
+      ctx.font = czc(u.fs); ctx.fillStyle = kt;
       u.lines.forEach(function(x, j){ ctx.fillText(x, R - 30, y0 + j * lh); });
       ctx.restore();
     }
+    ctx.clearRect(0, 0, W, W); ctx.save(); ctx.translate(r, r); ctx.rotate(kat);
+    for (var i = 0; i < n; i++){
+      if (i === wi) continue;
+      var f = kol[i % 4];
+      if (n > 1 && i === n - 1 && i % 4 === 0) f = kol[1];
+      klin(i, f, ink);
+    }
     ctx.beginPath(); ctx.arc(0, 0, R, 0, TWO); ctx.strokeStyle = gold; ctx.lineWidth = 6; ctx.stroke();
+    if (wi > -1){
+      var a0 = wi * step, sk = 1 + 0.03 * puls;
+      ctx.save(); ctx.scale(sk, sk);
+      ctx.save(); ctx.shadowColor = "rgba(196,146,79,.85)"; ctx.shadowBlur = 10 + 36 * puls;
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, a0, a0 + step); ctx.closePath(); ctx.fillStyle = pine; ctx.fill(); ctx.restore();
+      klin(wi, koloMix(pine, gold, 0.6 * puls), "#ffffff");
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, a0, a0 + step); ctx.closePath();
+      ctx.strokeStyle = gold; ctx.lineWidth = 7; ctx.lineJoin = "round"; ctx.stroke();
+      ctx.restore();
+    }
+    if (n > 1) for (var k = 0; k < n; k++){
+      var pa = k * step;
+      ctx.beginPath(); ctx.arc(Math.cos(pa) * (R - 13), Math.sin(pa) * (R - 13), 7, 0, TWO);
+      ctx.fillStyle = gold; ctx.fill(); ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2; ctx.stroke();
+    }
     ctx.beginPath(); ctx.arc(0, 0, hub, 0, TWO); ctx.fillStyle = "#fffaf3"; ctx.fill(); ctx.strokeStyle = gold; ctx.lineWidth = 6; ctx.stroke();
     ctx.beginPath(); ctx.arc(0, 0, 18, 0, TWO); ctx.fillStyle = gold; ctx.fill();
     ctx.restore();
@@ -2125,27 +2335,25 @@ pobierzKlucze();
     e.preventDefault(); var inp = document.getElementById("kolo-nowy"), v = inp.value.trim().slice(0, 80);
     if (!v) return; stan.own.push(v); inp.value = ""; zapisz(); wyg = -1; lista(); rysuj();
   });
+  var fx = koloEfekty({box: cv.parentNode, wsk: cv.parentNode.querySelector(".kolo-wsk"), przyc: btn, klucz: "zac-kolo-dzw",
+                       kolory: [tok("--gold", "#c4924f"), "#e3b65f", tok("--pine", "#6d8a5b"), "#d98c7a", tok("--blue-dk", "#a3713d")]});
   btn.addEventListener("click", function(){
     if (kreci) return;
     var l = naKole();
+    out.classList.remove("pop");
     if (l.length < 2){ out.replaceChildren(el("p", null, "Zaznacz co najmniej dwa tytuły.")); return; }
     kreci = true; btn.disabled = true; wyg = -1; out.replaceChildren(el("p", null, "Kręci się…"));
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var start = kat, delta = TWO * (6 + Math.random() * 3) + Math.random() * TWO, dur = reduce ? 700 : 5600, t0 = null;
-    function klatka(ts){
-      if (t0 === null) t0 = ts;
-      var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 4);
-      kat = start + delta * e; rysuj();
-      if (p < 1){ requestAnimationFrame(klatka); return; }
-      kat = kat % TWO; kreci = false; btn.disabled = false; btn.textContent = "Kręć jeszcze raz";
+    fx.krec(l.length, kat, function(k, p){ kat = k; rysuj(p); }, function(k){
+      kat = k; kreci = false; btn.disabled = false; btn.textContent = "Kręć jeszcze raz";
       wyg = ktory(l.length); rysuj(); pokaz(l[wyg]);
+      void out.offsetWidth; out.classList.add("pop");
+      setTimeout(function(){ var b = out.getBoundingClientRect(); if (b.bottom > (window.innerHeight || 0)) out.scrollIntoView({behavior: fx.reduce ? "auto" : "smooth", block: "nearest"}); }, 1100);
       var g = window.goatcounter;
       if (g && g.count) try{ g.count({path: "kolo › wypadło › " + (l[wyg].own ? "własny tytuł" : l[wyg].t), title: "z zakładki: ksiazki", referrer: "", event: true}); }catch(x){}
-    }
-    requestAnimationFrame(klatka);
+    });
   });
   lista(); rysuj();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(rysuj);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ rysuj(); });
   window.addEventListener("hashchange", function(){ if (document.body.dataset.widok === "ksiazki") rysuj(); });
 })();
 </script>
@@ -2204,6 +2412,228 @@ pobierzKlucze();
   }, true);
 })();
 </script>
+<div class="strefa-apka" id="strefa-apka" hidden>
+  <div class="sa-pasek"><a class="sa-wroc" href="#wspierajacy">← Zacisze</a><span class="sa-tyt">Budżetownik</span><button type="button" class="sk-link" data-sk="wyloguj">Wyloguj</button></div>
+  <div class="sa-miejsce" id="sa-miejsce"></div>
+</div>
 <script data-goatcounter="https://zaciszevlog.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>/* Strefa wspierających Zacisza: logowanie kodem z maila (Supabase Auth, REST bez bibliotek)
+   i ekran konta. Wklejane do strony przez build.py i do strony stycznia.
+   Konfiguracja wstawiana przy budowaniu (strefa_build.py): adres i klucz publiczny Supabase (jawny z założenia),
+   link do posta dla wspierających na YouTube i link Dołącz. */
+(function () {
+  "use strict";
+  var SB = "https://pqxlthpxpehdhlfvujck.supabase.co", KEY = "sb_publishable_jtSI2-nvj6lbiBGg34pIdQ_CWKxQmMH", POST = "", WSPIERAJ = "https://www.youtube.com/@zdrowezmiany/join";
+  var LS = "zacisze-strefa";
+
+  function czytaj() { try { return JSON.parse(localStorage.getItem(LS) || "null"); } catch (e) { return null; } }
+  function zapisz(s) { try { if (s) localStorage.setItem(LS, JSON.stringify(s)); else localStorage.removeItem(LS); } catch (e) {} }
+  var sesja = czytaj();
+  var stanUI = { krok: "mail", email: (sesja && sesja.email) || "", blad: "", info: "" };
+  var konto = null, ladowanie = false, kontenery = [];
+
+  function api(sciezka, opcje) {
+    opcje = opcje || {};
+    var h = { "apikey": KEY, "Content-Type": "application/json" };
+    if (opcje.token) h["Authorization"] = "Bearer " + opcje.token;
+    return fetch(SB + sciezka, { method: opcje.metoda || "GET", headers: h, body: opcje.body ? JSON.stringify(opcje.body) : undefined })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var j = null; try { j = t ? JSON.parse(t) : null; } catch (e) {}
+          if (!r.ok) { var err = new Error((j && (j.msg || j.message || j.error_description || j.error)) || ("HTTP " + r.status)); err.status = r.status; err.kod = j && (j.error_code || j.code); throw err; }
+          return j;
+        });
+      });
+  }
+  function ustawSesje(j, email) {
+    sesja = { access: j.access_token, refresh: j.refresh_token, wygasa: Date.now() + (j.expires_in || 3600) * 1000, email: (j.user && j.user.email) || email };
+    zapisz(sesja);
+  }
+  function token() {
+    if (!sesja) return Promise.resolve(null);
+    if (Date.now() < sesja.wygasa - 60000) return Promise.resolve(sesja.access);
+    return api("/auth/v1/token?grant_type=refresh_token", { metoda: "POST", body: { refresh_token: sesja.refresh } })
+      .then(function (j) { ustawSesje(j, sesja.email); return sesja.access; })
+      .catch(function (e) { if (e.status === 400 || e.status === 401) { sesja = null; zapisz(null); } return null; });
+  }
+  function bladPoLudzku(e) {
+    var m = (e && e.message) || "";
+    if (e && e.status === 429 || /rate limit|security purposes/i.test(m)) return "Za dużo prób naraz. Spróbuj za kilka minut.";
+    if (/expired|invalid|otp/i.test(m)) return "Ten kod nie pasuje albo już wygasł. Sprawdź cyfry albo poproś o nowy.";
+    if (/email/i.test(m)) return "Sprawdź, czy adres e-mail jest wpisany dobrze.";
+    if (e instanceof TypeError) return "Brak połączenia. Sprawdź internet i spróbuj jeszcze raz.";
+    return "Coś poszło nie tak. Spróbuj jeszcze raz za chwilę.";
+  }
+
+  function pobierzKonto() {
+    return token().then(function (t) {
+      if (!t) { konto = null; return null; }
+      return api("/rest/v1/konta?select=kod,status,podglad", { token: t }).then(function (r) { konto = (r && r[0]) || null; return konto; });
+    });
+  }
+  function materialy(zakladka) {
+    return token().then(function (t) {
+      if (!t) return [];
+      return api("/rest/v1/materialy?select=kolejnosc,dzien,tytul,tresc&zakladka=eq." + encodeURIComponent(zakladka) + "&order=kolejnosc", { token: t });
+    });
+  }
+
+  function wyslijKod(email) {
+    email = String(email || "").trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { stanUI.blad = "Wpisz cały adres e-mail, np. imie@gmail.com."; rysuj(); return; }
+    stanUI.blad = ""; stanUI.info = ""; ladowanie = true; rysuj();
+    api("/auth/v1/otp", { metoda: "POST", body: { email: email, create_user: true } })
+      .then(function () { stanUI.krok = "kod"; stanUI.email = email; stanUI.wyslano = Date.now(); })
+      .catch(function (e) { stanUI.blad = bladPoLudzku(e); })
+      .then(function () { ladowanie = false; rysuj(); });
+  }
+  function sprawdzKod(kod) {
+    kod = String(kod || "").replace(/\D/g, "");
+    if (kod.length < 6) { stanUI.blad = "Kod ma 6 cyfr."; rysuj(); return; }
+    stanUI.blad = ""; ladowanie = true; rysuj();
+    api("/auth/v1/verify", { metoda: "POST", body: { type: "email", email: stanUI.email, token: kod } })
+      .then(function (j) { ustawSesje(j, stanUI.email); stanUI.krok = "mail"; return pobierzKonto(); })
+      .catch(function (e) { stanUI.blad = bladPoLudzku(e); })
+      .then(function () { ladowanie = false; rysuj(); });
+  }
+  function wyloguj() {
+    var t = sesja && sesja.access;
+    sesja = null; konto = null; zapisz(null); stanUI = { krok: "mail", email: "", blad: "", info: "" }; rysuj();
+    if (t) api("/auth/v1/logout", { metoda: "POST", token: t }).catch(function () {});
+  }
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function kopiuj(tekst, przycisk) {
+    function ok() { przycisk.textContent = "Skopiowane"; setTimeout(function () { przycisk.textContent = "Kopiuj kod"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(tekst).then(ok, function () {});
+    else { var t = document.createElement("textarea"); t.value = tekst; document.body.appendChild(t); t.select(); try { document.execCommand("copy"); ok(); } catch (e) {} t.remove(); }
+  }
+
+  /* tekst stanu „masz dostęp” zależy od zakładki */
+  function coDalej(zakladka) {
+    if (zakladka === "styczen") return '<p>Pusty woreczek otworzy się tutaj <b>1 stycznia<\/b>. Każdego dnia odsłoni się jeden kolejny dzień.<\/p>';
+    if (zakladka === "budzet") return '<p>Budżetownik otwiera się na całym ekranie. Wszystko, co w nim wpiszesz, zostaje tylko w tej przeglądarce.<\/p>';
+    if (zakladka === "meal-prep" || zakladka === "habit-tracker") return '<p>Ta zakładka ruszy w 2027 roku. Zobaczysz ją tu od razu, bez ponownego logowania.<\/p>';
+    return '<p>Pusty woreczek otworzy się w zakładce <a href="#styczniowe-wyzwanie">Styczniowe wyzwanie<\/a> 1 stycznia. Już teraz masz <a href="#budzetownik">Budżetownik<\/a>. Meal prep i habit tracker dojdą w 2027 roku.<\/p>';
+  }
+
+  function html(zakladka) {
+    var b = stanUI.blad ? '<p class="sk-blad" role="alert">' + esc(stanUI.blad) + '<\/p>' : "";
+    var dis = ladowanie ? " disabled" : "";
+    if (!sesja) {
+      if (stanUI.krok === "kod") {
+        return '<h3>Wpisz kod z maila<\/h3>' +
+          '<p>Kod poszedł na <b>' + esc(stanUI.email) + '<\/b>. Nie widzisz go? Zajrzyj do Ofert i do Spamu.<\/p>' +
+          '<form class="sk-form" data-sk="kod"><label class="sk-lab" for="sk-kod">Kod z maila (6 cyfr)<\/label>' +
+          '<input class="sk-in sk-in-kod" id="sk-kod" name="kod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" required>' +
+          '<button class="btn" type="submit"' + dis + '>' + (ladowanie ? "Sprawdzam..." : "Zaloguj") + '<\/button><\/form>' + b +
+          '<p class="sk-drobne"><button type="button" class="sk-link" data-sk="znowu"' + dis + '>Wyślij kod jeszcze raz<\/button> · <button type="button" class="sk-link" data-sk="zmien">Zmień e-mail<\/button><\/p>';
+      }
+      return '<h3>Wspierasz kanał? Zaloguj się<\/h3>' +
+        '<p>Podaj swój e-mail, a wyślę Ci 6-cyfrowy kod. Bez hasła. Jeśli logujesz się pierwszy raz, konto założy się samo.<\/p>' +
+        '<form class="sk-form" data-sk="mail"><label class="sk-lab" for="sk-mail">Twój e-mail<\/label>' +
+        '<input class="sk-in" id="sk-mail" name="email" type="email" autocomplete="email" inputmode="email" required value="' + esc(stanUI.email) + '">' +
+        '<button class="btn" type="submit"' + dis + '>' + (ladowanie ? "Wysyłam..." : "Wyślij kod") + '<\/button><\/form>' + b +
+        '<p class="sk-drobne">Jak dbam o Twój adres: <a href="#prywatnosc">Prywatność<\/a>.<\/p>';
+    }
+    var stopka = '<p class="sk-drobne">Twoje konto: ' + esc(sesja.email) + ' · <button type="button" class="sk-link" data-sk="wyloguj">Wyloguj<\/button><\/p>';
+    if (!konto) return '<p>' + (ladowanie ? "Wczytuję Twoje konto..." : "Nie udało się wczytać konta. Odśwież stronę za chwilę.") + '<\/p>' + stopka;
+    if (konto.status === "aktywna" || konto.podglad) {
+      return '<h3>Masz dostęp do strefy wspierających<\/h3><p>Dziękuję, że wspierasz Zacisze.<\/p>' + coDalej(zakladka) + stopka;
+    }
+    if (konto.status === "wygasla") {
+      return '<h3>Twoje wsparcie się skończyło<\/h3><p>Dostęp wróci sam, gdy znów dołączysz do wspierających. Twój kod zostaje ten sam: <b>' + esc(konto.kod) + '<\/b>.<\/p>' +
+        '<p><a class="btn" href="' + esc(WSPIERAJ) + '" target="_blank" rel="noopener">Dołącz ponownie<\/a><\/p>' + stopka;
+    }
+    var post = POST && POST.indexOf("__") !== 0
+      ? '<a href="' + esc(POST) + '" target="_blank" rel="noopener">Otwórz post dla wspierających na YouTube<\/a>'
+      : 'Otwórz na kanale Zacisze zakładkę <b>Posty<\/b> i znajdź post „Strefa wspierających: wpisz tu swój kod”';
+    return '<h3>Jeszcze jeden krok<\/h3>' +
+      '<p>Twój osobisty kod:<\/p><p class="sk-kod">' + esc(konto.kod) + '<\/p>' +
+      '<p><button type="button" class="btn ghost" data-sk="kopiuj">Kopiuj kod<\/button><\/p>' +
+      '<ol class="sk-kroki"><li>' + post + '.<\/li><li>Wpisz ten kod w komentarzu pod postem. Post widzą tylko wspierające osoby, więc tak wiem, że to Ty.<\/li>' +
+      '<li>Dostęp włączę w ciągu doby. Ta strona pokaże to sama.<\/li><\/ol>' + stopka;
+  }
+
+  function rysuj() {
+    kontenery = kontenery.filter(function (k) { return document.body.contains(k.el); });
+    kontenery.forEach(function (k) { k.el.innerHTML = html(k.zakladka); k.el.dataset.stan = !sesja ? "gosc" : (konto ? konto.status : "wczytuje"); });
+    try { document.dispatchEvent(new CustomEvent("strefa-zmiana")); } catch (e) {}
+  }
+  document.addEventListener("submit", function (e) {
+    var f = e.target.closest && e.target.closest("form[data-sk]"); if (!f) return;
+    e.preventDefault();
+    if (f.dataset.sk === "mail") wyslijKod(f.email.value);
+    if (f.dataset.sk === "kod") sprawdzKod(f.kod.value);
+  });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-sk]"); if (!b || b.tagName === "FORM") return;
+    var co = b.dataset.sk;
+    if (co === "wyloguj") wyloguj();
+    if (co === "zmien") { stanUI.krok = "mail"; stanUI.blad = ""; rysuj(); }
+    if (co === "znowu") wyslijKod(stanUI.email);
+    if (co === "kopiuj" && konto) kopiuj(konto.kod, b);
+  });
+
+  window.Strefa = {
+    /* pokaż panel w elemencie; zakladka: "wspierajacy", "styczen", "meal-prep", "habit-tracker", "budzet" */
+    pokaz: function (el, zakladka) {
+      if (!el) return;
+      var k = kontenery.filter(function (x) { return x.el === el; })[0];
+      if (k) k.zakladka = zakladka; else kontenery.push({ el: el, zakladka: zakladka });
+      rysuj();
+      if (sesja && !ladowanie) { ladowanie = !konto; pobierzKonto().catch(function () {}).then(function () { ladowanie = false; rysuj(); }); }
+    },
+    konto: function () { return pobierzKonto(); },
+    materialy: materialy,
+    stan: function () { return { sesja: !!sesja, konto: konto }; },
+    zalogowana: function () { return !!sesja; }
+  };
+})();
+</script>
+<script>
+/* strefa 20.11: panel logowania w każdej zakładce z kłódką */
+(function(){
+  function s(){
+    if (document.body.dataset.widok !== "strefa" || !window.Strefa) return;
+    var h = location.hash;
+    var z = h === "#styczniowe-wyzwanie" ? "styczen" : h === "#meal-prep" ? "meal-prep" : h === "#habit-tracker" ? "habit-tracker" : h === "#budzetownik" ? "budzet" : "wspierajacy";
+    Strefa.pokaz(document.getElementById("strefa-konto"), z);
+  }
+  s(); window.addEventListener("hashchange", s);
+})();
+</script>
+<script>
+/* strefa 20.11: budżetownik (kod z bazy, tylko dla aktywnych wspierających) na całym ekranie */
+(function(){
+  var box = document.getElementById("strefa-apka"), miejsce = document.getElementById("sa-miejsce");
+  function apka(){
+    if (!window.Strefa || !Strefa.stan) return;
+    var st = Strefa.stan(), k = st.konto;
+    var dostep = !!(st.sesja && k && (k.status === "aktywna" || k.podglad));
+    var tu = document.body.dataset.widok === "strefa" && location.hash === "#budzetownik";
+    if (!dostep) { miejsce.innerHTML = ""; miejsce.dataset.stan = ""; }
+    box.hidden = !(tu && dostep);
+    document.documentElement.classList.toggle("sa-otwarta", !box.hidden);
+    if (box.hidden || miejsce.dataset.stan === "jest" || miejsce.dataset.stan === "laduje") return;
+    miejsce.dataset.stan = "laduje";
+    miejsce.innerHTML = '<p class="sa-info">Otwieram budżetownik...</p>';
+    Strefa.materialy("budzet").then(function(r){
+      var m = r && r[0] && r[0].tresc;
+      if (!m || !m.html) throw new Error("brak budżetownika");
+      var f = document.createElement("iframe");
+      f.className = "sa-ramka"; f.title = "Budżetownik"; f.setAttribute("allow", "web-share; clipboard-write");
+      f.srcdoc = m.html;
+      miejsce.innerHTML = ""; miejsce.appendChild(f); miejsce.dataset.stan = "jest";
+    }).catch(function(){
+      miejsce.dataset.stan = "";
+      miejsce.innerHTML = '<p class="sa-info">Nie udało się otworzyć budżetownika. Sprawdź internet i odśwież stronę.</p>';
+    });
+  }
+  document.addEventListener("strefa-zmiana", apka);
+  window.addEventListener("hashchange", function(){ setTimeout(apka, 0); });
+  apka();
+})();
+</script>
 </body>
 </html>
